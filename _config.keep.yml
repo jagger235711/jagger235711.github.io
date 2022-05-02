@@ -4,16 +4,18 @@ base_info:
   url: https://supermermer.github.io/
 
 
-
-# style:
+# ---------------------------------------------------------------------------------------
+# Theme style settings
+# ---------------------------------------------------------------------------------------
+style:
   # Theme primary color
   primary_color: "#0066CC"
 
   # Avatar (You can use local image or image external link)
-  avatar: /images/avatar.svg
+  avatar: /images/avatar.jpg
 
   # Favicon (You can use local image or image external link)
-  favicon: /images/logo.svg
+  favicon: /images/logo.png
 
   # Article image align position, value: left | center
   article_img_align: left
@@ -33,7 +35,7 @@ base_info:
   first_screen:
     enable: true
     background_img: /images/bg.svg # You can use local image or image external link
-    description: Keep writing and Keep loving.
+    description: 为天地立心，为往圣继绝学
 
   # Scroll style settings
   scroll:
@@ -41,19 +43,22 @@ base_info:
       enable: true
     percent:
       enable: false
-  
 
+# ---------------------------------------------------------------------------------------
+# Social contact link
+# ---------------------------------------------------------------------------------------
 social_contact:
-enable: false
-links:
-  github: 'https://github.com/supermermer'              # your GitHub URL
-  # weixin:               # your WeChat QR-Code URL
-  # qq:                   # your QQ QR-Code URL
-  # weibo:                # your WeiBo URL
-  # zhihu:                # your ZhiHu URL
-  # twitter:              # your twitter URL
-  # facebook:             # your facebook URL
-  email:  '252587809@qq.com'              # your email
+  enable: true
+  links:
+    github: https://github.com/supermermer              # your GitHub URL
+    weixin: # your WeChat QR-Code URL
+    qq: # your QQ QR-Code URL
+    weibo: # your WeiBo URL
+    zhihu: # your ZhiHu URL
+    twitter: # your twitter URL
+    facebook: # your facebook URL
+    email: 252587809@qq.com # your email
+ 
 
 
 menu:
