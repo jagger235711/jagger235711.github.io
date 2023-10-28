@@ -7,15 +7,15 @@ repo_url: https://github.com/jagger235711/jagger235711.github.io
 repo_name: jagger235711/jagger235711.github.io
 edit_uri: "edit/origin/docs/"
 
-nav:
-  - 首页:
-      - blog/index.md
-#   - 标签分类: tags.md
-#   - 归档: reviews.md
-#   - ...
+# nav:
+#   - Index: blog/index.md
+#   #   - 标签分类: tags.md
+#   - Archive:
+#       - blog/
 
 theme:
   name: material
+  custom_dir: overrides
   language: zh
   features:
     - navigation.instant
@@ -41,38 +41,24 @@ theme:
       toggle:
         icon: material/lightbulb-outline
         name: 进入日间模式
+  icon:
+    repo: fontawesome/brands/github
 plugins:
+  # - meta
   - blog:
       post_date_format: full
-      post_slugify: !!python/object/apply:pymdownx.slugs.slugify
+      categories_slugify: !!python/object/apply:pymdownx.slugs.slugify
         kwds:
           case: lower
   - git-revision-date-localized:
       enable_creation_date: true
-
-  # - awesome-pages
+  # - info: #出问题求助大佬时打最小包用
+  #     enabled_on_serve: true
   - search:
-      separator: '[\\s\\u200b\\-]'
-  # - blogging:
-  #     locale: zh_CN
-  #     # GLOBAL CATEGORY: configs for {{ blog_content }}
-  #     dirs:
-  #       - blog
-  #     template: override/custom-blog.html
-
-  #     # INDIVIDUAL CATEGORIES: configs for {{ blog_content name }}
-  #     categories:
-  #       - name: reviews
-  #         dirs:
-  #           - reviews
-
-  #     # GLOBAL CONFIG: configs apply to all categories
-  #     time_format: "%y/%m/%d %H:%M:%S"
-  #     meta_time_format: "%Y-%m-%d %H:%M:%S"
-  #     features:
-  #       tags:
-  #         index_page: tags.md
-  #         insert: top
+      lang:
+        - en
+        - zh
+      separator: '[\s\u200b\-]'
 
 # markdown_extensions:
 #   - pymdownx.inlinehilite

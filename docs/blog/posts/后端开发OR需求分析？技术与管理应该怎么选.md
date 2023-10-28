@@ -4,7 +4,7 @@ authors:
   - Jagger
 categories:
   - fun
-date: 2023-10-11 23:30:00               
+date: 2023-10-11           
 ---
 # 后端开发OR需求分析？技术与管理应该怎么选
 
