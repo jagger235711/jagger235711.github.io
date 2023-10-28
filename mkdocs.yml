@@ -5,74 +5,80 @@ site_author: Jagger G
 
 repo_url: https://github.com/jagger235711/jagger235711.github.io
 repo_name: jagger235711/jagger235711.github.io
-edit_uri: ""
+edit_uri: "edit/origin/docs/"
 
 nav:
-  - 首页: index.md
-  - 标签分类: tags.md
-  - 归档: reviews.md
-  - ...
+  - 首页:
+      - blog/index.md
+#   - 标签分类: tags.md
+#   - 归档: reviews.md
+#   - ...
 
 theme:
   name: material
   language: zh
-  icon:
-    admonition:
-      note: octicons/tag-16
-      abstract: octicons/checklist-16
-      info: octicons/info-16
-      tip: octicons/squirrel-16
-      success: octicons/check-16
-      question: octicons/question-16
-      warning: octicons/alert-16
-      failure: octicons/x-circle-16
-      danger: octicons/zap-16
-      bug: octicons/bug-16
-      example: octicons/beaker-16
-      quote: octicons/quote-16
-  palette:
-    - scheme: default
+  features:
+    - navigation.instant
+    - navigation.instant.progress
+    - navigation.tracking
+    - navigation.tabs
+    - navigation.sections
+    - navigation.path
+    - navigation.prune
+    - search.suggest
+    - search.highlight
+    - content.action.edit
+    - toc.follow
+    - toc.integrate
+  palette: #调整网页皮肤
+    - media: "(prefers-color-scheme: light)"
+      scheme: default
       toggle:
-        icon: material/weather-sunny
+        icon: material/lightbulb
         name: 进入夜间模式
-    - scheme: slate
+    - media: "(prefers-color-scheme: dark)"
+      scheme: slate
       toggle:
-        icon: material/weather-night
+        icon: material/lightbulb-outline
         name: 进入日间模式
 plugins:
-  - awesome-pages
+  - blog:
+      post_date_format: full
+      post_slugify: !!python/object/apply:pymdownx.slugs.slugify
+        kwds:
+          case: lower
+  - git-revision-date-localized:
+      enable_creation_date: true
+
+  # - awesome-pages
   - search:
       separator: '[\\s\\u200b\\-]'
-  - blogging:
-      locale: zh_CN
-      # GLOBAL CATEGORY: configs for {{ blog_content }}
-      dirs:
-        - blog
-      template: override/custom-blog.html
+  # - blogging:
+  #     locale: zh_CN
+  #     # GLOBAL CATEGORY: configs for {{ blog_content }}
+  #     dirs:
+  #       - blog
+  #     template: override/custom-blog.html
 
-      # INDIVIDUAL CATEGORIES: configs for {{ blog_content name }}
-      categories:
-        - name: reviews
-          dirs:
-            - reviews
+  #     # INDIVIDUAL CATEGORIES: configs for {{ blog_content name }}
+  #     categories:
+  #       - name: reviews
+  #         dirs:
+  #           - reviews
 
-      # GLOBAL CONFIG: configs apply to all categories
-      time_format: "%y/%m/%d %H:%M:%S"
-      meta_time_format: "%Y-%m-%d %H:%M:%S"
-      features:
-        tags:
-          index_page: tags.md
-          insert: top
+  #     # GLOBAL CONFIG: configs apply to all categories
+  #     time_format: "%y/%m/%d %H:%M:%S"
+  #     meta_time_format: "%Y-%m-%d %H:%M:%S"
+  #     features:
+  #       tags:
+  #         index_page: tags.md
+  #         insert: top
 
-markdown_extensions:
-  - toc:
-      permalink: ""
-  - pymdownx.highlight:
-      anchor_linenums: true
-  - pymdownx.inlinehilite
-  - pymdownx.snippets
-  - pymdownx.superfences
-  - admonition
-  - pymdownx.details
-  - pymdownx.superfences
+# markdown_extensions:
+#   - pymdownx.inlinehilite
+#   - pymdownx.snippets
+#   - pymdownx.superfences
+#   - admonition
+#   - pymdownx.details
+#   - pymdownx.superfences
 copyright: Copyright &copy; 2023 Jagger G

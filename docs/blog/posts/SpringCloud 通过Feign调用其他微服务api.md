@@ -1,16 +1,16 @@
 ---
-title: springCloud-desk微服务远程调用springCloud-user微服务方法
-summary: A brief description of my document.
-authors:
-    - Jagger G
-time: 2023-10-11 23:00:00
-# category: springCloud
-tags: 
+date: 2023-10-11 23:00:00
+authors: 
+    - Jagger
+categories:
     - 技术分享
     - springCloud
 ---
 
 # springCloud-desk微服务远程调用springCloud-user微服务方法
+
+本文以一次实际开发经历为例，介绍了微服务间远程调用的方法，并探讨了用feign替代controller的可行性。
+<!-- more -->
 
 ## 预先准备
 
