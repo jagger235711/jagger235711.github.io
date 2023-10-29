@@ -5,6 +5,7 @@ authors:
 categories:
     - 技术分享
     - springCloud
+comments: true
 ---
 
 # springCloud-desk微服务远程调用springCloud-user微服务方法
