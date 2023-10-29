@@ -8,7 +8,7 @@ repo_name: jagger235711/jagger235711.github.io
 edit_uri: "edit/origin/docs/"
 
 # nav:
-#   - Index: blog/index.md
+#   - Index: index.md
 #   #   - 标签分类: tags.md
 #   - Archive:
 #       - blog/
