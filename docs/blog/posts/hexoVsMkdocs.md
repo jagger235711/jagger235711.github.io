@@ -2,7 +2,7 @@
 authors: 
     - Jagger
 categories:
-  - 技术分享
+  - 心得体会
 date: 2023-10-28
 draft: false
 comments: true
