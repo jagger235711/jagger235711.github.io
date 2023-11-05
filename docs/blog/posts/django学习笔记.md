@@ -23,7 +23,7 @@ comments: true
     python manage.py migrate
     ```
 
-1. 业务模块编写
+3. 业务模块编写
     1. 页面设计
     2. 配置url
     3. 编写对应视图函数，先不写具体功能，先把页面写出来。目标是要能看到页面，看到页面之后，再进行功能开发。
@@ -49,7 +49,7 @@ comments: true
 
 - ORM操作
 
-  ```
+  ```py
     models.User.objects.filter(id="xxx")
     models.User.objects.filter(id="xxx").order_by("-id")
   
@@ -64,6 +64,8 @@ comments: true
 1. 当设计ORM时出现了元组套元组的情况，可以使用object.get_字段名_display()来直接获得对应选项表示的字段
 
    ```python
+
+
    # django中定义的约束
     
     gender_choices = (
@@ -81,18 +83,18 @@ comments: true
 5. 通过在model.py中对meta类添加widget字段，可以修改字段通过modelform渲染的样式
     1. 在实际生产中，更简便的方法是直接重写modelform的__init__方法，在__init__方法中传入对应的widget
 
-   ```python
-   
-    class UserForm(forms.ModelForm):
-           class Meta:
-               model = User
-               fields = ('name',)
-       
-           def __init__(self, *args, **kwargs):
-               super().__init__(*args, **kwargs)
-               self.fields['name'].widget = forms.TextInput(attrs={'class': 'custom-class'})
+        ```py
+        
+            class UserForm(forms.ModelForm):
+                class Meta:
+                    model = User
+                    fields = ('name',)
+            
+                def __init__(self, *args, **kwargs):
+                    super().__init__(*args, **kwargs)
+                    self.fields['name'].widget = forms.TextInput(attrs={'class': 'custom-class'})
 
-   ```
+        ```
 
     2. 通过在meta类中编辑fields字段可以限制模板显示哪些字段。对应的还有参数exclude，用于排除哪些字段。
 
