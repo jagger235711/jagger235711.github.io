@@ -3,10 +3,10 @@
 authors: 
   - Jagger
 categories:
-  - 技术分析
+  - 技术分享
 date: 2023-11-02           
 comments: true
-draft: true
+# draft: true
 ---
 # Python中的*args（arguments）和**kwargs（keyword arguments）参数
 

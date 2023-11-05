@@ -6,6 +6,7 @@ categories:
   - 心得体会
 date: 2023-10-11           
 comments: true
+draft: true
 ---
 # 后端开发OR需求分析？技术与管理应该怎么选
 

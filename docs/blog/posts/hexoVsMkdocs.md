@@ -4,7 +4,7 @@ authors:
 categories:
   - 心得体会
 date: 2023-10-28
-draft: false
+# draft: true
 comments: true
 ---
 # 纯静态站点建站框架是用Hexo还是Mkdocs？

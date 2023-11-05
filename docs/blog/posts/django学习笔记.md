@@ -4,10 +4,12 @@ authors:
 categories:
   - 学习笔记
 date: 2023-11-05
-draft: true
+# draft: true
 comments: true
 ---
 # Django学习笔记
+
+之前在学习Django时写的笔记，记录一下。
 
 <!-- more -->
 
