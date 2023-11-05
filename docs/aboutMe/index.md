@@ -124,8 +124,4 @@
 
 ### 作品展示
 
-<p style="text-align:center;">
-
 ![作品展示](https://cdn.jsdelivr.net/gh/jagger235711/coooool/img/20231105212747.png)
-
-</p>
