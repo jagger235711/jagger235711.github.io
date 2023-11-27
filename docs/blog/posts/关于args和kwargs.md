@@ -8,13 +8,13 @@ date: 2023-11-02
 comments: true
 # draft: true
 ---
-# Python中的*args（arguments）和**kwargs（keyword arguments）参数
+# Python中的`*args`（arguments）和`**kwargs`（keyword arguments）参数
 
 <!-- more -->
 
-在Python中，*args和**kwargs是用于传递不定数量的参数的特殊语法。
+在Python中，`*args`和`**kwargs`是用于传递不定数量的参数的特殊语法。
 
-*args用于传递任意数量的非关键字参数。它允许传递任意数量的参数，并将它们作为一个元组传递给函数或方法。在函数定义时，使用*args可以接受任意数量的参数。
+`*args`用于传递任意数量的非关键字参数。它允许传递任意数量的参数，并将它们作为一个元组传递给函数或方法。在函数定义时，使用`*args`可以接受任意数量的参数。
 
 下面是一个示例，展示了如何使用*args来接受不定数量的参数并打印它们的值：
 
