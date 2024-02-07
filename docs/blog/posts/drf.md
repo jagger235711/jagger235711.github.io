@@ -2,9 +2,9 @@
 authors: 
     - Jagger
 categories:
-  - 技术分享
+  - 学习笔记
 date: 2023-11-04
-draft: true
+# draft: true
 comments: true
 ---
 # drf框架学习分享
@@ -12,7 +12,8 @@ comments: true
 django rest framework-一个基于Django的REST框架，用于构建Web API
 
 接下来我会分享关于我在学习drf过程中的一些心得体会，以及一些遇到的问题和解决方法。
-<!--more-->
+
+<!-- more -->
 
 ## FBV&CBV
 
