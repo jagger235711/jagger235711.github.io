@@ -1,0 +1,1665 @@
+
+<!doctype html>
+<html lang="zh" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Jagger 的个人博客">
+      
+      
+        <meta name="author" content="Jagger G">
+      
+      
+        <link rel="canonical" href="https://jagger235711.github.io/blog/2023/11/04/drf%E6%A1%86%E6%9E%B6%E5%AD%A6%E4%B9%A0%E5%88%86%E4%BA%AB/">
+      
+      
+        <link rel="prev" href="../../02/python%E4%B8%AD%E7%9A%84argsarguments%E5%92%8Ckwargskeyword-arguments%E5%8F%82%E6%95%B0/">
+      
+      
+        <link rel="next" href="../../05/django%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">
+      
+      
+      <link rel="icon" href="../../../../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.5.3, mkdocs-material-9.5.8">
+    
+    
+<title>Jagger的个人博客</title>
+
+    
+      <link rel="stylesheet" href="../../../../../assets/stylesheets/main.f2e4d321.min.css">
+      
+        
+        <link rel="stylesheet" href="../../../../../assets/stylesheets/palette.06af60db.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../../../../..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+   <link href="../../../../../assets/stylesheets/glightbox.min.css" rel="stylesheet"/><style>
+    html.glightbox-open { overflow: initial; height: 100%; }
+    .gslide-title { margin-top: 0px; user-select: text; }
+    .gslide-desc { color: #666; user-select: text; }
+    .gslide-image img { background: white; }
+    .gscrollbar-fixer { padding-right: 15px; }
+    .gdesc-inner { font-size: 0.75rem; }
+    body[data-md-color-scheme="slate"] .gdesc-inner { background: var(--md-default-bg-color);}
+    body[data-md-color-scheme="slate"] .gslide-title { color: var(--md-default-fg-color);}
+    body[data-md-color-scheme="slate"] .gslide-desc { color: var(--md-default-fg-color);}</style> <script src="../../../../../assets/javascripts/glightbox.min.js"></script></head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#drf" class="md-skip">
+          跳转至
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="页眉">
+    <a href="../../../../.." title="Jagger | Blog" class="md-header__button md-logo" aria-label="Jagger | Blog" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Jagger | Blog
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              drf框架学习分享
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="进入夜间模式"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="进入夜间模式" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 2a7 7 0 0 0-7 7c0 2.38 1.19 4.47 3 5.74V17a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1v-2.26c1.81-1.27 3-3.36 3-5.74a7 7 0 0 0-7-7M9 21a1 1 0 0 0 1 1h4a1 1 0 0 0 1-1v-1H9v1Z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="进入日间模式"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="进入日间模式" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 2a7 7 0 0 1 7 7c0 2.38-1.19 4.47-3 5.74V17a1 1 0 0 1-1 1H9a1 1 0 0 1-1-1v-2.26C6.19 13.47 5 11.38 5 9a7 7 0 0 1 7-7M9 21v-1h6v1a1 1 0 0 1-1 1h-4a1 1 0 0 1-1-1m3-17a5 5 0 0 0-5 5c0 2.05 1.23 3.81 3 4.58V16h4v-2.42c1.77-.77 3-2.53 3-4.58a5 5 0 0 0-5-5Z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var media,input,key,value,palette=__md_get("__palette");if(palette&&palette.color){"(prefers-color-scheme)"===palette.color.media&&(media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']"),palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent"));for([key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="搜索" placeholder="搜索" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="查找">
+        
+        <button type="reset" class="md-search__icon md-icon" title="清空当前内容" aria-label="清空当前内容" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41Z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            正在初始化搜索引擎
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/jagger235711/jagger235711.github.io" title="前往仓库" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><!--! Font Awesome Free 6.5.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2023 Fonticons, Inc.--><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    jagger235711/jagger235711.github.io
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="标签" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../../.." class="md-tabs__link">
+        
+  
+    
+  
+  首页
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../../../../" class="md-tabs__link">
+          
+  
+  博客
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../../../aboutMe/" class="md-tabs__link">
+          
+  
+  关于我
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+                
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" hidden>
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+  
+
+<nav class="md-nav md-nav--primary md-nav--lifted md-nav--integrated" aria-label="导航栏" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../../../.." title="Jagger | Blog" class="md-nav__button md-logo" aria-label="Jagger | Blog" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
+
+    </a>
+    Jagger | Blog
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/jagger235711/jagger235711.github.io" title="前往仓库" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><!--! Font Awesome Free 6.5.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2023 Fonticons, Inc.--><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    jagger235711/jagger235711.github.io
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../.." class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    首页
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+    
+      
+      
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="">
+            
+  
+  <span class="md-ellipsis">
+    博客
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            博客
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+    
+  
+  
+    
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      <a href="../../../../" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    全部博文
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+      
+      
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_2" id="__nav_2_2_label" tabindex="">
+            
+  
+  <span class="md-ellipsis">
+    归档
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_2">
+            <span class="md-nav__icon md-icon"></span>
+            归档
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+    
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../archive/2024/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    2024
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../archive/2023/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    2023
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+      
+      
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_3" id="__nav_2_3_label" tabindex="">
+            
+  
+  <span class="md-ellipsis">
+    分类
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_3">
+            <span class="md-nav__icon md-icon"></span>
+            分类
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+    
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../category/springcloud/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    springCloud
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../category/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    学习笔记
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../category/%E5%BF%83%E5%BE%97%E4%BD%93%E4%BC%9A/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    心得体会
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../category/%E6%8A%80%E6%9C%AF%E5%88%86%E4%BA%AB/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    技术分享
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../category/%E8%BD%AF%E4%BB%B6%E5%88%86%E4%BA%AB/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    软件分享
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+      
+      
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="">
+            
+  
+  <span class="md-ellipsis">
+    关于我
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            关于我
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../aboutMe/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    关于我
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+          
+          
+  <div class="md-content md-content--post" data-md-component="content">
+    <div class="md-sidebar md-sidebar--post" data-md-component="sidebar" data-md-type="navigation">
+      <div class="md-sidebar__scrollwrap">
+        <div class="md-sidebar__inner md-post">
+          <nav class="md-nav md-nav--primary">
+            <div class="md-post__back">
+              <div class="md-nav__title md-nav__container">
+                <a href="../../../../" class="md-nav__link">
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+                  <span class="md-ellipsis">
+                    回到主页
+                  </span>
+                </a>
+              </div>
+            </div>
+            
+              <div class="md-post__authors md-typeset">
+                
+                  <div class="md-profile md-post__profile">
+                    <span class="md-author md-author--long">
+                      <img src="https://avatars.githubusercontent.com/u/56354235?v=4" alt="Jagger G">
+                    </span>
+                    <span class="md-profile__description">
+                      <strong>
+                        
+                          Jagger G
+                        
+                      </strong>
+                      <br>
+                      Blog Owner
+                    </span>
+                  </div>
+                
+              </div>
+            
+            <ul class="md-post__meta md-nav__list">
+              <li class="md-nav__item md-nav__item--section">
+                <div class="md-post__title">
+                  <span class="md-ellipsis">
+                    元数据
+                  </span>
+                </div>
+                <nav class="md-nav">
+                  <ul class="md-nav__list">
+                    <li class="md-nav__item">
+                      <div class="md-nav__link">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 19H5V8h14m-3-7v2H8V1H6v2H5c-1.11 0-2 .89-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V5a2 2 0 0 0-2-2h-1V1m-1 11h-5v5h5v-5Z"/></svg>
+                        <time datetime="2023-11-04 00:00:00" class="md-ellipsis">2023年11月4日星期六</time>
+                      </div>
+                    </li>
+                    
+                    
+                      <li class="md-nav__item">
+                        <div class="md-nav__link">
+                          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9 3v15h3V3H9m3 2 4 13 3-1-4-13-3 1M5 5v13h3V5H5M3 19v2h18v-2H3Z"/></svg>
+                          <span class="md-ellipsis">
+                            分类于
+                            
+                              <a href="../../../../category/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">学习笔记</a></span>
+                        </div>
+                      </li>
+                    
+                    
+                      
+                      <li class="md-nav__item">
+                        <div class="md-nav__link">
+                          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 20a8 8 0 0 0 8-8 8 8 0 0 0-8-8 8 8 0 0 0-8 8 8 8 0 0 0 8 8m0-18a10 10 0 0 1 10 10 10 10 0 0 1-10 10C6.47 22 2 17.5 2 12A10 10 0 0 1 12 2m.5 5v5.25l4.5 2.67-.75 1.23L11 13V7h1.5Z"/></svg>
+                          <span class="md-ellipsis">
+                            
+                              需要 7 分钟阅读时间
+                            
+                          </span>
+                        </div>
+                      </li>
+                    
+                  </ul>
+                </nav>
+              </li>
+            </ul>
+          </nav>
+          
+            
+
+<nav class="md-nav md-nav--secondary" aria-label="目录">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目录
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#fbvcbv" class="md-nav__link">
+    <span class="md-ellipsis">
+      FBV&amp;CBV
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="FBV&CBV">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#fbv-function-base-view" class="md-nav__link">
+    <span class="md-ellipsis">
+      fbv-function base view
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#cbv-class-base-view" class="md-nav__link">
+    <span class="md-ellipsis">
+      cbv-class base view
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#request" class="md-nav__link">
+    <span class="md-ellipsis">
+      request对象
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="request对象">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#getattr__getattr__-__getattribute____get__" class="md-nav__link">
+    <span class="md-ellipsis">
+      getattr,__getattr__, __getattribute__和__get__的区别
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      类对象的魔法函数
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      类的魔法函数与类的普通函数的区别
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      类对象和实例对象
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      反射
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      认证组件
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_6" class="md-nav__link">
+    <span class="md-ellipsis">
+      权限组件
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_7" class="md-nav__link">
+    <span class="md-ellipsis">
+      限流组件
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#day14" class="md-nav__link">
+    <span class="md-ellipsis">
+      day14
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="day14">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_8" class="md-nav__link">
+    <span class="md-ellipsis">
+      版本组件
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_9" class="md-nav__link">
+    <span class="md-ellipsis">
+      解析器
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_10" class="md-nav__link">
+    <span class="md-ellipsis">
+      元类
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_11" class="md-nav__link">
+    <span class="md-ellipsis">
+      序列化器(*)
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#day15-drf" class="md-nav__link">
+    <span class="md-ellipsis">
+      day15 drf下篇
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="day15 drf下篇">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_12" class="md-nav__link">
+    <span class="md-ellipsis">
+      需求
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="需求">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1" class="md-nav__link">
+    <span class="md-ellipsis">
+      实现方法1
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_13" class="md-nav__link">
+    <span class="md-ellipsis">
+      案例：博客系统
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="案例：博客系统">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_14" class="md-nav__link">
+    <span class="md-ellipsis">
+      功能
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_15" class="md-nav__link">
+    <span class="md-ellipsis">
+      课程中的闪光点
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_16" class="md-nav__link">
+    <span class="md-ellipsis">
+      案例二：分页
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_17" class="md-nav__link">
+    <span class="md-ellipsis">
+      一些零碎的点
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_18" class="md-nav__link">
+    <span class="md-ellipsis">
+      常见报错
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+          
+        </div>
+      </div>
+    </div>
+    <article class="md-content__inner md-typeset">
+      
+        
+
+  
+    <a href="https://github.com/jagger235711/jagger235711.github.io/edit/origin/docs/blog/posts/drf.md" title="编辑此页" class="md-content__button md-icon">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M10 20H6V4h7v5h5v3.1l2-2V8l-6-6H6c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h4v-2m10.2-7c.1 0 .3.1.4.2l1.3 1.3c.2.2.2.6 0 .8l-1 1-2.1-2.1 1-1c.1-.1.2-.2.4-.2m0 3.9L14.1 23H12v-2.1l6.1-6.1 2.1 2.1Z"/></svg>
+    </a>
+  
+  
+
+
+<h1 id="drf">drf框架学习分享</h1>
+<p>django rest framework-一个基于Django的REST框架，用于构建Web API</p>
+<p>接下来我会分享关于我在学习drf过程中的一些心得体会，以及一些遇到的问题和解决方法。</p>
+<!-- more -->
+
+<h2 id="fbvcbv">FBV&amp;CBV</h2>
+<h3 id="fbv-function-base-view">fbv-function base view</h3>
+<p>要通过手动的方式对不同的请求方式进行处理</p>
+<h3 id="cbv-class-base-view">cbv-class base view</h3>
+<p>django原生cbv： 通过继承View类，调用View中的dispatch实现不同请求方式的路由</p>
+<p>基于drf的cbv：</p>
+<h2 id="request">request对象</h2>
+<p>drf中的request不是原生的，它对python中原有的request进行了封装，封装了request.data，request.query_params等属性，方便我们使用。</p>
+<p>但是可以通过drf中的request.xxx（相当于request._request.xxx）获取到python中的request.xxx属性。因为drf中通过<code>getattr</code>,<code>__getattr__</code>, <code>__getattribute__</code>方法，使得这些查找参数的过程对我们透明了。</p>
+<p>查找的逻辑是： 先在本对象找该参数，如果找不到，则去原生request中找，如果找不到，则报错</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a> <span class="k">def</span> <span class="fm">__getattr__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">attr</span><span class="p">):</span>
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="sd">        If an attribute does not exist on this instance, then we also attempt</span>
+<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="sd">        to proxy it to the underlying HttpRequest object.</span>
+<a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a><span class="sd">        &quot;&quot;&quot;</span>
+<a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a>        <span class="k">try</span><span class="p">:</span>
+<a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a>            <span class="k">return</span> <span class="nb">getattr</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_request</span><span class="p">,</span> <span class="n">attr</span><span class="p">)</span>
+<a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a>        <span class="k">except</span> <span class="ne">AttributeError</span><span class="p">:</span>
+<a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a>            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="fm">__getattribute__</span><span class="p">(</span><span class="n">attr</span><span class="p">)</span>
+</code></pre></div>
+<h3 id="getattr__getattr__-__getattribute____get__"><code>getattr</code>,<code>__getattr__</code>, <code>__getattribute__</code>和<code>__get__</code>的区别</h3>
+<p><a href="https://zhuanlan.zhihu.com/p/67586184">https://zhuanlan.zhihu.com/p/67586184</a>
+这个页面是关于Python中的几个常用的方法和函数，它们的作用和区别。页面的主要内容如下：</p>
+<ul>
+<li><code>getattr()</code>函数：这是一个内置的函数，可以用来获取对象的属性和方法。</li>
+</ul>
+<p>如果对象不存在该属性，可以设置一个默认值，否则会报错。
+- <code>__getattr()__</code>和<code>__getattribute__()</code>魔法方法：这两个方法是在访问对象属性时被调用的。</p>
+<p><code>__getattribute__()</code>方法总是会被调用，无论属性是否存在。如果属性不存在，就会调用<code>__getattr__()</code>方法，可以在这个方法里设置属性不存在时的默认值。
+- <code>get()</code>方法：这是一个描述符方法，可以将访问对象属性转变为调用描述符方法。描述符可以在获取或者给对象赋值时对数据值进行一些特殊的加工和处理。@property装饰器就是通过描述符的方式实现的。描述符分为数据描述符和非数据描述符，区别在于是否实现了<code>__set__()</code>或<code>__del__()</code>方法。</p>
+<h3 id="_1">类对象的魔法函数</h3>
+<p>Python中的类对象有很多魔法函数，它们是以双下划线开头和结尾的特殊方法。这些魔法函数可以让我们在类中自定义函数，并绑定到类的特殊方法中。这样，我们就可以在类的实例化对象上调用这些函数，从而实现一些特殊的功能。</p>
+<p>以下是一些常见的类对象魔法函数：</p>
+<ul>
+<li><code>__init__()</code>：构造函数，用于初始化对象的属性。</li>
+<li><code>__str__()</code>：返回对象的字符串表示形式。</li>
+<li><code>__new__()</code>：创建对象并返回它。</li>
+<li><code>__unicode__()</code>：返回对象的Unicode字符串表示形式。</li>
+<li><code>__call__()</code>：使对象可以像函数一样被调用。</li>
+<li><code>__len__()</code>：返回对象的长度。</li>
+<li><code>__repr__()</code>：返回对象的字符串表示形式，通常用于调试。</li>
+<li><code>__setattr__()</code>：设置对象的属性。</li>
+<li><code>__getattr__()</code>：获取对象的属性。</li>
+<li><code>__getattribute__()</code>：获取对象的属性，与<code>__getattr__()</code>不同的是，它会在任何情况下都被调用。</li>
+<li><code>__delattr__()</code>：删除对象的属性。</li>
+<li><code>__setitem__()</code>：设置对象的索引值。</li>
+<li><code>__getitem__()</code>：获取对象的索引值。</li>
+<li><code>__delitem__()</code>：删除对象的索引值。</li>
+<li><code>__iter__()</code>：返回一个迭代器。</li>
+<li><code>__del__()</code>：析构函数，用于释放对象占用的资源。</li>
+<li><code>__dir__()</code>：返回对象的属性列表。</li>
+<li><code>__dict__()</code>：返回对象的属性字典。</li>
+</ul>
+<p>以上是一些常见的类对象魔法函数</p>
+<h3 id="_2">类的魔法函数与类的普通函数的区别</h3>
+<p>Python中的类有许多特殊的函数，也称为魔法函数。这些函数的名称以双下划线开头和结尾，例如<code>__init__</code>和<code>__str__</code>。这些函数与普通函数的区别在于，它们是类的特殊方法，可以在类中自定义函数并绑定到这些方法中。这些函数的调用方式也不同于普通函数，它们会在特定的情况下<strong>自动调用</strong>。例如，<code>__init__</code>函数是类的构造函数，用于初始化新创建的对象。当创建一个新的类实例时，<code>__init__</code>函数会自动调用。相反，普通函数需要显式调用才能执行。</p>
+<p>另一个区别是，魔法函数可以让类增加一些额外的功能，方便使用者理解。例如，<code>__str__</code>函数可以让类的实例以字符串的形式输出，而不是默认的对象表示形式。这些函数的具体作用取决于它们的名称和用途，但它们都是用于增强类的功能和灵活性的。</p>
+<p>希望这可以帮助您更好地理解Python中类的魔法函数和普通函数之间的区别。</p>
+<h3 id="_3">类对象和实例对象</h3>
+<p>类对象和实例对象是Python中的两个重要概念。类对象是指在Python中定义的类，它是一个抽象的模板，用于创建具有相同属性和行为的多个对象。而实例对象则是根据类创建出来的一个个具体的“对象”，每个对象都拥有相同的方法，但各自的数据可能不同。例如，我们可以定义一个名为<code>Student</code>的类，然后创建多个不同的<code>Student</code>实例对象，每个实例对象都有自己的属性和方法。类对象和实例对象之间的主要区别在于，类对象是抽象的，而实例对象是具体的。如果你想了解更多关于类对象和实例对象的信息，可以参考这篇知乎文章²。</p>
+<h2 id="_4">反射</h2>
+<p>在Python中，反射是指在运行时通过字符串的形式来访问、调用、修改或创建对象、模块、函数、类等的属性和方法的能力。反射使得我们可以根据程序运行时的状态来动态地操作对象，而不需要事先编写固定的代码。</p>
+<p>Python中的反射主要借助于以下几个内置函数和特殊方法：</p>
+<p><code>getattr(object, name[, default])</code>：用于获取对象的属性或方法。参数object是待操作的对象，name是属性或方法的名称，default是可选参数，表示如果属性或方法不存在时返回的默认值。</p>
+<p><code>setattr(object, name, value)</code>：用于设置对象的属性或方法。参数object是待操作的对象，name是属性或方法的名称，value是要设置的值。</p>
+<p><code>hasattr(object, name)</code>：用于判断对象是否具有指定的属性或方法。参数object是待操作的对象，name是属性或方法的名称。</p>
+<p><code>delattr(object, name)</code>：用于删除对象的属性或方法。参数object是待操作的对象，name是属性或方法的名称。</p>
+<p><code>__dict__</code>：是一个特殊的字典属性，包含了对象的所有属性和方法。可以通过字典的方式操作这些属性和方法。</p>
+<p>反射的使用可以在很多场景中发挥作用，比如动态地调用函数、根据用户输入执行不同的方法、动态地创建类或对象等。但需要注意，由于反射是基于字符串的，因此在使用时要注意安全性和错误处理，避免操控不当导致意外的结果。</p>
+<p>在Python中，反射是指通过字符串来访问对象的属性和方法。通常情况下，我们会直接使用对象的属性或方法，比如<code>obj.attribute或obj.method()</code>。但是有时我们需要根据运行时的情况动态地访问对象，而不是提前知道需要访问的属性或方法的名称。</p>
+<p>反射提供了一种灵活的方式来实现这个目的。我们可以通过字符串来获取对象的属性或方法，而不需要直接使用属性或方法的名称。这使得我们可以在运行时根据需要进行操作，而不需要提前定义所有的属性和方法。</p>
+<p>举个例子，假设我们有一个叫obj的对象，并且我们希望通过字符串获取该对象的属性或方法，我们可以使用<code>getattr(obj, 'attribute')</code>来获取属性的值，或者使用<code>getattr(obj, 'method')()</code>来调用方法。</p>
+<p>反射的应用场景很广泛，可以实现动态加载模块、调用不同的函数、动态调整对象的属性等等。通过反射，我们可以根据需要在运行时决定对象的行为，增加了程序的灵活性和动态性。但是需要注意的是，在使用反射时要谨慎，确保操作的安全性，并进行适当的错误处理。</p>
+<h2 id="_5">认证组件</h2>
+<p><a class="glightbox" href="https://cdn.jsdelivr.net/gh/jagger235711/coooool/img/20231120213754.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="20231120213754" src="https://cdn.jsdelivr.net/gh/jagger235711/coooool/img/20231120213754.png" /></a>
+<a class="glightbox" href="https://cdn.jsdelivr.net/gh/jagger235711/coooool/img/20231120224748.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="20231120224748" src="https://cdn.jsdelivr.net/gh/jagger235711/coooool/img/20231120224748.png" /></a></p>
+<ol>
+<li>
+<p>局部配置</p>
+<p>在要配置认证组件的视图函数中，通过<code>authentication_classes = []</code>添加验证器</p>
+</li>
+<li>
+<p>全局配置</p>
+<p>在settings.py的REST_FRAMEWORK中配置<code>DEFAULT_AUTHENTICATION_CLASSES</code>
+  3. 配置的优先级遵从就近原则
+  4. <em>！注意！</em>  认证组件为全局引用时不能写在view视图中，会出现循环引用的问题
+  5. 加载认证组件，本质就是实例化每个认证类的对象，并封装到request对象
+  6. 针对面向对象中的继承这一特性，调用self属性时，应该先明确self是哪个类的对象，先从实例化的类中找，找不到再从父类中找
+  7. 多个认证类</p>
+<p>都返回None，都没有认证成功-&gt;视图是否会被执行?视图函数会执行，只不过 self.user，self.auth = None
+  8. raise抛出异常，向上抛，向调用它的地方抛，没人捕获他就继续向上抛
+  认证组件中的认证类配置同理
+  9. 返回状态码一致性</p>
+<p>在认证类中需要配置<code>authenticate_header</code>方法，不然返回的状态码始终为403</p>
+<p><a class="glightbox" href="https://cdn.jsdelivr.net/gh/jagger235711/coooool/img/20231125121536.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="20231125121536" src="https://cdn.jsdelivr.net/gh/jagger235711/coooool/img/20231125121536.png" /></a>
+  10. 扩展，python开发常见。子类约束</p>
+<p><a class="glightbox" href="https://cdn.jsdelivr.net/gh/jagger235711/coooool/img/20231125122008.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="20231125122008" src="https://cdn.jsdelivr.net/gh/jagger235711/coooool/img/20231125122008.png" /></a>像是java中的接口、抽象类和抽象方法</p>
+<h2 id="_6">权限组件</h2>
+<p><a class="glightbox" href="https://cdn.jsdelivr.net/gh/jagger235711/coooool/img/20231129201910.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="20231129201910" src="https://cdn.jsdelivr.net/gh/jagger235711/coooool/img/20231129201910.png" /></a>
+1. 认证组件是或的关系。权限组件，链式执行，全部通过才是通过
+2. 自定义权限组件认证失败错误信息
+   - 在权限类中配置message变量
+3. 自定义权限验证逻辑
+   - 重写<code>has_permission</code>方法
+4. <a class="glightbox" href="https://cdn.jsdelivr.net/gh/jagger235711/coooool/img/20231203160134.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="20231203160134" src="https://cdn.jsdelivr.net/gh/jagger235711/coooool/img/20231203160134.png" /></a>
+1. 思考1
+- 当想要替换原生组件时，首先去判断它是什么时候创建的，可不可以把创建的这个位置的类替换
+- 接下来再分析流程
+1. 思考2
+- 通过组建的生命周期来分析它们的关系
+- <a class="glightbox" href="https://cdn.jsdelivr.net/gh/jagger235711/coooool/img/20231203160039.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="20231203160039" src="https://cdn.jsdelivr.net/gh/jagger235711/coooool/img/20231203160039.png" /></a> </p>
+<h2 id="_7">限流组件</h2>
+<p><a class="glightbox" href="https://cdn.jsdelivr.net/gh/jagger235711/coooool/img/20231204010724.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="20231204010724" src="https://cdn.jsdelivr.net/gh/jagger235711/coooool/img/20231204010724.png" /></a>    </p>
+</li>
+</ol>
+<p><a class="glightbox" href="https://cdn.jsdelivr.net/gh/jagger235711/coooool/img/20231204233010.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="20231204233010" src="https://cdn.jsdelivr.net/gh/jagger235711/coooool/img/20231204233010.png" /></a></p>
+<p><a class="glightbox" href="https://cdn.jsdelivr.net/gh/jagger235711/coooool/img/20231207215346.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="20231207215346" src="https://cdn.jsdelivr.net/gh/jagger235711/coooool/img/20231207215346.png" /></a></p>
+<p><a class="glightbox" href="https://cdn.jsdelivr.net/gh/jagger235711/coooool/img/20231209190708.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="20231209190708" src="https://cdn.jsdelivr.net/gh/jagger235711/coooool/img/20231209190708.png" /></a></p>
+<p><a class="glightbox" href="https://cdn.jsdelivr.net/gh/jagger235711/coooool/img/20231209194805.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="20231209194805" src="https://cdn.jsdelivr.net/gh/jagger235711/coooool/img/20231209194805.png" /></a></p>
+<h2 id="day14">day14</h2>
+<p><a class="glightbox" href="https://cdn.jsdelivr.net/gh/jagger235711/coooool/img/20231210092657.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="20231210092657" src="https://cdn.jsdelivr.net/gh/jagger235711/coooool/img/20231210092657.png" /></a></p>
+<h3 id="_8">版本组件</h3>
+<ol>
+<li>基于get参数</li>
+<li>使用<code>QueryParameterVersioning</code>作为版本类</li>
+<li>对视图类配置<code>versioning_class</code>参数为类引入版本组件</li>
+<li>可以通过在settings.py配置 <code>VERSION_PARAM</code>参数自定义在请求参数中代表版本的key名</li>
+<li>通过配置settings.py可以配置默认版本号、允许版本号</li>
+<li>反向生成url<ul>
+<li>通过<code>request.versioning_scheme.reverse</code>反向生成url</li>
+<li>相比django原生的reverse，versioning_reverse可以生成版本号，会自动生成版本信息</li>
+<li>反向生成url时，只能生成url格式一样的同一类url，组织形式不一样的url无法生成</li>
+</ul>
+</li>
+<li>基于路由url</li>
+<li>使用<code>URLPathVersioning</code>作为版本类</li>
+<li>修改路由path，在其中加上<code>version</code>参数,传递到视图类后可以通过版本组件方便的获取版本信息</li>
+<li><strong>基于accept请求头</strong></li>
+<li>使用<code>AcceptVersioning</code>作为版本类</li>
+<li>修改请求头，在请求头中增加<code>version</code>参数,传递到视图类后可以通过版本组件方便的获取版本信息</li>
+<li>通过在settings.py配置<code>DEFAULT_VERSIONING_CLASS</code>参数可以设置默认版本类</li>
+</ol>
+<h3 id="_9">解析器</h3>
+<p><a class="glightbox" href="https://cdn.jsdelivr.net/gh/jagger235711/coooool/img/20231213203759.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="20231213203759" src="https://cdn.jsdelivr.net/gh/jagger235711/coooool/img/20231213203759.png" /></a>
+   1. 用于解析请求者发过来的数据（JSON等）
+   2. 主要针对请求体进行解析，请求头中的数据已经被<code>request.queryparam</code>读取走了 
+   3. <code>parser_classes</code>配置应用的所有解析器，<code>content_negotiation_class</code>根据请求调用对应解析器
+   4. 所有数据都会存到<code>request</code>中，但不会进行解析，调用request.data获取解析后的数据,同一个request只加载一次，再次调用直接去<code>full_data</code>中拿
+   5. 文件解析器
+        - <code>fileUploadParser</code>只能上传文件
+        - <code>MultiPartParser</code>可以上传文件和数据
+   6. 当不配置解析器时，系统默认的解析器是<code>fileUploadParser</code>之外的三个。通过配置<code>DEFAULT_PARSER_CLASSES</code>可以修改默认解析器</p>
+<h3 id="_10">元类</h3>
+<p><a class="glightbox" href="https://cdn.jsdelivr.net/gh/jagger235711/coooool/img/20231213204827.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="20231213204827" src="https://cdn.jsdelivr.net/gh/jagger235711/coooool/img/20231213204827.png" /></a>
+<a class="glightbox" href="https://cdn.jsdelivr.net/gh/jagger235711/coooool/img/20231216084635.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="20231216084635" src="https://cdn.jsdelivr.net/gh/jagger235711/coooool/img/20231216084635.png" /></a>
+<a class="glightbox" href="https://cdn.jsdelivr.net/gh/jagger235711/coooool/img/20231216185636.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="20231216185636" src="https://cdn.jsdelivr.net/gh/jagger235711/coooool/img/20231216185636.png" /></a>
+<a class="glightbox" href="https://cdn.jsdelivr.net/gh/jagger235711/coooool/img/20231217150508.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="20231217150508" src="https://cdn.jsdelivr.net/gh/jagger235711/coooool/img/20231217150508.png" /></a>
+<a class="glightbox" href="https://cdn.jsdelivr.net/gh/jagger235711/coooool/img/20231217152512.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="20231217152512" src="https://cdn.jsdelivr.net/gh/jagger235711/coooool/img/20231217152512.png" /></a>
+<a class="glightbox" href="https://cdn.jsdelivr.net/gh/jagger235711/coooool/img/20231217152928.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="20231217152928" src="https://cdn.jsdelivr.net/gh/jagger235711/coooool/img/20231217152928.png" /></a>
+- 两种创建类的方式，底层都是通过调用type类中的<code>new()</code>函数创建类，再调用<code>init()</code>方法对类进行初始化
+- 创建和初始化的操作都是通过调用<code>type</code>类的<code>call()</code>方法来触发的 
+- 通过向类传入<code>metaclass</code>参数可以指定元类
+- 关于子类
+  - 类中获取父类中指定了metaclass，全部都是由metaclass创建的类</p>
+<h3 id="_11">序列化器(*)</h3>
+<p><a class="glightbox" href="https://cdn.jsdelivr.net/gh/jagger235711/coooool/img/20231223122029.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="20231223122029" src="https://cdn.jsdelivr.net/gh/jagger235711/coooool/img/20231223122029.png" /></a>
+<a class="glightbox" href="https://cdn.jsdelivr.net/gh/jagger235711/coooool/img/20231223122137.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="20231223122137" src="https://cdn.jsdelivr.net/gh/jagger235711/coooool/img/20231223122137.png" /></a>
+1. 通过继承<code>serializers.Serializer</code>类创建序列化器，序列化器用于将数据序列化成json格式
+2. 通过设定序列化器对象的<code>many</code>字段为Ture，可以实现序列化器序列化querySet(多个数据)
+3. <code>serializers.ModelSerializer</code>类比Django中form和ModelForm的功能，用于快速创建序列化器，同时也可以和modelForm一样，对字段进行自定义<code>gender_text=serializers.CharField(source="get_gender_display")</code>
+    - 通过<code>source</code>字段指定字段来源，可以是字段也可以是函数，外键可以通过<code>参数.字段名</code>来跨表获取对应值
+    - 通过<code>format</code>字段指定字段格式，如<code>format="%Y-%m-%d %H:%M:%S"</code>
+4. 通过<code>MyFun = serializers.SerializerMethodField()</code>自定义方法。通过<code>get_MyFun()</code>方法获取返回值，其中的<code>obj</code>对象即为这个序列化器定义的类对象。通过它可以实现多对多关系字段的获取等自定义操作
+5. 嵌套(类里面的字段是另一个序列化的类)，针对：fk、m2m、
+6. 继承 序列化器类可以单独使用，也可以继承其他的序列化器类
+7. 序列化源码流程
+    <a class="glightbox" href="https://cdn.jsdelivr.net/gh/jagger235711/coooool/img/20231223213658.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="20231223213658" src="https://cdn.jsdelivr.net/gh/jagger235711/coooool/img/20231223213658.png" /></a>
+    <a class="glightbox" href="https://cdn.jsdelivr.net/gh/jagger235711/coooool/img/20231223214331.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="20231223214331" src="https://cdn.jsdelivr.net/gh/jagger235711/coooool/img/20231223214331.png" /></a>
+    - 类创建时，类的参数要先于类进行创建，因为类要通过<code>MyType()</code>进行创建，类的参数要传入<code>MyType()</code>中
+        <a class="glightbox" href="https://cdn.jsdelivr.net/gh/jagger235711/coooool/img/20231223215301.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="20231223215301" src="https://cdn.jsdelivr.net/gh/jagger235711/coooool/img/20231223215301.png" /></a>
+    - <code>Field</code>类中的<code>creation_counter</code>字段的作用是让后续开发时，根据编写顺序来定义后续源码中各个字段处理顺序。
+    - <a class="glightbox" href="https://cdn.jsdelivr.net/gh/jagger235711/coooool/img/20231230182858.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="20231230182858" src="https://cdn.jsdelivr.net/gh/jagger235711/coooool/img/20231230182858.png" /></a>
+    - <a class="glightbox" href="https://cdn.jsdelivr.net/gh/jagger235711/coooool/img/20231230182921.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="20231230182921" src="https://cdn.jsdelivr.net/gh/jagger235711/coooool/img/20231230182921.png" /></a>
+8. 数据校验
+   -  <a class="glightbox" href="https://cdn.jsdelivr.net/gh/jagger235711/coooool/img/20231230183415.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="20231230183415" src="https://cdn.jsdelivr.net/gh/jagger235711/coooool/img/20231230183415.png" /></a>
+   -  <a class="glightbox" href="https://cdn.jsdelivr.net/gh/jagger235711/coooool/img/20231230183512.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="20231230183512" src="https://cdn.jsdelivr.net/gh/jagger235711/coooool/img/20231230183512.png" /></a></p>
+<h2 id="day15-drf">day15 drf下篇</h2>
+<p><a class="glightbox" href="https://cdn.jsdelivr.net/gh/jagger235711/coooool/img/20240101093200.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="20240101093200" src="https://cdn.jsdelivr.net/gh/jagger235711/coooool/img/20240101093200.png" /></a></p>
+<ol>
+<li>序列化器
+<a class="glightbox" href="https://cdn.jsdelivr.net/gh/jagger235711/coooool/img/20240101094631.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="20240101094631" src="https://cdn.jsdelivr.net/gh/jagger235711/coooool/img/20240101094631.png" /></a>
+<a class="glightbox" href="https://cdn.jsdelivr.net/gh/jagger235711/coooool/img/20240104074143.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="20240104074143" src="https://cdn.jsdelivr.net/gh/jagger235711/coooool/img/20240104074143.png" /></a>
+<a class="glightbox" href="https://cdn.jsdelivr.net/gh/jagger235711/coooool/img/20240110225619.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="20240110225619" src="https://cdn.jsdelivr.net/gh/jagger235711/coooool/img/20240110225619.png" /></a></li>
+<li>序列化 </li>
+<li>数据校验
+        ### serializer
+         1. 创建序列化对象时，序列化使用<code>serializer = MySerializer(instance=obj)</code>，校验使用<code>serializer = MySerializer(data=data)</code>
+         2. 基本校验、内置校验、正则校验、钩子校验-适用于复杂校验
+         3. 序列化的钩子方法使用<code>get_xxx()</code>。校验的钩子方法使用<code>validate_xxx()</code>，
+         4. 校验所有字段用<code>validate()</code>方法，其在调用完单个字段的校验后，会自动调用<code>validate()</code>方法。
+         5. 全局校验适用于一些单个字段校验通过了，但是额外附加条件不通过的情况。这种校验也可以在业务代码中做
+         6. 通过在<code>settings</code>中设置<code>non_field_errors_key</code>可以修改全局报错的key
+        ### modelSerializer
+        1. 通过在<code>meta</code>类中配置<code>extra_kwargs</code>来添加额外校验
+        2. 帮助我们将数据直接保存到数据库<div class="highlight"><pre><span></span><code>   可能会出现校验通过但是不能保存的情况
+
+   1. 传过来的数据少于数据库要求的数据。`.save()`方法中可以传额外的参数，会一同保存到数据库中 
+   2. 传过来的数据多于数据库要求的数据。先进行`ser.validated_data.pop(&quot;字段名&quot;)`剔除额外参数，再`save`
+3. FK和M2M
+   1. 如果使用FK，会自动判断该键是否在对应表中存在,不仅做校验还将外键转换为对象，
+   2. M2M也会进行这些转换，区别是转换为对象列表
+   3. 对于FK的id的问题，数据库中在外键的位置存的是xxx_id，如果发请求直接传xxx_id，会报错，因为序列化器中没有定义xxx_id的转换方式，要是实在想传可以自己定义该字段
+   4. 如果想自己处理M2M，可以自定义字段，传列表过来，序列化用`ListField()`，用钩子方法将数据转化为对象
+4. 同时校验和序列化
+   1. `save()`方法具有返回值，会返回一个对象，可以用来做校验，序列化器用的是哪张表，返回值就是哪张表的对象，如果返回值是None，说明校验失败，不会进行序列化
+   2. 校验和序列化可以使用不同的`Serializer`
+      1. 当使用相同的`Serilizer`同时进行校验和序列化时，直接调他的data就可以返回数据
+   3. 序列化器里的字段可以加参数`read_only=True`只读，只有在序列化时才使用 `write_only=True`只写，只有在校验的时候才使用
+      1. 通过只读、只写可以控制传参字段、返回值字段
+      2. 通过钩子方法可以达到同样效果
+      3. 通过序列化器的嵌套也可以达到该效果，比如M2M，把id传给内层序列化器，返回所有信息
+</code></pre></div>
+<h3 id="_12">需求</h3>
+<p><a class="glightbox" href="https://cdn.jsdelivr.net/gh/jagger235711/coooool/img/20240113115046.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="20240113115046" src="https://cdn.jsdelivr.net/gh/jagger235711/coooool/img/20240113115046.png" /></a></p>
+<h4 id="1"><em>实现方法1</em></h4>
+<ol>
+<li>因为使用<code>serializers.SerializerMethodField()</code>自定义方法时，需要自己定义一个字段，用钩子方法来处理。在字段内部限制了<code>read_only=True</code>，所以没有办法通过请求时输入这个字段的值来实现【无法输入】</li>
+<li>通过<code>serializers.CharField(source="get_gender_display")</code>添加source，实现自动映射。但是需求要求输入和输出的字段名一致，这会导致无法自动映射【无法映射】</li>
+<li>所以通过继承field，自定义方法来实现
+   <a class="glightbox" href="https://cdn.jsdelivr.net/gh/jagger235711/coooool/img/20240114113138.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="20240114113138" src="https://cdn.jsdelivr.net/gh/jagger235711/coooool/img/20240114113138.png" /></a>
+   <a class="glightbox" href="https://cdn.jsdelivr.net/gh/jagger235711/coooool/img/20240113145228.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="20240113145228" src="https://cdn.jsdelivr.net/gh/jagger235711/coooool/img/20240113145228.png" /></a>
+   #### 实现方法2（更好 ）</li>
+<li>重写<code>to_representation()</code>方法, 实现对字段的处理</li>
+<li>可以自己写一个类实现这个方法，用的话直接继承就行</li>
+<li>继承时，写在前面的优先</li>
+<li>可以继承多个类</li>
+</ol>
+<h3 id="_13">案例：博客系统</h3>
+</li>
+</ol>
+<p><a class="glightbox" href="https://cdn.jsdelivr.net/gh/jagger235711/coooool/img/20240115232001.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="20240115232001" src="https://cdn.jsdelivr.net/gh/jagger235711/coooool/img/20240115232001.png" /></a></p>
+<h4 id="_14">功能</h4>
+<p><a class="glightbox" href="https://cdn.jsdelivr.net/gh/jagger235711/coooool/img/20240118005904.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="20240118005904" src="https://cdn.jsdelivr.net/gh/jagger235711/coooool/img/20240118005904.png" /></a></p>
+<p><a class="glightbox" href="https://cdn.jsdelivr.net/gh/jagger235711/coooool/img/20240128183816.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="20240128183816" src="https://cdn.jsdelivr.net/gh/jagger235711/coooool/img/20240128183816.png" /></a></p>
+<p><a class="glightbox" href="https://cdn.jsdelivr.net/gh/jagger235711/coooool/img/20240121212310.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="20240121212310" src="https://cdn.jsdelivr.net/gh/jagger235711/coooool/img/20240121212310.png" /></a></p>
+<h3 id="_15">课程中的闪光点</h3>
+<ol>
+<li>权限校验的自定义。由且的关系变为或</li>
+<li>序列化与映射的二合一，传入传出同名字段冲突问题的解决</li>
+</ol>
+<h3 id="_16">案例二：分页</h3>
+<p><a class="glightbox" href="https://cdn.jsdelivr.net/gh/jagger235711/coooool/img/20240128191815.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="20240128191815" src="https://cdn.jsdelivr.net/gh/jagger235711/coooool/img/20240128191815.png" /></a></p>
+<h2 id="_17">一些零碎的点</h2>
+<ol>
+<li>
+<p>创建django项目时，通过指定目录可以将项目创建在当前目录而不是当前目录的子目录</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="n">django</span><span class="o">-</span><span class="n">admin</span> <span class="n">startproject</span> <span class="n">day13</span> <span class="o">.</span>  <span class="c1">#.代表在当前目录下创建项目</span>
+</code></pre></div>
+<p>在表示相对路径中，单点表示当前目录，双点表示上一级目录，反斜杠“/”表示分隔目录；
+相对路径特殊符号有以下几种表示意义：</p>
+<ul>
+<li>
+<p>以“./”开头，代表当前目录和文件目录在同一个目录里，“./”也可以省略不写！</p>
+</li>
+<li>
+<p>以"../"开头：向上走一级，代表目标文件在当前文件所在的上一级目录；</p>
+</li>
+<li>
+<p>以"../../"开头：向上走两级，代表父级的父级目录，也就是上上级目录，再说明白点，就是上一级目录的上一级目录</p>
+</li>
+<li>
+<p>以"/”开头，代表根目录</p>
+</li>
+</ul>
+</li>
+<li>
+<p>应用drf时首先要在settings.py中注册。因为可能要用到它的模板和静态文件。django会去已经注册了的app中寻找</p>
+</li>
+<li>oop：面向对象</li>
+<li>
+<p>列表推导式
+    列表推导式是一种简洁的方式来创建新列表。它的语法如下：</p>
+<p><code>[expression for item in iterable if condition]</code></p>
+<p>[可迭代 if 条件中项目的表达式]</p>
+<p>其中expression是一个用于生成新列表元素的表达式，item是可迭代对象中的每个元素，iterable是可迭代对象，condition是一个可选的用于过滤元素的条件。</p>
+<p>下面是一些示例：</p>
+<p>创建一个包含1到10的平方数的列表:</p>
+</li>
+</ol>
+<p><code>squares = [x**2 for x in range(1, 11)]</code></p>
+<div class="highlight"><pre><span></span><code>过滤一个列表, 只保留偶数:
+
+```python
+numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+even_numbers = [x for x in numbers if x % 2 == 0]
+```
+
+根据一个字符串列表创建一个新列表，包含每个字符串的长度:
+
+```python
+strings = [&#39;hello&#39;, &#39;world&#39;, &#39;python&#39;]
+lengths = [len(s) for s in strings]
+```
+
+使用嵌套的循环创建一个平面坐标的列表:
+</code></pre></div>
+<p><code>coordinates = [(x, y) for x in range(1, 3) for y in range(1, 3)]</code></p>
+<div class="highlight"><pre><span></span><code>使用条件语句进行条件赋值：
+
+```python
+numbers = [1, 2, 3, 4, 5, 6]
+new_numbers = [x if x % 2 == 0 else -x for x in numbers]
+```
+
+这些只是列表推导式的一些示例，你可以根据自己的需求使用不同的表达式和条件来创建自己想要的新列表。
+</code></pre></div>
+<ol>
+<li>获取请求中的参数
+    <code>python
+    request.data#获取请求体中的参数
+    request.query_params#获取请求头中的参数</code></li>
+<li>连接docker里的redis</li>
+<li>创建容器时要记得映射端口，不然宿主机访问不到容器内部</li>
+<li><code>docker run -d -p 6379:6379 --name redis_container redis</code>创建容器的命令，关键在设置端口映射</li>
+<li>通过<code>docker exec -it &lt;容器id或名称&gt; /bin/bash</code>进入容器并打开交互式终端</li>
+</ol>
+<h2 id="_18">常见报错</h2>
+<ol>
+<li>
+<p><code>Model class django.contrib.contenttypes.models.ContentType doesn't declare an explicit app_label and isn't in an application in INSTALLED_APPS.</code></p>
+</li>
+<li>
+<p>认证组件中的匿名用户导致了这个问题</p>
+</li>
+<li>当没找到用户时会执行<code>_not_authenticated</code>方法。其中：
+      ```python
+     def _not_authenticated(self):
+        """
+        Set authenticator, user &amp; authtoken representing an unauthenticated request.<div class="highlight"><pre><span></span><code>Defaults are None, AnonymousUser &amp; None.
+&quot;&quot;&quot;
+self._authenticator = None
+
+if api_settings.UNAUTHENTICATED_USER:
+    self.user = api_settings.UNAUTHENTICATED_USER()
+else:
+    self.user = None
+
+if api_settings.UNAUTHENTICATED_TOKEN:
+    self.auth = api_settings.UNAUTHENTICATED_TOKEN()
+else:
+    self.auth = None
+</code></pre></div>
+<p><code>调用</code>self.user = api_settings.UNAUTHENTICATED_USER()<code>和</code>self.auth = api_settings.UNAUTHENTICATED_TOKEN()```方法时会用到django中的一些组件，如果没有启用这些组件就会报错。
+- 解决方案</p>
+<div class="highlight"><pre><span></span><code>直接设置```UNAUTHENTICATED_USER```和```UNAUTHENTICATED_TOKEN```为空，这样就不会走到为真的分支里
+</code></pre></div>
+</li>
+</ol>
+
+
+
+
+
+
+
+  
+    
+  
+  
+    
+  
+
+
+  <aside class="md-source-file">
+    
+      
+  <span class="md-source-file__fact">
+    <span class="md-icon" title="最后更新">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1-2.1-2M12.5 7v5.2l4 2.4-1 1L11 13V7h1.5M11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2v1.8Z"/></svg>
+    </span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">February 7, 2024</span>
+  </span>
+
+    
+    
+      
+  <span class="md-source-file__fact">
+    <span class="md-icon" title="创建日期">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M14.47 15.08 11 13V7h1.5v5.25l3.08 1.83c-.41.28-.79.62-1.11 1m-1.39 4.84c-.36.05-.71.08-1.08.08-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8c0 .37-.03.72-.08 1.08.69.1 1.33.32 1.92.64.1-.56.16-1.13.16-1.72 0-5.5-4.5-10-10-10S2 6.5 2 12s4.47 10 10 10c.59 0 1.16-.06 1.72-.16-.32-.59-.54-1.23-.64-1.92M18 15v3h-3v2h3v3h2v-3h3v-2h-3v-3h-2Z"/></svg>
+    </span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">November 5, 2023</span>
+  </span>
+
+    
+    
+    
+  </aside>
+
+
+
+  
+
+
+
+  <h2 id="__comments">评论</h2>
+  <!-- Insert generated snippet here -->
+  <script src="https://giscus.app/client.js"
+  data-repo="jagger235711/jagger235711.github.io"
+  data-repo-id="R_kgDOHQ4AsA"
+  data-category="Announcements"
+  data-category-id="DIC_kwDOHQ4AsM4Cahmp"
+  data-mapping="pathname"
+  data-strict="0"
+  data-reactions-enabled="1"
+  data-emit-metadata="0"
+  data-input-position="bottom"
+  data-theme="preferred_color_scheme"
+  data-lang="zh-CN"
+  data-loading="lazy"
+  crossorigin="anonymous"
+  async>
+</script>
+  <!-- Synchronize Giscus theme with palette -->
+  <script>
+    var giscus = document.querySelector("script[src*=giscus]")
+
+    // Set palette on initial load
+    var palette = __md_get("__palette")
+    if (palette && typeof palette.color === "object") {
+      var theme = palette.color.scheme === "slate"
+        ? "transparent_dark"
+        : "light"
+
+      // Instruct Giscus to set theme
+      giscus.setAttribute("data-theme", theme) 
+    }
+
+    // Register event handlers after documented loaded
+    document.addEventListener("DOMContentLoaded", function() {
+      var ref = document.querySelector("[data-md-component=palette]")
+      ref.addEventListener("change", function() {
+        var palette = __md_get("__palette")
+        if (palette && typeof palette.color === "object") {
+          var theme = palette.color.scheme === "slate"
+            ? "transparent_dark"
+            : "light"
+
+          // Instruct Giscus to change theme
+          var frame = document.querySelector(".giscus-frame")
+          frame.contentWindow.postMessage(
+            { giscus: { setConfig: { theme } } },
+            "https://giscus.app"
+          )
+        }
+      })
+    })
+  </script>
+
+      
+    </article>
+  </div>
+
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      Copyright &copy; 2023 Jagger G
+    </div>
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+      <div class="md-progress" data-md-component="progress" role="progressbar"></div>
+    
+    
+    <script id="__config" type="application/json">{"base": "../../../../..", "features": ["navigation.instant", "navigation.instant.progress", "navigation.tracking", "navigation.tabs", "navigation.sections", "navigation.path", "navigation.prune", "search.suggest", "search.highlight", "content.action.edit", "toc.follow", "toc.integrate"], "search": "../../../../../assets/javascripts/workers/search.b8dbb3d2.min.js", "translations": {"clipboard.copied": "\u5df2\u590d\u5236", "clipboard.copy": "\u590d\u5236", "search.result.more.one": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.more.other": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 # \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.none": "\u6ca1\u6709\u627e\u5230\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.one": "\u627e\u5230 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.other": "# \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.placeholder": "\u952e\u5165\u4ee5\u5f00\u59cb\u641c\u7d22", "search.result.term.missing": "\u7f3a\u5c11", "select.version": "\u9009\u62e9\u5f53\u524d\u7248\u672c"}}</script>
+    
+    
+
+      <script src="../../../../../assets/javascripts/bundle.8fd75fb4.min.js"></script>
+      
+        <script src="../../../../../javascripts/mathjax.js"></script>
+      
+        <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+      
+        <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+      
+    
+
+<!-- Extra JavaScript (can't be set in mkdocs.yml due to content hash) -->
+<script src="../../../../../assets/javascripts/custom.js"></script>
+
+  <script>document$.subscribe(() => {const lightbox = GLightbox({"touchNavigation": true, "loop": false, "zoomable": true, "draggable": true, "openEffect": "zoom", "closeEffect": "zoom", "slideEffect": "slide"});})</script></body>
+</html>
