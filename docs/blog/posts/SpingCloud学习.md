@@ -18,6 +18,12 @@ comments: true
    
 
     底层的原因是： 引入微服务名字，按照微服务名称调用，默认后面是多个微服务，默认负载均衡和轮询，所以必须给 `restTemplate` 加上负载均衡
+2. 如果要用docker运行consul的话，如果要启用持久化配置
+   1. 需要把consul设置为server模式，并且把volume挂载到本地（也可以不指定位置，由docker自动分配）
+   2. `docker run -d -p 8500:8500 -P -v /data/consul:/consul/data -e CONSUL_BIND_INTERFACE='eth0' -
+-name=consul consul:1.15.4 agent -server -bootstrap -ui -node=1 -client='0.0.0.0'`
+
+        [详情请见此](https://www.cnblogs.com/lfzm/p/10633595.html)
 
 # 顺便听到的面试题
 1. CAP
@@ -50,3 +56,5 @@ comments: true
       
    2. 几种注册中心的异同
     ![20240406115432](https://cdn.jsdelivr.net/gh/jagger235711/coooool/img/20240406115432.png) 
+2. 客户端和服务端负载均衡的区别
+   ![20240407064356](https://cdn.jsdelivr.net/gh/jagger235711/coooool/img/20240407064356.png)
