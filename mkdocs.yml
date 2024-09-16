@@ -38,7 +38,6 @@ theme:
   icon:
     repo: fontawesome/brands/github
 plugins:
-  # - meta
   - blog:
       post_date_format: full
       categories_slugify: !!python/object/apply:pymdownx.slugs.slugify
@@ -46,22 +45,12 @@ plugins:
           case: lower
   - git-revision-date-localized:
       enable_creation_date: true
-  # - info: #出问题求助大佬时打最小包用
-  #     enabled_on_serve: true
   - search:
       lang:
         - en
         - zh
       separator: '[\s\u200b\-]'
   - glightbox
-
-# markdown_extensions:
-#   - pymdownx.inlinehilite
-#   - pymdownx.snippets
-#   - pymdownx.superfences
-#   - admonition
-#   - pymdownx.details
-#   - pymdownx.superfences
 markdown_extensions:
   - pymdownx.critic
   - pymdownx.caret
@@ -80,12 +69,11 @@ markdown_extensions:
   - pymdownx.inlinehilite
   - pymdownx.snippets
   - pymdownx.superfences
-
 extra_javascript:
   - javascripts/mathjax.js
   - https://polyfill.io/v3/polyfill.min.js?features=es6
   - https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js
-copyright: Copyright &copy; 2023 Jagger G
+copyright: Copyright &copy; 2013 - 2024 Jagger G
 
 # Page tree
 nav:
