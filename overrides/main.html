@@ -6,10 +6,12 @@
 
 {% block footer %}
     {{ super() }}
-    <p>总访问量: <span id="qiushaocloud_sitecounter_value_site_pv">n</span></p>
-    <p>总访客量: <span id="qiushaocloud_sitecounter_value_site_uv">n</span></p>
-    <p>今日访问量: <span id="qiushaocloud_sitecounter_value_today_site_pv">n</span></p>
-    <p>今日访客量: <span id="qiushaocloud_sitecounter_value_today_site_uv">n</span></p>
+    <div class="counter-container">
+        <p>总访问量: <span id="qiushaocloud_sitecounter_value_site_pv">n</span></p>
+        <p>总访客量: <span id="qiushaocloud_sitecounter_value_site_uv">n</span></p>
+        <p>今日访问量: <span id="qiushaocloud_sitecounter_value_today_site_pv">n</span></p>
+        <p>今日访客量: <span id="qiushaocloud_sitecounter_value_today_site_uv">n</span></p>
+    </div>
 {% endblock %}
 
 <!-- Theme-related JavaScript -->
