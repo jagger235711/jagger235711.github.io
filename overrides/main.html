@@ -2,14 +2,13 @@
 
 {% block htmltitle %}
     <title>Jagger的博客</title>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8690148457159328"
+    crossorigin="anonymous"></script>
 {% endblock %}
 
 <!-- Theme-related JavaScript -->
 {% block scripts %}
     {{ super() }}
-
     <!-- Extra JavaScript (can't be set in mkdocs.yml due to content hash) -->
     <script src="{{ 'assets/javascripts/custom.js' | url }}"></script>
-    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8690148457159328"
-    crossorigin="anonymous"></script>
 {% endblock %}
