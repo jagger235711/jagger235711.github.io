@@ -4,7 +4,7 @@ authors:
 categories:
     - 技术分享
 date: 2024-04-01
-draft: true
+# draft: true
 comments: true
 ---
 
@@ -16,8 +16,8 @@ comments: true
 # 一些常见错误
 1. 当远程调用由本地转为向consul注册中心注册时，由于consul天生支持负载均衡，如果远程调用不添加远程调用支持就会报错`运行时异常:I/O error on GET request for "http://cloud-payment-service/pay/get/1": cloud-payment-service`需要修改配置文件，给远程调用添加负载均衡支持。`@LoadBalanced`。
    
-
     底层的原因是： 引入微服务名字，按照微服务名称调用，默认后面是多个微服务，默认负载均衡和轮询，所以必须给 `restTemplate` 加上负载均衡
+   
 2. 如果要用docker运行consul的话，如果要启用持久化配置
    1. 需要把consul设置为server模式，并且把volume挂载到本地（也可以不指定位置，由docker自动分配）
    2. `docker run -d -p 8500:8500 -P -v /data/consul:/consul/data -e CONSUL_BIND_INTERFACE='eth0' -
