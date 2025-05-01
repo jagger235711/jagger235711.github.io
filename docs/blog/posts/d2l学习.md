@@ -146,7 +146,7 @@ comments: true
 
 - 主要用于避免层数塌陷。如果隐藏层只有一层，不加激活函数，一个感知机就退化成线性模型了
 
-![image-20250427211819250](../../../../../../../../home/jagger/.config/Typora/typora-user-images/image-20250427211819250.png)
+![image-20250427211819250](https://cdn.jsdelivr.net/gh/jagger235711/coooool/img/image-20250427211819250.png)
 
 - 解决了x=0处不好求导的问题，是0-1分布的soft版本
 
@@ -154,7 +154,7 @@ comments: true
 
 - 解决了x=0处不好求导的问题，是-1-1分布的soft版本
 
-![image-20250427212455555](../../../../../../../../home/jagger/.config/Typora/typora-user-images/image-20250427212455555.png)
+![image-20250427212455555](https://cdn.jsdelivr.net/gh/jagger235711/coooool/img/image-20250427212455555.png)
 
 - 好处是不用求指数，算得快。**最常用**
 
