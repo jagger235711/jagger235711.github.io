@@ -2,7 +2,7 @@ Babel==2.14.0
 bracex==2.5
 cairocffi==1.6.1
 CairoSVG==2.7.1
-certifi==2025.1.31
+certifi==2025.4.26
 cffi==1.16.0
 charset-normalizer==3.3.2
 click==8.1.7
