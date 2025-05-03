@@ -16,6 +16,9 @@ comments: true
 
 ![image-20250410215920852](https://cdn.jsdelivr.net/gh/jagger235711/coooool/img/image-20250410215920852.png)
 
+- 炼丹步骤
+  - 1.建立网络 2. 损失函数 3. 优化器（根据反向传播求得梯度 用优化器更具体的来更新参数） 4. 从训练集取出数据，进行训练，先梯度清0，算损失，反向传播，然后优化
+
 - 找paper
 
 - 注意广播机制可能会改变张量的形状
@@ -144,7 +147,7 @@ comments: true
 
 ##### 激活函数
 
-- 主要用于避免层数塌陷。如果隐藏层只有一层，不加激活函数，一个感知机就退化成线性模型了
+- 主要用于避免层数塌陷，给模型增加非线性性。如果隐藏层只有一层，不加激活函数，一个感知机就退化成线性模型了
 
 ![image-20250427211819250](https://cdn.jsdelivr.net/gh/jagger235711/coooool/img/image-20250427211819250.png)
 
@@ -242,3 +245,44 @@ comments: true
 ![image-20250430084418721](https://cdn.jsdelivr.net/gh/jagger235711/coooool/img/image-20250430084418721.png)
 
 ![image-20250501092905197](https://cdn.jsdelivr.net/gh/jagger235711/coooool/img/image-20250501092905197.png)
+
+![image-20250501173935715](https://cdn.jsdelivr.net/gh/jagger235711/coooool/img/image-20250501173935715.png)
+
+- 先把当前的权重做一次缩小，再做梯度下降
+
+### 丢弃法
+
+- 在层之间加入噪音
+
+![image-20250502054006998](https://cdn.jsdelivr.net/gh/jagger235711/coooool/img/image-20250502054006998.png)
+
+![image-20250502054154310](https://cdn.jsdelivr.net/gh/jagger235711/coooool/img/image-20250502054154310.png)
+
+- 作用在全连接隐藏层的输出上
+- 正则项只在训练中使用，会对权重产生影响
+  - 在推理中dropout直接返回输入
+- 缩小隐藏层个数（不是隐藏层层数）效果不如隐藏层个数偏大+大dropout率
+
+![image-20250502054834697](https://cdn.jsdelivr.net/gh/jagger235711/coooool/img/image-20250502054834697.png)
+
+#### QA
+
+- 由于使用了随机丢弃导致dropout有随机性。通过固定randonSeed可以使结果可重复
+
+### **数值稳定性**
+
+- 神经网络变得比较深时，数值非常容易不稳定
+
+- 两个常见问题 都是由于网络比较深导致的
+
+  1. 梯度爆炸
+
+     ![image-20250501185052728](https://cdn.jsdelivr.net/gh/jagger235711/coooool/img/image-20250501185052728.png)
+
+  2. 梯度消失
+
+     ![image-20250501185601130](https://cdn.jsdelivr.net/gh/jagger235711/coooool/img/image-20250501185601130.png)
+
+#### 模型初始化、激活函数
+
+![image-20250501190434989](https://cdn.jsdelivr.net/gh/jagger235711/coooool/img/image-20250501190434989.png)
