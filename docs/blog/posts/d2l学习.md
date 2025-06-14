@@ -427,3 +427,65 @@ comments: true
 - 输入是前一层的超参数
 - 这里针对的是多输入多输出通道卷积层的介绍
 - 多输出层依赖三维卷积核，该层做完卷积每个通道对应位置也相加，第三维维度大小对应对输出通道通道数
+
+#### QA
+
+- “不同通道的卷积核是一样的”，其实是不同通道的同一个输出通道的卷积核是一样的
+
+- ”每个通道的卷积核是不一样的“，是因为有多少个输出通道就有多少种卷积核
+- 这里针对二维卷积，对加上深度的图像不适用
+- 卷积层参数共享指的是整个图像用同一个卷积核来扫描，和全连接网络相比共享了参数
+
+### 22 池化层
+
+![image-20250612075508563](https://cdn.jsdelivr.net/gh/jagger235711/coooool/img/image-20250612075508563.png)
+
+- 和核差不多，不过一个是计算一个是选最大值输出
+- 允许边缘有抖动，增强特征的平移不变形
+
+![image-20250612080042592](https://cdn.jsdelivr.net/gh/jagger235711/coooool/img/image-20250612080042592.png)
+
+![image-20250612080240090](https://cdn.jsdelivr.net/gh/jagger235711/coooool/img/image-20250612080240090.png)
+
+![image-20250612080442511](https://cdn.jsdelivr.net/gh/jagger235711/coooool/img/image-20250612080442511.png)
+
+- 步幅和窗口大小相同意味着投影不会有重叠
+- 池化是在每个通道上做的，不会把通道合并
+
+### 23 经典卷积神经网络 LeNet
+
+![image-20250612104930013](https://cdn.jsdelivr.net/gh/jagger235711/coooool/img/image-20250612104930013.png)
+
+![image-20250612105006724](https://cdn.jsdelivr.net/gh/jagger235711/coooool/img/image-20250612105006724.png)
+
+- 每个通道的信息可以认为是一个空间的pattern
+- 一般的训练策略是高宽减半通道数翻倍
+  - 像素密度增大了，就是说输出通道数增加，每个同位置像元包含，多个通道信息，一个通道可理解为提取出一个特征信息。
+
+- ![image-20250612121614356](https://cdn.jsdelivr.net/gh/jagger235711/coooool/img/image-20250612121614356.png)
+  - 多输出通道
+  - 16组，每组有6个卷积核 分别与6个通道的输入 进行互相关运算然后相加，最后把16个叠在一起
+
+- 输出通道可以认为是匹配了某一种特定的模式
+
+### 24 深度卷积神经网络 AlexNet
+
+- dense：稠密层也称做全连接层，就是把特征提取成一维帮助最后分类
+
+![image-20250612165934100](https://cdn.jsdelivr.net/gh/jagger235711/coooool/img/image-20250612165934100.png)
+
+### 25 使用块的网络 VGG
+
+![image-20250613171735925](https://cdn.jsdelivr.net/gh/jagger235711/coooool/img/image-20250613171735925.png)
+
+![image-20250613172215249](https://cdn.jsdelivr.net/gh/jagger235711/coooool/img/image-20250613172215249.png)
+
+- VGG（Visual Geometry Group）的核心思想是通过堆叠多个小卷积核（如 3×3）的卷积层来替代大卷积核（如 7×7、5×5）的卷积层，从而在保持相同感受野的同时减少参数量，并通过增加网络深度提升特征提取能力。
+
+- vgg使用块替换掉了alexnet的卷积层
+
+![image-20250613172727630](https://cdn.jsdelivr.net/gh/jagger235711/coooool/img/image-20250613172727630.png)
+
+![image-20250613173045271](https://cdn.jsdelivr.net/gh/jagger235711/coooool/img/image-20250613173045271.png)
+
+- 不要过度设计，尽量用简单的模型
