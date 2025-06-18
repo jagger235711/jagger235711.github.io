@@ -386,6 +386,7 @@ comments: true
 #### 填充
 
 ![image-20250517205105859](https://cdn.jsdelivr.net/gh/jagger235711/coooool/img/image-20250517205105859.png)	![image-20250517205426100](https://cdn.jsdelivr.net/gh/jagger235711/coooool/img/image-20250517205426100.png)
+- 要注意在pytorch中的padding指的是一边的，等于这里的p/2
 
 #### 步幅
 
@@ -489,3 +490,56 @@ comments: true
 ![image-20250613173045271](https://cdn.jsdelivr.net/gh/jagger235711/coooool/img/image-20250613173045271.png)
 
 - 不要过度设计，尽量用简单的模型
+
+### 26 网络中的网络 NiN
+- 全连接层的问题
+  - 特别占用参数空间
+  - 过拟合
+- nin的思想就是完全不要全连接层
+![20250615230918](https://cdn.jsdelivr.net/gh/jagger235711/coooool@main/img/20250615230918.png)
+- 1*1的卷积层等价于全连接层
+![20250615231631](https://cdn.jsdelivr.net/gh/jagger235711/coooool@main/img/20250615231631.png)
+- 最大池化层的作用是将高宽减半
+- 最后应该是1000个通道， 每个通道一张图。 对每张图求平均， 就是1000个数。代表1000个类别的评分。
+![20250615232000](https://cdn.jsdelivr.net/gh/jagger235711/coooool@main/img/20250615232000.png)
+![20250615232116](https://cdn.jsdelivr.net/gh/jagger235711/coooool@main/img/20250615232116.png)
+- 1×1 卷积层除了可实现通道维度变换等，还能引入非线性。因为 1×1 卷积层后一般会跟着激活函数（比如 ReLU ），每个像素经过 1×1 卷积计算以及激活函数处理，就给单个像素的特征变换增添了非线性，
+- softmax 写在了traning中，所以网络定义中不需要再加softmax层  CrossEntropyLoss里面有Softmax
+
+### 27 含并行连结的网络 GoogLeNet / Inception V3
+![20250617174758](https://cdn.jsdelivr.net/gh/jagger235711/coooool@main/img/20250617174758.png)
+
+- 输出时在通道维度做了合并。不改变高宽只改变通道数
+- 高宽减半叫一个stage
+![20250617182134](https://cdn.jsdelivr.net/gh/jagger235711/coooool@main/img/20250617182134.png)
+![20250617183351](https://cdn.jsdelivr.net/gh/jagger235711/coooool@main/img/20250617183351.png)
+
+### 28 批量归一化
+- 在做很深的网络的时候这个是必须的层
+
+![20250618143543](https://cdn.jsdelivr.net/gh/jagger235711/coooool@main/img/20250618143543.png)
+- 在反向传播过程中，梯度通过链式法则从输出层传递到输入层，由于链式法则的乘积形式，如果每一层的梯度范数小于1，那么经过多层的乘积后，梯度会指数级减小，从而导致梯度消失。
+
+![20250618144017](https://cdn.jsdelivr.net/gh/jagger235711/coooool@main/img/20250618144017.png)
+- 为什么会变化？
+  - 每一层的方差和均值的分布都不一样
+  - 固定住，使每一层都符合某一个分布
+  - 但是计算总体损失的时候是逐个sample再求mean的，如果这些samples都符合某个分布会更方便
+  - gama 和 beita 是通过学习得到的新的均值和方差
+
+![20250618145432](https://cdn.jsdelivr.net/gh/jagger235711/coooool@main/img/20250618145432.png)
+![20250618150400](https://cdn.jsdelivr.net/gh/jagger235711/coooool@main/img/20250618150400.png)
+![20250618150458](https://cdn.jsdelivr.net/gh/jagger235711/coooool@main/img/20250618150458.png)
+
+#### QA
+- 模型稳定的情况下收敛不会变慢
+
+### 29 残差网络 ResNet
+- 加更多的层不一定能提升精度
+- resnet的思路是在使用更大的层时，保证包含了之前的更小的层。这样至少不会让模型效果变差
+![20250618163755](https://cdn.jsdelivr.net/gh/jagger235711/coooool@main/img/20250618163755.png)
+![20250618164142](https://cdn.jsdelivr.net/gh/jagger235711/coooool@main/img/20250618164142.png)
+![20250618164344](https://cdn.jsdelivr.net/gh/jagger235711/coooool@main/img/20250618164344.png)
+![20250618165725](https://cdn.jsdelivr.net/gh/jagger235711/coooool@main/img/20250618165725.png)
+### 29.2 ResNet为什么能训练出1000层的模型
+![20250618180556](https://cdn.jsdelivr.net/gh/jagger235711/coooool@main/img/20250618180556.png)
