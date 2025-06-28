@@ -543,3 +543,46 @@ comments: true
 ![20250618165725](https://cdn.jsdelivr.net/gh/jagger235711/coooool@main/img/20250618165725.png)
 ### 29.2 ResNet为什么能训练出1000层的模型
 ![20250618180556](https://cdn.jsdelivr.net/gh/jagger235711/coooool@main/img/20250618180556.png)
+### 36 数据增广
+![20250620085409](https://cdn.jsdelivr.net/gh/jagger235711/coooool@main/img/20250620085409.png)
+- 增强一般在训练时使用、一般为在线生成且是随机进行增强
+- 增强要合理
+![20250620085830](https://cdn.jsdelivr.net/gh/jagger235711/coooool@main/img/20250620085830.png)
+![20250620090022](https://cdn.jsdelivr.net/gh/jagger235711/coooool@main/img/20250620090022.png)
+- 训练集的选取主要由实际会碰到的情况来决定。当部署的环境没有那么奇怪的结果可以不用考虑这种增强
+![20250620090450](https://cdn.jsdelivr.net/gh/jagger235711/coooool@main/img/20250620090450.png) 
+- 图片增广不改变数据分布，改变方差
+- mixup增广比较有效
+
+ ### 37 微调
+
+- 迁移学习是指将从一个任务（源任务）中学习到的知识或经验，迁移应用到另一个不同但相关的任务（目标任务）中，以提升目标任务的学习效率或性能，避免从零开始训练的机器学习方法论。其核心在于利用任务间的相关性实现知识复用，尤其适用于目标任务数据量少或标注成本高的场景。
+
+ ![20250620122732](https://cdn.jsdelivr.net/gh/jagger235711/coooool@main/img/20250620122732.png)
+![20250620123130](https://cdn.jsdelivr.net/gh/jagger235711/coooool@main/img/20250620123130.png)
+![20250620123251](https://cdn.jsdelivr.net/gh/jagger235711/coooool@main/img/20250620123251.png)
+![20250620123547](https://cdn.jsdelivr.net/gh/jagger235711/coooool@main/img/20250620123547.png)
+![20250620123721](https://cdn.jsdelivr.net/gh/jagger235711/coooool@main/img/20250620123721.png)
+![20250620123747](https://cdn.jsdelivr.net/gh/jagger235711/coooool@main/img/20250620123747.png)
+![20250620123940](https://cdn.jsdelivr.net/gh/jagger235711/coooool@main/img/20250620123940.png)
+- 给不是迁移过来的层使用更大的学习率
+- 预训练模型的权重拿来用而不固定，你在你这个数据集上训练会有变化的，只是训练的epoch可以更少，模型更快收敛
+- 尽量从微调开始进行训练
+#### QA
+- 越是接近输入 特征越通用
+
+### 41 物体检测和数据集
+- 边缘框 用于表示这个物体的位置，原点在左上角
+![20250628175129](https://cdn.jsdelivr.net/gh/jagger235711/coooool@main/img/20250628175129.png)
+
+#### QA
+- 标注的时候先自己标一些然后通过迁移学习等方法训练一个模型，再把那些置信度低的类拿出来多标几张再训练模型
+
+### 42 锚框
+- 算法对边框位置的一个猜测
+![20250628183034](https://cdn.jsdelivr.net/gh/jagger235711/coooool@main/img/20250628183034.png)
+![20250628183441](https://cdn.jsdelivr.net/gh/jagger235711/coooool@main/img/20250628183441.png)
+![20250628183850](https://cdn.jsdelivr.net/gh/jagger235711/coooool@main/img/20250628183850.png)
+![20250628184324](https://cdn.jsdelivr.net/gh/jagger235711/coooool@main/img/20250628184324.png)
+![20250628184548](https://cdn.jsdelivr.net/gh/jagger235711/coooool@main/img/20250628184548.png)
+![20250628184930](https://cdn.jsdelivr.net/gh/jagger235711/coooool@main/img/20250628184930.png)
