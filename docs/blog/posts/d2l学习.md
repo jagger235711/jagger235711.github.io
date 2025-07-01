@@ -586,3 +586,12 @@ comments: true
 ![20250628184324](https://cdn.jsdelivr.net/gh/jagger235711/coooool@main/img/20250628184324.png)
 ![20250628184548](https://cdn.jsdelivr.net/gh/jagger235711/coooool@main/img/20250628184548.png)
 ![20250628184930](https://cdn.jsdelivr.net/gh/jagger235711/coooool@main/img/20250628184930.png)
+- 生成高质量的锚框很关键
+- 总结：1.如何生成锚框 2.如何判断锚框有效 3.每个类保留一个锚框进行预测
+- 处理训练样本三个重点:1.产生大量锚框，像素点*(s+r-1) 2.基于iou和label数据给锚框分类和偏移 3.nms精简非背景锚框，确保一个锚框对应一个目标
+
+### 43 树叶分类竞赛技术总结
+![20250630171417](https://cdn.jsdelivr.net/gh/jagger235711/coooool@main/img/20250630171417.png)
+![20250630172646](https://cdn.jsdelivr.net/gh/jagger235711/coooool@main/img/20250630172646.png)
+![20250630173005](https://cdn.jsdelivr.net/gh/jagger235711/coooool@main/img/20250630173005.png)
+![20250630174332](https://cdn.jsdelivr.net/gh/jagger235711/coooool@main/img/20250630174332.png)
