@@ -292,6 +292,8 @@ comments: true
 
 ![image-20250508164107027](https://cdn.jsdelivr.net/gh/jagger235711/coooool/img/image-20250508164107027.png)
 
+![20250706222047](https://cdn.jsdelivr.net/gh/jagger235711/coooool@main/img/20250706222047.png)
+
 #### QA
 
 - 数学底蕴很重要
@@ -304,7 +306,7 @@ comments: true
 - adam优化函数相对sgd来说对学习率没那么敏感
 - 不可以在浅层网络上调参数然后运用到深层网络上，因为层数也是一个超参数。但是可以先用小容量数据来调
 
-### PyTorch 神经网络基础
+### 16 PyTorch 神经网络基础
 
 - Sequential对象其实就是一个拿来装Linear (),ReLu()等方法(网络的层)的顺序容器
 - 可以通过net[x]来访问x层
@@ -314,7 +316,22 @@ comments: true
 - 80%的时间 做数据，20%的时间调模型。好的数据的重要性远大于模型
 - 要有阶段性目标 要做什么、要获得什么成长
 
-### 卷积层
+- 通过 net.state_dict() 可以直接将整个网络的全貌打印出来
+- python列表推导式
+![20250703000152](https://cdn.jsdelivr.net/gh/jagger235711/coooool@main/img/20250703000152.png)
+- 为什么共享参数是个好主意？
+
+  解答：
+
+    1. 节约内存：共享参数可以减少模型中需要存储的参数数量，从而减少内存占用。
+
+    2. 加速收敛：共享参数可以让模型更加稳定，加速收敛。
+
+    3. 提高泛化能力：共享参数可以帮助模型更好地捕捉数据中的共性，提高模型的泛化能力。
+
+    4. 加强模型的可解释性：共享参数可以让模型更加简洁明了，加强模型的可解释性。
+
+### 19 卷积层
 
 #### 卷积
 
@@ -346,7 +363,7 @@ comments: true
 ![image-20250514185549062](https://cdn.jsdelivr.net/gh/jagger235711/coooool/img/image-20250514185549062.png)
 
 - 图中的星型计算就是上节定义的二维交叉计算
-- 那个输出（）*（）指的是 高 * 宽 是输出矩阵的大小
+- 那个输出（）*（）指的是 高* 宽 是输出矩阵的大小
 
 ![image-20250514185917949](https://cdn.jsdelivr.net/gh/jagger235711/coooool/img/image-20250514185917949.png)
 
@@ -385,7 +402,8 @@ comments: true
 
 #### 填充
 
-![image-20250517205105859](https://cdn.jsdelivr.net/gh/jagger235711/coooool/img/image-20250517205105859.png)	![image-20250517205426100](https://cdn.jsdelivr.net/gh/jagger235711/coooool/img/image-20250517205426100.png)
+![image-20250517205105859](https://cdn.jsdelivr.net/gh/jagger235711/coooool/img/image-20250517205105859.png) ![image-20250517205426100](https://cdn.jsdelivr.net/gh/jagger235711/coooool/img/image-20250517205426100.png)
+
 - 要注意在pytorch中的padding指的是一边的，等于这里的p/2
 
 #### 步幅
@@ -492,6 +510,7 @@ comments: true
 - 不要过度设计，尽量用简单的模型
 
 ### 26 网络中的网络 NiN
+
 - 全连接层的问题
   - 特别占用参数空间
   - 过拟合
@@ -507,6 +526,7 @@ comments: true
 - softmax 写在了traning中，所以网络定义中不需要再加softmax层  CrossEntropyLoss里面有Softmax
 
 ### 27 含并行连结的网络 GoogLeNet / Inception V3
+
 ![20250617174758](https://cdn.jsdelivr.net/gh/jagger235711/coooool@main/img/20250617174758.png)
 
 - 输出时在通道维度做了合并。不改变高宽只改变通道数
@@ -515,12 +535,18 @@ comments: true
 ![20250617183351](https://cdn.jsdelivr.net/gh/jagger235711/coooool@main/img/20250617183351.png)
 
 ### 28 批量归一化
+
 - 在做很深的网络的时候这个是必须的层
+- 批量规范化是在卷积层或全连接层之后、相应的激活函数之前应用的。
+- 一般来说，BatchNorm可以在卷积层和全连接层之间使用，也可以在激活函数之前或之后使用。但是，并不是所有的层都需要使用BatchNorm，有时候使用过多的BatchNorm反而会降低模型性能。
+- 批量归一化和暂退法一般是直接进行替换，不会同时用，因为二者都是起到正则项的作用
 
 ![20250618143543](https://cdn.jsdelivr.net/gh/jagger235711/coooool@main/img/20250618143543.png)
+
 - 在反向传播过程中，梯度通过链式法则从输出层传递到输入层，由于链式法则的乘积形式，如果每一层的梯度范数小于1，那么经过多层的乘积后，梯度会指数级减小，从而导致梯度消失。
 
 ![20250618144017](https://cdn.jsdelivr.net/gh/jagger235711/coooool@main/img/20250618144017.png)
+
 - 为什么会变化？
   - 每一层的方差和均值的分布都不一样
   - 固定住，使每一层都符合某一个分布
@@ -532,29 +558,36 @@ comments: true
 ![20250618150458](https://cdn.jsdelivr.net/gh/jagger235711/coooool@main/img/20250618150458.png)
 
 #### QA
+
 - 模型稳定的情况下收敛不会变慢
 
 ### 29 残差网络 ResNet
+
 - 加更多的层不一定能提升精度
 - resnet的思路是在使用更大的层时，保证包含了之前的更小的层。这样至少不会让模型效果变差
 ![20250618163755](https://cdn.jsdelivr.net/gh/jagger235711/coooool@main/img/20250618163755.png)
 ![20250618164142](https://cdn.jsdelivr.net/gh/jagger235711/coooool@main/img/20250618164142.png)
 ![20250618164344](https://cdn.jsdelivr.net/gh/jagger235711/coooool@main/img/20250618164344.png)
 ![20250618165725](https://cdn.jsdelivr.net/gh/jagger235711/coooool@main/img/20250618165725.png)
+
 ### 29.2 ResNet为什么能训练出1000层的模型
+
 ![20250618180556](https://cdn.jsdelivr.net/gh/jagger235711/coooool@main/img/20250618180556.png)
+
 ### 36 数据增广
+
 ![20250620085409](https://cdn.jsdelivr.net/gh/jagger235711/coooool@main/img/20250620085409.png)
+
 - 增强一般在训练时使用、一般为在线生成且是随机进行增强
 - 增强要合理
 ![20250620085830](https://cdn.jsdelivr.net/gh/jagger235711/coooool@main/img/20250620085830.png)
 ![20250620090022](https://cdn.jsdelivr.net/gh/jagger235711/coooool@main/img/20250620090022.png)
 - 训练集的选取主要由实际会碰到的情况来决定。当部署的环境没有那么奇怪的结果可以不用考虑这种增强
-![20250620090450](https://cdn.jsdelivr.net/gh/jagger235711/coooool@main/img/20250620090450.png) 
+![20250620090450](https://cdn.jsdelivr.net/gh/jagger235711/coooool@main/img/20250620090450.png)
 - 图片增广不改变数据分布，改变方差
 - mixup增广比较有效
 
- ### 37 微调
+### 37 微调
 
 - 迁移学习是指将从一个任务（源任务）中学习到的知识或经验，迁移应用到另一个不同但相关的任务（目标任务）中，以提升目标任务的学习效率或性能，避免从零开始训练的机器学习方法论。其核心在于利用任务间的相关性实现知识复用，尤其适用于目标任务数据量少或标注成本高的场景。
 
@@ -565,20 +598,26 @@ comments: true
 ![20250620123721](https://cdn.jsdelivr.net/gh/jagger235711/coooool@main/img/20250620123721.png)
 ![20250620123747](https://cdn.jsdelivr.net/gh/jagger235711/coooool@main/img/20250620123747.png)
 ![20250620123940](https://cdn.jsdelivr.net/gh/jagger235711/coooool@main/img/20250620123940.png)
+
 - 给不是迁移过来的层使用更大的学习率
 - 预训练模型的权重拿来用而不固定，你在你这个数据集上训练会有变化的，只是训练的epoch可以更少，模型更快收敛
 - 尽量从微调开始进行训练
+
 #### QA
+
 - 越是接近输入 特征越通用
 
 ### 41 物体检测和数据集
+
 - 边缘框 用于表示这个物体的位置，原点在左上角
 ![20250628175129](https://cdn.jsdelivr.net/gh/jagger235711/coooool@main/img/20250628175129.png)
 
 #### QA
+
 - 标注的时候先自己标一些然后通过迁移学习等方法训练一个模型，再把那些置信度低的类拿出来多标几张再训练模型
 
 ### 42 锚框
+
 - 算法对边框位置的一个猜测
 ![20250628183034](https://cdn.jsdelivr.net/gh/jagger235711/coooool@main/img/20250628183034.png)
 ![20250628183441](https://cdn.jsdelivr.net/gh/jagger235711/coooool@main/img/20250628183441.png)
@@ -591,7 +630,93 @@ comments: true
 - 处理训练样本三个重点:1.产生大量锚框，像素点*(s+r-1) 2.基于iou和label数据给锚框分类和偏移 3.nms精简非背景锚框，确保一个锚框对应一个目标
 
 ### 43 树叶分类竞赛技术总结
+
 ![20250630171417](https://cdn.jsdelivr.net/gh/jagger235711/coooool@main/img/20250630171417.png)
 ![20250630172646](https://cdn.jsdelivr.net/gh/jagger235711/coooool@main/img/20250630172646.png)
 ![20250630173005](https://cdn.jsdelivr.net/gh/jagger235711/coooool@main/img/20250630173005.png)
 ![20250630174332](https://cdn.jsdelivr.net/gh/jagger235711/coooool@main/img/20250630174332.png)
+
+# --------------------------------------------------------
+
+### 44 物体检测算法：R-CNN，SSD，YOLO
+
+- 区域卷积神经网络
+![20250701161124](https://cdn.jsdelivr.net/gh/jagger235711/coooool@main/img/20250701161124.png)
+![20250701161413](https://cdn.jsdelivr.net/gh/jagger235711/coooool@main/img/20250701161413.png)
+![20250701161659](https://cdn.jsdelivr.net/gh/jagger235711/coooool@main/img/20250701161659.png)
+- CNN 是卷积神经网络（Convolutional Neural Network）的缩写
+![20250701162651](https://cdn.jsdelivr.net/gh/jagger235711/coooool@main/img/20250701162651.png)
+![20250701163353](https://cdn.jsdelivr.net/gh/jagger235711/coooool@main/img/20250701163353.png)
+![20250707111035](https://cdn.jsdelivr.net/gh/jagger235711/coooool@main/img/20250707111035.png)
+
+- ssd 单阶段检测
+![20250707111338](https://cdn.jsdelivr.net/gh/jagger235711/coooool@main/img/20250707111338.png)
+![20250707111920](https://cdn.jsdelivr.net/gh/jagger235711/coooool@main/img/20250707111920.png)
+- 主要思想是做多个分辨率下的检测
+- 图片大，锚框不变，检测小物体
+- 图片小，锚框不变，检测大物体
+- 与之前的区别是没有rpn网络了，直接在生成的所有锚框上去预测
+![20250707113046](https://cdn.jsdelivr.net/gh/jagger235711/coooool@main/img/20250707113046.png)
+- yolo
+  - 尽量让锚框不重叠
+![20250707161826](https://cdn.jsdelivr.net/gh/jagger235711/coooool@main/img/20250707161826.png)
+- 第三点为了解决多物体重叠问题
+![20250707163659](https://cdn.jsdelivr.net/gh/jagger235711/coooool@main/img/20250707163659.png)
+
+### 45 SSD实现(非常困难)
+
+- 锚框信息通过loss进入神经网络
+
+### 61 编码器-解码器架构
+
+![20250707211927](https://cdn.jsdelivr.net/gh/jagger235711/coooool@main/img/20250707211927.png)
+![20250707212031](https://cdn.jsdelivr.net/gh/jagger235711/coooool@main/img/20250707212031.png)
+![20250707212114](https://cdn.jsdelivr.net/gh/jagger235711/coooool@main/img/20250707212114.png)
+![20250707212226](https://cdn.jsdelivr.net/gh/jagger235711/coooool@main/img/20250707212226.png)
+
+### 62 序列到序列学习（seq2seq）
+
+![20250707212654](https://cdn.jsdelivr.net/gh/jagger235711/coooool@main/img/20250707212654.png)
+![20250707212705](https://cdn.jsdelivr.net/gh/jagger235711/coooool@main/img/20250707212705.png)
+![20250708093120](https://cdn.jsdelivr.net/gh/jagger235711/coooool@main/img/20250708093120.png)
+![20250708093247](https://cdn.jsdelivr.net/gh/jagger235711/coooool@main/img/20250708093247.png)
+![20250708093410](https://cdn.jsdelivr.net/gh/jagger235711/coooool@main/img/20250708093410.png)
+
+- n-gram是n个词的意思，比如p1就是match一个词的个数占所有词的比例
+- bleu越大越好
+![20250708094017](https://cdn.jsdelivr.net/gh/jagger235711/coooool@main/img/20250708094017.png)
+
+### 63 束搜索
+
+![20250708094205](https://cdn.jsdelivr.net/gh/jagger235711/coooool@main/img/20250708094205.png)
+![20250708102421](https://cdn.jsdelivr.net/gh/jagger235711/coooool@main/img/20250708102421.png)
+![20250708102944](https://cdn.jsdelivr.net/gh/jagger235711/coooool@main/img/20250708102944.png)
+![20250708103210](https://cdn.jsdelivr.net/gh/jagger235711/coooool@main/img/20250708103210.png)
+
+- $\frac{1}{L^a}$ 用于正补偿长句子
+![20250708103656](https://cdn.jsdelivr.net/gh/jagger235711/coooool@main/img/20250708103656.png)
+- n时不是穷举
+
+### 64 注意力机制
+
+![20250708104040](https://cdn.jsdelivr.net/gh/jagger235711/coooool@main/img/20250708104040.png)
+![20250708104149](https://cdn.jsdelivr.net/gh/jagger235711/coooool@main/img/20250708104149.png)
+![20250708104453](https://cdn.jsdelivr.net/gh/jagger235711/coooool@main/img/20250708104453.png)
+![20250708134225](https://cdn.jsdelivr.net/gh/jagger235711/coooool@main/img/20250708134225.png)
+
+### 65 注意力分数
+
+### 68 Transformer
+
+![20250708134612](https://cdn.jsdelivr.net/gh/jagger235711/coooool@main/img/20250708134612.png)
+![20250708135026](https://cdn.jsdelivr.net/gh/jagger235711/coooool@main/img/20250708135026.png)
+![20250708135050](https://cdn.jsdelivr.net/gh/jagger235711/coooool@main/img/20250708135050.png)
+![20250708135229](https://cdn.jsdelivr.net/gh/jagger235711/coooool@main/img/20250708135229.png)
+![20250708135345](https://cdn.jsdelivr.net/gh/jagger235711/coooool@main/img/20250708135345.png)
+
+- ffn实际上就是一个全连接
+![20250708135604](https://cdn.jsdelivr.net/gh/jagger235711/coooool@main/img/20250708135604.png)
+- 这里是对每个样本进行归一化。因为输出长度会改变导致预测不稳定
+![20250708140138](https://cdn.jsdelivr.net/gh/jagger235711/coooool@main/img/20250708140138.png)
+![20250708140336](https://cdn.jsdelivr.net/gh/jagger235711/coooool@main/img/20250708140336.png)
+![20250708140539](https://cdn.jsdelivr.net/gh/jagger235711/coooool@main/img/20250708140539.png)
