@@ -680,6 +680,16 @@ comments: true
 
 ### 47 转置卷积
 
+![20250713175402](https://cdn.jsdelivr.net/gh/jagger235711/coooool@main/img/20250713175402.png)
+
+- 无法通过padding进行有效的增大高宽
+- 对语义分割来说，是对像素级的pixel进行分割，如果通过卷积的话，分辨率不停减小，不利于进行语义分割，因此需要另一种操作子
+- 操作和卷积差不多相反
+![20250713181029](https://cdn.jsdelivr.net/gh/jagger235711/coooool@main/img/20250713181029.png)
+- 超参数一样的前提下，转置卷积相当于把对应卷积的输出变成输入的大小。注意是形状上的还原，而不是值的还原
+
+#### QA
+
 ### 47.2 转置卷积是一种卷积
 
 ![20250717114537](https://cdn.jsdelivr.net/gh/jagger235711/coooool@main/img/20250717114537.png)
