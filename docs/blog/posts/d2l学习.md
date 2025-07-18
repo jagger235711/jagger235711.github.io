@@ -607,6 +607,8 @@ comments: true
 
 - 越是接近输入 特征越通用
 
+***
+
 ### 41 物体检测和数据集
 
 - 边缘框 用于表示这个物体的位置，原点在左上角
@@ -636,7 +638,7 @@ comments: true
 ![20250630173005](https://cdn.jsdelivr.net/gh/jagger235711/coooool@main/img/20250630173005.png)
 ![20250630174332](https://cdn.jsdelivr.net/gh/jagger235711/coooool@main/img/20250630174332.png)
 
-# --------------------------------------------------------
+***
 
 ### 44 物体检测算法：R-CNN，SSD，YOLO
 
@@ -667,7 +669,7 @@ comments: true
 
 - 锚框信息通过loss进入神经网络
 
-# ---------------------------------------
+*** 
 
 ### 46 语义分割和数据集
 ![20250712153758](https://cdn.jsdelivr.net/gh/jagger235711/coooool@main/img/20250712153758.png)
@@ -678,6 +680,37 @@ comments: true
 
 ### 47 转置卷积
 
+### 47.2 转置卷积是一种卷积
+
+![20250717114537](https://cdn.jsdelivr.net/gh/jagger235711/coooool@main/img/20250717114537.png)
+![20250717114752](https://cdn.jsdelivr.net/gh/jagger235711/coooool@main/img/20250717114752.png)
+![20250717115030](https://cdn.jsdelivr.net/gh/jagger235711/coooool@main/img/20250717115030.png)
+- 对转置卷积来说，加填充会使输出变小
+![20250717115112](https://cdn.jsdelivr.net/gh/jagger235711/coooool@main/img/20250717115112.png)
+- 对转置卷积来说，增加步幅会使输出成倍增加
+![20250717115439](https://cdn.jsdelivr.net/gh/jagger235711/coooool@main/img/20250717115439.png)
+- 这里的p指的是单边的填充数量
+![20250717120114](https://cdn.jsdelivr.net/gh/jagger235711/coooool@main/img/20250717120114.png)
+![20250717120131](https://cdn.jsdelivr.net/gh/jagger235711/coooool@main/img/20250717120131.png)
+
+### 48 全连接卷积神经网络 FCN
+
+![20250717170105](https://cdn.jsdelivr.net/gh/jagger235711/coooool@main/img/20250717170105.png)
+- k是通道数，等价于有多少类
+- 这节代码中的使用pretrain模型的方式值得学习。
+  - 先取出pretrain模型中的参数，去除掉不要的层的参数
+  - 把模型结构解包去除不要的层再丢进新的网络
+  - 如此就得到了一个不含最后全连接层的网络
+  
+  ***
+  ### 49 样式迁移
+
+- 将样式图片的样式迁移到内容图片上，得到合成图片
+
+![20250717182740](https://cdn.jsdelivr.net/gh/jagger235711/coooool@main/img/20250717182740.png)
+- 看上去有三个cnn,其实只有一个，后两个网络是第一个的复制
+- 目标是训练一个cnn,使得图片输入进网络时，在某一层的输入上匹配上内容图片，在某一层的输入上匹配上样式图片
+- 样式匹配指的是 通道之间的统计分布和通道内的统计分布匹配的上
 
 
 ### 61 编码器-解码器架构
