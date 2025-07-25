@@ -742,6 +742,37 @@ comments: true
 
 ## 循环神经网络
 
+### 51 序列模型
+![20250721153307](https://cdn.jsdelivr.net/gh/jagger235711/coooool@main/img/20250721153307.png)
+![20250721153430](https://cdn.jsdelivr.net/gh/jagger235711/coooool@main/img/20250721153430.png)
+![20250721153819](https://cdn.jsdelivr.net/gh/jagger235711/coooool@main/img/20250721153819.png)
+![20250721154301](https://cdn.jsdelivr.net/gh/jagger235711/coooool@main/img/20250721154301.png)
+- 自回归模型（Autoregressive Model，简称 AR 模型）是一种用变量自身的历史数据来预测其未来值的时间序列模型。
+- 核心思想就是求解 F 函数
+![20250721154853](https://cdn.jsdelivr.net/gh/jagger235711/coooool@main/img/20250721154853.png)
+![20250721155209](https://cdn.jsdelivr.net/gh/jagger235711/coooool@main/img/20250721155209.png)
+- 需要训练两个模型，一个是算 h^ ，一个是算 x^
+![20250721160650](https://cdn.jsdelivr.net/gh/jagger235711/coooool@main/img/20250721160650.png)
+
+### 52 文本预处理
+
+- 将文本当做一个时序序列
+- 核心思想是怎么把词变成可以训练的东西
+- token的常见单位划分
+  - word 词
+  - char 字
+- “unk”unknow的意思，未知的token
+![20250722212842](https://cdn.jsdelivr.net/gh/jagger235711/coooool@main/img/20250722212842.png)
+![20250723184719](https://cdn.jsdelivr.net/gh/jagger235711/coooool@main/img/20250723184719.png)
+
+- 注意常见错误
+  - 使用特定模型时，未配套使用该模型训练时依赖的字典（词表）。
+
+    具体来说，模型的训练基于特定的字典（包含其识别的词汇、字符及对应编码），若使用其他字典，会导致输入文本的编码与模型预期不匹配，进而引发语义理解偏差、推理错误等问题。例如，用 BERT 模型却用了 Word2Vec 的词表，会因词汇映射不一致导致模型无法正确解析输入。
+
+### 53 语言模型
+
+
 ### 61 编码器-解码器架构
 
 ![20250707211927](https://cdn.jsdelivr.net/gh/jagger235711/coooool@main/img/20250707211927.png)
