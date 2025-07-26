@@ -738,7 +738,6 @@ comments: true
 - 解决类别不平衡
   - 调整采样
   - 权重
-  - 
 
 ## 循环神经网络
 
@@ -787,6 +786,31 @@ comments: true
 - 两种不同的data_iter构造思路
   - 使用随机抽样生成一个小批量子序列 批量之间的关系是随机的
   - 使用顺序分区生成一个小批量子序列 批量之间是顺序关系 可以拿到更多空间信息
+
+### 54 循环神经网络 RNN
+
+![20250726211108](https://cdn.jsdelivr.net/gh/jagger235711/coooool@main/img/20250726211108.png)
+![20250726212609](https://cdn.jsdelivr.net/gh/jagger235711/coooool@main/img/20250726212609.png)
+
+- RNN本质也是MLP
+- 计算损失时是比较ot和xt之间的损失，但是xt是用来更新ht+1的
+- Whx是隐藏层的权重
+- 最简单的RNN是通过whh来存储时序信息的
+![20250726211702](https://cdn.jsdelivr.net/gh/jagger235711/coooool@main/img/20250726211702.png)
+![20250726213704](https://cdn.jsdelivr.net/gh/jagger235711/coooool@main/img/20250726213704.png)
+
+- 语言模型说白了就是一个分类问题，预测一个长为n的序列就做n次评估，即n次交叉熵的平均
+- 困惑度就是平均交叉熵取指数
+- 当困惑度为K时。可以认为下一个词有K种可能，相对平均交叉熵更加直观
+
+![20250726214249](https://cdn.jsdelivr.net/gh/jagger235711/coooool@main/img/20250726214249.png)
+
+- g是所有层的梯度放在一起构成的向量
+- 保证长度永远不会超过sita
+
+![20250726214437](https://cdn.jsdelivr.net/gh/jagger235711/coooool@main/img/20250726214437.png)
+
+![20250726214927](https://cdn.jsdelivr.net/gh/jagger235711/coooool@main/img/20250726214927.png)
 
 ### 61 编码器-解码器架构
 
