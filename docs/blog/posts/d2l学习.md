@@ -796,6 +796,7 @@ comments: true
 - 计算损失时是比较ot和xt之间的损失，但是xt是用来更新ht+1的
 - Whx是隐藏层的权重
 - 最简单的RNN是通过whh来存储时序信息的
+
 ![20250726211702](https://cdn.jsdelivr.net/gh/jagger235711/coooool@main/img/20250726211702.png)
 ![20250726213704](https://cdn.jsdelivr.net/gh/jagger235711/coooool@main/img/20250726213704.png)
 
@@ -811,6 +812,10 @@ comments: true
 ![20250726214437](https://cdn.jsdelivr.net/gh/jagger235711/coooool@main/img/20250726214437.png)
 
 ![20250726214927](https://cdn.jsdelivr.net/gh/jagger235711/coooool@main/img/20250726214927.png)
+
+- 从具体时间点来看其实就是一个多分类问题
+- pytorch的rnn层不包括输出层。要自己加
+- 嵌入表示（Embedding）
 
 ### 61 编码器-解码器架构
 
