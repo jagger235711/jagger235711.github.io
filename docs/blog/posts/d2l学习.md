@@ -817,6 +817,14 @@ comments: true
 - pytorch的rnn层不包括输出层。要自己加
 - 嵌入表示（Embedding）
 
+### 56 门控循环单元（GRU）
+
+- 解决隐藏序列中不是所有信息同等重要、RNN隐藏信息无法做的太长的问题
+![20250728173147](https://cdn.jsdelivr.net/gh/jagger235711/coooool@main/img/20250728173147.png)
+![20250728174249](https://cdn.jsdelivr.net/gh/jagger235711/coooool@main/img/20250728174249.png)
+- 激活函数使用的是sigmoid
+- 等价于一个全连接层
+
 ### 61 编码器-解码器架构
 
 ![20250707211927](https://cdn.jsdelivr.net/gh/jagger235711/coooool@main/img/20250707211927.png)
