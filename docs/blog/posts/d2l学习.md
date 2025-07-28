@@ -32,11 +32,11 @@ comments: true
 
 ![image-20250413172908015](https://cdn.jsdelivr.net/gh/jagger235711/coooool/img/image-20250413172908015.png)
 
-![截图 2025-04-13 19-09-06](https://cdn.jsdelivr.net/gh/jagger235711/coooool/img/截图 2025-04-13 19-09-06.png)
+![截图 2025-04-13 19-09-06](<https://cdn.jsdelivr.net/gh/jagger235711/coooool/img/截图> 2025-04-13 19-09-06.png)
 
-![截图 2025-04-13 19-08-03](https://cdn.jsdelivr.net/gh/jagger235711/coooool/img/截图 2025-04-13 19-08-03.png)
+![截图 2025-04-13 19-08-03](<https://cdn.jsdelivr.net/gh/jagger235711/coooool/img/截图> 2025-04-13 19-08-03.png)
 
-![截图 2025-04-13 19-14-28](https://cdn.jsdelivr.net/gh/jagger235711/coooool/img/截图 2025-04-13 19-14-28.png)
+![截图 2025-04-13 19-14-28](<https://cdn.jsdelivr.net/gh/jagger235711/coooool/img/截图> 2025-04-13 19-14-28.png)
 
 ![image-20250414090908463](https://cdn.jsdelivr.net/gh/jagger235711/coooool/img/image-20250414090908463.png)
 
@@ -677,9 +677,10 @@ comments: true
 
 - 锚框信息通过loss进入神经网络
 
-*** 
+***
 
 ### 46 语义分割和数据集
+
 ![20250712153758](https://cdn.jsdelivr.net/gh/jagger235711/coooool@main/img/20250712153758.png)
 
 - 目标检测分割太过粗糙，需要更细致的分割
@@ -703,6 +704,7 @@ comments: true
 ![20250717114537](https://cdn.jsdelivr.net/gh/jagger235711/coooool@main/img/20250717114537.png)
 ![20250717114752](https://cdn.jsdelivr.net/gh/jagger235711/coooool@main/img/20250717114752.png)
 ![20250717115030](https://cdn.jsdelivr.net/gh/jagger235711/coooool@main/img/20250717115030.png)
+
 - 对转置卷积来说，加填充会使输出变小
 ![20250717115112](https://cdn.jsdelivr.net/gh/jagger235711/coooool@main/img/20250717115112.png)
 - 对转置卷积来说，增加步幅会使输出成倍增加
@@ -714,6 +716,7 @@ comments: true
 ### 48 全连接卷积神经网络 FCN
 
 ![20250717170105](https://cdn.jsdelivr.net/gh/jagger235711/coooool@main/img/20250717170105.png)
+
 - k是通道数，等价于有多少类
 - 这节代码中的使用pretrain模型的方式值得学习。
   - 先取出pretrain模型中的参数，去除掉不要的层的参数
@@ -721,11 +724,13 @@ comments: true
   - 如此就得到了一个不含最后全连接层的网络
   
   ***
+
   ### 49 样式迁移
 
 - 将样式图片的样式迁移到内容图片上，得到合成图片
 
 ![20250717182740](https://cdn.jsdelivr.net/gh/jagger235711/coooool@main/img/20250717182740.png)
+
 - 看上去有三个cnn,其实只有一个，后两个网络是第一个的复制
 - 目标是训练一个cnn,使得图片输入进网络时，在某一层的输入上匹配上内容图片，在某一层的输入上匹配上样式图片
 - 样式匹配指的是 通道之间的统计分布和通道内的统计分布匹配的上
@@ -734,7 +739,9 @@ comments: true
 - 训练是直接对着结果图片进行训练，最小化结果图片和风格图片、内容图片的损失。
 
 ### 50 课程竞赛：牛仔行头检测
+
 ![20250718112501](https://cdn.jsdelivr.net/gh/jagger235711/coooool@main/img/20250718112501.png)
+
 - 解决类别不平衡
   - 调整采样
   - 权重
@@ -742,10 +749,12 @@ comments: true
 ## 循环神经网络
 
 ### 51 序列模型
+
 ![20250721153307](https://cdn.jsdelivr.net/gh/jagger235711/coooool@main/img/20250721153307.png)
 ![20250721153430](https://cdn.jsdelivr.net/gh/jagger235711/coooool@main/img/20250721153430.png)
 ![20250721153819](https://cdn.jsdelivr.net/gh/jagger235711/coooool@main/img/20250721153819.png)
 ![20250721154301](https://cdn.jsdelivr.net/gh/jagger235711/coooool@main/img/20250721154301.png)
+
 - 自回归模型（Autoregressive Model，简称 AR 模型）是一种用变量自身的历史数据来预测其未来值的时间序列模型。
 - 核心思想就是求解 F 函数
 ![20250721154853](https://cdn.jsdelivr.net/gh/jagger235711/coooool@main/img/20250721154853.png)
@@ -820,10 +829,24 @@ comments: true
 ### 56 门控循环单元（GRU）
 
 - 解决隐藏序列中不是所有信息同等重要、RNN隐藏信息无法做的太长的问题
+
 ![20250728173147](https://cdn.jsdelivr.net/gh/jagger235711/coooool@main/img/20250728173147.png)
-![20250728174249](https://cdn.jsdelivr.net/gh/jagger235711/coooool@main/img/20250728174249.png)
+
+![20250728174723](https://cdn.jsdelivr.net/gh/jagger235711/coooool@main/img/20250728174723.png)
+
 - 激活函数使用的是sigmoid
 - 等价于一个全连接层
+
+![20250728175329](https://cdn.jsdelivr.net/gh/jagger235711/coooool@main/img/20250728175329.png)
+
+- 点圈代表按元素乘法
+- Rt属于0～1，是一个可以学习的参数。当Rt的元素趋近于0时相当于忘记对应的隐藏状态
+
+![20250728175815](https://cdn.jsdelivr.net/gh/jagger235711/coooool@main/img/20250728175815.png)
+
+- Zt的取值范围为0～1，取1时相当于不更新隐藏状态
+
+![20250728180036](https://cdn.jsdelivr.net/gh/jagger235711/coooool@main/img/20250728180036.png)
 
 ### 61 编码器-解码器架构
 
