@@ -848,6 +848,34 @@ comments: true
 
 ![20250728180036](https://cdn.jsdelivr.net/gh/jagger235711/coooool@main/img/20250728180036.png)
 
+在 PyTorch 中，`@` 符号表示矩阵乘法运算，类似于 NumPy 中的 `@` 运算符，也等价于 PyTorch 中的 `torch.matmul()` 函数。
+
+它主要用于两个张量（Tensor）之间的矩阵乘法操作，具体行为会根据张量的维度自动调整：
+
+- 对于两个二维张量（矩阵），`@` 执行标准的矩阵乘法（(n×m) 矩阵 × (m×p) 矩阵 = (n×p) 矩阵）
+- 对于高维张量，`@` 会在最后两个维度上执行矩阵乘法，前面的维度被视为批次维度
+
+示例：
+
+```python
+import torch
+
+# 二维矩阵乘法
+a = torch.tensor([[1, 2], [3, 4]])
+b = torch.tensor([[5, 6], [7, 8]])
+c = a @ b  # 等价于 torch.matmul(a, b)
+print(c)
+# 输出:
+# tensor([[19, 22],
+#         [43, 50]])
+```
+
+需要注意的是，`@` 与 `*` 运算符不同，`*` 在 PyTorch 中表示元素-wise 乘法（哈达玛积），而 `@` 才是真正的矩阵乘法。
+
+### 57 长短期记忆网络（LSTM）
+
+
+
 ### 61 编码器-解码器架构
 
 ![20250707211927](https://cdn.jsdelivr.net/gh/jagger235711/coooool@main/img/20250707211927.png)
