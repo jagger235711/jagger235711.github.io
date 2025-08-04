@@ -880,6 +880,22 @@ print(c)
 
 ### 57 长短期记忆网络（LSTM）
 
+![20250804202919](https://cdn.jsdelivr.net/gh/jagger235711/coooool@main/img/20250804202919.png)
+![20250804203010](https://cdn.jsdelivr.net/gh/jagger235711/coooool@main/img/20250804203010.png)
+
+- 候选记忆单元相当于之前rnn的Ht隐藏层
+![20250804203215](https://cdn.jsdelivr.net/gh/jagger235711/coooool@main/img/20250804203215.png)
+![20250804203427](https://cdn.jsdelivr.net/gh/jagger235711/coooool@main/img/20250804203427.png)
+
+- 由于 Ct-1 范围较大导致 Ct 范围大，无法保证 -1～1 的取值范围。通过 tanh 来控制数值范围
+![20250804203838](https://cdn.jsdelivr.net/gh/jagger235711/coooool@main/img/20250804203838.png)
+
+![20250804203936](https://cdn.jsdelivr.net/gh/jagger235711/coooool@main/img/20250804203936.png)
+
+-  RNN、GRU、LSTM 的本质区别就在于是如何更新 H 
+-  
+
+### 58 深层循环神经网络
 
 
 ### 61 编码器-解码器架构
