@@ -892,10 +892,23 @@ print(c)
 
 ![20250804203936](https://cdn.jsdelivr.net/gh/jagger235711/coooool@main/img/20250804203936.png)
 
--  RNN、GRU、LSTM 的本质区别就在于是如何更新 H 
--  
+- RNN、GRU、LSTM 的本质区别就在于是如何更新 H
 
 ### 58 深层循环神经网络
+
+- 核心问题是正常循环神经网络无法做的很长，会导致 overfitting .因此要做深度的话考虑多加入几个隐藏层。加入更多的非线性性
+![20250806175215](https://cdn.jsdelivr.net/gh/jagger235711/coooool@main/img/20250806175215.png)
+
+![20250806175427](https://cdn.jsdelivr.net/gh/jagger235711/coooool@main/img/20250806175427.png)
+
+- 对中间层的隐藏层来说，输入被替换为了上一层的隐藏层输出
+![20250806175527](https://cdn.jsdelivr.net/gh/jagger235711/coooool@main/img/20250806175527.png)
+
+![20250806175929](https://cdn.jsdelivr.net/gh/jagger235711/coooool@main/img/20250806175929.png)
+
+- nn.lstm 本身是不带输出层的
+
+### 59 双向循环神经网络
 
 
 ### 61 编码器-解码器架构
