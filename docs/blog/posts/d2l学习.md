@@ -910,6 +910,19 @@ print(c)
 
 ### 59 双向循环神经网络
 
+![20250807170854](https://cdn.jsdelivr.net/gh/jagger235711/coooool@main/img/20250807170854.png)
+
+- 你可以理解为一次数据反着放，一次数据正着放，然后两个rnn的output用来concat到一起，维度倍增然后加一个输出
+![20250807171143](https://cdn.jsdelivr.net/gh/jagger235711/coooool@main/img/20250807171143.png)
+- 可以看出前后向的 W 是不共享的
+![20250807171153](https://cdn.jsdelivr.net/gh/jagger235711/coooool@main/img/20250807171153.png)
+
+- 双向 LSTM 不适合做推理。因为只有之前的信息。主要的作用是对句子做特征提取
+![20250807171425](https://cdn.jsdelivr.net/gh/jagger235711/coooool@main/img/20250807171425.png)
+
+![20250807171657](https://cdn.jsdelivr.net/gh/jagger235711/coooool@main/img/20250807171657.png)
+
+### 60 机器翻译数据集
 
 ### 61 编码器-解码器架构
 
@@ -921,14 +934,27 @@ print(c)
 ### 62 序列到序列学习（seq2seq）
 
 ![20250707212654](https://cdn.jsdelivr.net/gh/jagger235711/coooool@main/img/20250707212654.png)
+
+- 因为编码时几乎是都可以看到整个句子，所以可以做双向
+- 双向 RNN 经常用在 encoder 中
 ![20250707212705](https://cdn.jsdelivr.net/gh/jagger235711/coooool@main/img/20250707212705.png)
+
+- 细节在于解码器的输入由编码器最后一层隐藏层的输出加上解码器的输入构成
+- 编码器最后一层隐藏层的输出用于初始化解码器的第一层的参数
 ![20250708093120](https://cdn.jsdelivr.net/gh/jagger235711/coooool@main/img/20250708093120.png)
+
+- 对 encoder 训练和推理相同。对 decoder ，推理时没有真正句子，只能使用上一个时刻的输出
 ![20250708093247](https://cdn.jsdelivr.net/gh/jagger235711/coooool@main/img/20250708093247.png)
-![20250708093410](https://cdn.jsdelivr.net/gh/jagger235711/coooool@main/img/20250708093410.png)
 
 - n-gram是n个词的意思，比如p1就是match一个词的个数占所有词的比例
+- Pn 就是预测序列中长为 n 的序列在标签序列中出现的个数
 - bleu越大越好
+- 在数学中，“exp” 表示以自然常数 e（约等于 2.71828）为底的指数函数 。即对于任意实数 x ，\(\exp(x)=e^x\) 。
+![20250708093410](https://cdn.jsdelivr.net/gh/jagger235711/coooool@main/img/20250708093410.png)
+
 ![20250708094017](https://cdn.jsdelivr.net/gh/jagger235711/coooool@main/img/20250708094017.png)
+
+- 实际句子的长度超出预设句子的长度，超出部分直接就截掉了，不会放入下一个句子。因此，预设句子长度时先分析数据找一个能覆盖大多数长度的预设。
 
 ### 63 束搜索
 
@@ -940,6 +966,8 @@ print(c)
 - $\frac{1}{L^a}$ 用于正补偿长句子
 ![20250708103656](https://cdn.jsdelivr.net/gh/jagger235711/coooool@main/img/20250708103656.png)
 - n时不是穷举
+
+## 注意力机制
 
 ### 64 注意力机制
 
