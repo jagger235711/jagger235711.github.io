@@ -929,6 +929,8 @@ print(c)
 ![20250707211927](https://cdn.jsdelivr.net/gh/jagger235711/coooool@main/img/20250707211927.png)
 ![20250707212031](https://cdn.jsdelivr.net/gh/jagger235711/coooool@main/img/20250707212031.png)
 ![20250707212114](https://cdn.jsdelivr.net/gh/jagger235711/coooool@main/img/20250707212114.png)
+
+- 编码器像是在做特征抽取，解码器将收集到的信息转化为目标内容
 ![20250707212226](https://cdn.jsdelivr.net/gh/jagger235711/coooool@main/img/20250707212226.png)
 
 ### 62 序列到序列学习（seq2seq）
@@ -941,6 +943,7 @@ print(c)
 
 - 细节在于解码器的输入由编码器最后一层隐藏层的输出加上解码器的输入构成
 - 编码器最后一层隐藏层的输出用于初始化解码器的第一层的参数
+- 二者的维度大小可以不相同，通过中间层进行一个转换就行
 ![20250708093120](https://cdn.jsdelivr.net/gh/jagger235711/coooool@main/img/20250708093120.png)
 
 - 对 encoder 训练和推理相同。对 decoder ，推理时没有真正句子，只能使用上一个时刻的输出
@@ -949,7 +952,7 @@ print(c)
 - n-gram是n个词的意思，比如p1就是match一个词的个数占所有词的比例
 - Pn 就是预测序列中长为 n 的序列在标签序列中出现的个数
 - bleu越大越好
-- 在数学中，“exp” 表示以自然常数 e（约等于 2.71828）为底的指数函数 。即对于任意实数 x ，\(\exp(x)=e^x\) 。
+- 在数学中，“exp” 表示以自然常数 e（约等于 2.71828）为底的指数函数 。即对于任意实数 x ，$\exp(x)=e^x$ 。
 ![20250708093410](https://cdn.jsdelivr.net/gh/jagger235711/coooool@main/img/20250708093410.png)
 
 ![20250708094017](https://cdn.jsdelivr.net/gh/jagger235711/coooool@main/img/20250708094017.png)
@@ -958,25 +961,71 @@ print(c)
 
 ### 63 束搜索
 
+- 基于 seq2seq 进行改进，优化输出时只选择概率最大的词的问题
 ![20250708094205](https://cdn.jsdelivr.net/gh/jagger235711/coooool@main/img/20250708094205.png)
+
 ![20250708102421](https://cdn.jsdelivr.net/gh/jagger235711/coooool@main/img/20250708102421.png)
+
+- 介于贪心和穷举之间
+- 选当前最好的 K 个。要注意是存每步时的最好的 K 个，不是存每个情况的 K 个
+- 大家别搞错了，这不是对每个分支贪心。是对分出来的结果再全局取前k个，完全有可能第二个分支独占了前k个概率最高的，然后分支1就废弃了
 ![20250708102944](https://cdn.jsdelivr.net/gh/jagger235711/coooool@main/img/20250708102944.png)
+- 一个句子的概率总是要低于他的子句子，候选的概率总是低于 1 的
+- $\frac{1}{L^a}$ 用于正补偿长句子
 ![20250708103210](https://cdn.jsdelivr.net/gh/jagger235711/coooool@main/img/20250708103210.png)
 
-- $\frac{1}{L^a}$ 用于正补偿长句子
+- k=n 时不是穷举，BinSearch 是每步里面选 k 个
 ![20250708103656](https://cdn.jsdelivr.net/gh/jagger235711/coooool@main/img/20250708103656.png)
-- n时不是穷举
 
 ## 注意力机制
 
 ### 64 注意力机制
 
+- 随意不是随便的意思，指主动的、刻意的
 ![20250708104040](https://cdn.jsdelivr.net/gh/jagger235711/coooool@main/img/20250708104040.png)
+
+- 在侦探工作中，我们经常面临大量的线索，每个线索都由一个属性（key）和其价值（value）组成。这些线索可能包括目击者证词、凶器、不在场证明等，而它们的价值可能各不相同，有的线索价值可能是正的，有的可能是负的，因为某些线索可能会误导调查。
+
+  如果我们不采用注意力机制，我们可能需要对所有线索进行平等的调查，这可能导致我们在不重要的线索上花费过多的时间和精力。数学上，这种做法相当于将所有线索的价值简单相加，由于价值有正有负，最终的总价值可能并不高，无法有效指导我们的调查。
+
+  然而，通过使用注意力机制，我们可以更加智能地处理这些线索。首先，我们会计算每个线索的属性（key）与我们当前关注的问题（query）之间的相关性。例如，凶器和目击者证词很可能与破案有很高的相关性。然后，我们会将那些与问题高度相关的线索的价值（value）进行加权求和，这样不仅可以保证我们集中精力在最重要的线索上，而且可以提高我们得到有价值信息的可能性。
 ![20250708104149](https://cdn.jsdelivr.net/gh/jagger235711/coooool@main/img/20250708104149.png)
+
+- 非参意味着不用学参数
+- $K$ 是一个函数，用于衡量 $x$ 与 $x_i$ 之间的距离
+- $\frac{K(x-x_i)}{\sum_{j=1}^nK(x-x_j)}$ 每一项都表示该项的相对重要性
+- 加权之后对 $y_i$  求和，代表选择那些和 $x$ 较近的 $x_i$
 ![20250708104453](https://cdn.jsdelivr.net/gh/jagger235711/coooool@main/img/20250708104453.png)
+
+![20250811110150](https://cdn.jsdelivr.net/gh/jagger235711/coooool@main/img/20250811110150.png)
+
+- $w$ 控制高斯核的窗口大小，可以改变拟合的平滑程度
+![20250811110417](https://cdn.jsdelivr.net/gh/jagger235711/coooool@main/img/20250811110417.png)
+
 ![20250708134225](https://cdn.jsdelivr.net/gh/jagger235711/coooool@main/img/20250708134225.png)
 
+- 非参的好处是不需要学，只要有足够多的数据就能弄出来。问题是实际情况下不会有那么多数据
+
 ### 65 注意力分数
+
+- $α$代表距离权重,写成 softmax 的是高斯核下的形式
+- 注意力分数就是没有正则化前的注意力权重
+![20250811112416](https://cdn.jsdelivr.net/gh/jagger235711/coooool@main/img/20250811112416.png)
+
+![20250811112915](https://cdn.jsdelivr.net/gh/jagger235711/coooool@main/img/20250811112915.png)
+
+- a的设计思路
+
+- 可加性注意力
+- 勘误：将 key 和 query 合并起来
+- 当 query 和 key 是不同形状的矢量时使用
+![20250811163027](https://cdn.jsdelivr.net/gh/jagger235711/coooool@main/img/20250811163027.png)
+
+![20250811163608](https://cdn.jsdelivr.net/gh/jagger235711/coooool@main/img/20250811163608.png)
+
+![20250811163909](https://cdn.jsdelivr.net/gh/jagger235711/coooool@main/img/20250811163909.png)
+
+### 66 使用注意力机制的seq2seq
 
 ### 68 Transformer
 
