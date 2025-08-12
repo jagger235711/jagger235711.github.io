@@ -1054,3 +1054,6 @@ print(c)
 ![20250708140138](https://cdn.jsdelivr.net/gh/jagger235711/coooool@main/img/20250708140138.png)
 ![20250708140336](https://cdn.jsdelivr.net/gh/jagger235711/coooool@main/img/20250708140336.png)
 ![20250708140539](https://cdn.jsdelivr.net/gh/jagger235711/coooool@main/img/20250708140539.png)
+
+### 71 目标检测竞赛总结
+![20250812104834](https://cdn.jsdelivr.net/gh/jagger235711/coooool@main/img/20250812104834.png)
