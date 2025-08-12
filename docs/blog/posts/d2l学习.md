@@ -7,7 +7,8 @@ date: 2025-04-10
 # draft: true
 comments: true
 ---
-学习深度学习的笔记
+# 学习深度学习的笔记
+
 [课程主页](https://courses.d2l.ai/zh-v2/)
 
 <!-- more -->
@@ -105,9 +106,7 @@ comments: true
 - L2损失 平方损失
 - ![image-20250420141918333](https://cdn.jsdelivr.net/gh/jagger235711/coooool/img/image-20250420141918333.png)
 
-```
 优化较平滑
-```
 
 - 使用对数似然即使用负对数对softmax后的概率进行处理的目的是给错误的类添加更大的惩罚从而使得正确的类更加显著
 - ~~对于交叉熵损失，我们只会得到独热编码为1时的那个类的概率,只关心对正确类的预测值的置信度~~
@@ -1026,6 +1025,20 @@ print(c)
 ![20250811163909](https://cdn.jsdelivr.net/gh/jagger235711/coooool@main/img/20250811163909.png)
 
 ### 66 使用注意力机制的seq2seq
+
+![20250812083835](https://cdn.jsdelivr.net/gh/jagger235711/coooool@main/img/20250812083835.png)
+
+- 改进点
+  - 解码器的输入由编码器的最后一层的输出改为所有层的 kv
+  - 对于 query ，要用 RNN 的输出，不能用 embedding ，保证在同一个语义空间内
+![20250812084251](https://cdn.jsdelivr.net/gh/jagger235711/coooool@main/img/20250812084251.png)
+
+![20250812090226](https://cdn.jsdelivr.net/gh/jagger235711/coooool@main/img/20250812090226.png)
+
+- 第一个q是encoder的最后一层最后时刻的h，同时，encoder的最后时刻的所有层h还被拿去初始化decoder。q和k，v计算加权输出就是context，去和eos拼接。听懂点赞，嘻嘻
+![20250812093340](https://cdn.jsdelivr.net/gh/jagger235711/coooool@main/img/20250812093340.png)
+
+### 67 自注意力
 
 ### 68 Transformer
 
