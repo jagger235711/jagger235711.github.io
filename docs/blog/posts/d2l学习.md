@@ -33,11 +33,11 @@ comments: true
 
 ![image-20250413172908015](https://cdn.jsdelivr.net/gh/jagger235711/coooool/img/image-20250413172908015.png)
 
-![截图 2025-04-13 19-09-06](<https://cdn.jsdelivr.net/gh/jagger235711/coooool/img/截图> 2025-04-13 19-09-06.png)
+![20250819123401](https://cdn.jsdelivr.net/gh/jagger235711/coooool@main/img/20250819123401.png)
 
-![截图 2025-04-13 19-08-03](<https://cdn.jsdelivr.net/gh/jagger235711/coooool/img/截图> 2025-04-13 19-08-03.png)
+![20250819123447](https://cdn.jsdelivr.net/gh/jagger235711/coooool@main/img/20250819123447.png)
 
-![截图 2025-04-13 19-14-28](<https://cdn.jsdelivr.net/gh/jagger235711/coooool/img/截图> 2025-04-13 19-14-28.png)
+![20250819123512](https://cdn.jsdelivr.net/gh/jagger235711/coooool@main/img/20250819123512.png)
 
 ![image-20250414090908463](https://cdn.jsdelivr.net/gh/jagger235711/coooool/img/image-20250414090908463.png)
 
@@ -1040,20 +1040,83 @@ print(c)
 
 ### 67 自注意力
 
+- 对自注意力机制，它将 $x_i$ 又当 k 又当 q 又当 v 这样对每个序列抽取特征得到 y
+- 给定序列是一个长为 n 的序列，每个 $x_i$ 是一个长为 d 的向量
+- 自注意力将 $x_i$ 同时作为 key 、value 和 query ，以此来对序列抽取特征
+- 基本上可以认为给定一个序列，会对序列中的每一个元素进行输出，也就是说，每个查询都会关注所有的键-值对并生成一个注意力输出
+- 自注意力之所以叫做自注意力，是因为 key，value，query 都是来自于自身，$x_i$ 既作为 key ，又作为 value ，同时还作为 query （self-attention 中的 self 所强调的是  key，value，query 的取法）
+![20250818142952](https://cdn.jsdelivr.net/gh/jagger235711/coooool@main/img/20250818142952.png)
+
+- 自注意力适合处理比较长的文本
+- CNN、RNN、自注意力都可以用来处理序列
+- CNN 如何处理序列：给定一个序列，将其看作是一个一维的输入（之前在处理图片时，图片具有高和宽，而且每个像素都具有 chanel 数，也就是特征数），如果用 CNN 做序列的话，经过一个 1d 的卷积（只有宽没有高）之后，将每个元素的特征看作是 channel 数，这样就可以用来处理文本序列了
+- k：窗口大小，每次看到的长度为 k
+- n：长度
+- d：dimension，每个 x 的维度（长度）
+- 并行度：每个输出( yi )可以自己并行做运算，因为 GPU 有大量的并行单元，所以并行度越高，计算的速度就越快
+- 最长路径：对于最长的那个序列，前面时刻的信息通过神经元传递到后面时刻,对应于计算机视觉中的感受野的概念（每一个神经元的输出对应的图片中的视野）
+- 卷积神经网络和自注意力都拥有并行计算的优势，而且自注意力的最大路径长度最短。但是因为自注意力的计算复杂度是关于序列长度的二次方，所以在很长的序列中计算会非常慢
+![20250818143438](https://cdn.jsdelivr.net/gh/jagger235711/coooool@main/img/20250818143438.png)
+
+- 纯用自注意力机制做序列模型的问题是没有位置信息，会导致问题
+- 和 CNN / RNN 不同，自注意力并没有记录位置信息
+
+  CNN 中其实是有记录位置信息的，从输出可以反推出输入所在的窗口的位置，窗口大小可以看成是位置信息
+
+  RNN 本身就是序列相关的，它是通过逐个的重复地处理词元
+  对于自注意力来说，如果将输入进行随机打乱，对应输出的位置可能会发生变化，但是每个输出的内容不会发生变化
+
+  所以如果是想纯用自注意力机制来做序列模型的话，没有位置信息的话可能会出现问题，所以可以通过加入位置编码来加入位置信息
+- 为了使用序列的顺序信息，通过在输入表示中添加位置编码将位置信息注入到输入里
+
+  位置编码不是将位置信息加入到模型中，一旦位置信息加入到模型中，会出现各种问题（比如在 CNN 中就需要看一个比较长的序列，RNN 中会降低模型的并行度）
+
+  P 中的每个元素根据对应的 X 中元素位置的不同而不同，相当于对位置进行编码
+- P 的元素具体计算如下：
+
+  对于 P 中的每一列，奇数列是一个 cos 函数，偶数列是一个 sin 函数，不同的列之间的周期是不一样的
+![20250818145549](https://cdn.jsdelivr.net/gh/jagger235711/coooool@main/img/20250818145549.png)
+
+![20250818160420](https://cdn.jsdelivr.net/gh/jagger235711/coooool@main/img/20250818160420.png)
+
+![20250818161018](https://cdn.jsdelivr.net/gh/jagger235711/coooool@main/img/20250818161018.png)
+
+- 与在序列中的位置 i 无关，与维度 d 有关
+![20250818161406](https://cdn.jsdelivr.net/gh/jagger235711/coooool@main/img/20250818161406.png)
+
+- 最长序列为 1 意味着任何一个输出能看到整个序列的信息
+- 适合处理长序列信息，但是计算复杂度较高
+![20250818161736](https://cdn.jsdelivr.net/gh/jagger235711/coooool@main/img/20250818161736.png)
+
 ### 68 Transformer
 
+- 基于纯自注意力架构，去除了 RNN
+- FFN 本质是一个全连接层
+- 多头注意力是注意力层
+- 信息传递取 Transformer 最后一层的输出
 ![20250708134612](https://cdn.jsdelivr.net/gh/jagger235711/coooool@main/img/20250708134612.png)
+
+- 就是做了 n 个不同版本的注意力层，每个版本的侧重点不同
 ![20250708135026](https://cdn.jsdelivr.net/gh/jagger235711/coooool@main/img/20250708135026.png)
+
 ![20250708135050](https://cdn.jsdelivr.net/gh/jagger235711/coooool@main/img/20250708135050.png)
 ![20250708135229](https://cdn.jsdelivr.net/gh/jagger235711/coooool@main/img/20250708135229.png)
-![20250708135345](https://cdn.jsdelivr.net/gh/jagger235711/coooool@main/img/20250708135345.png)
 
 - ffn实际上就是一个全连接
+![20250708135345](https://cdn.jsdelivr.net/gh/jagger235711/coooool@main/img/20250708135345.png)
+
+- 这里是对每个样本进行归一化。因为输出长度会改变导致预测不稳定，而层归一化对变化的长度较为稳定
+- 并且使用了残差连接
 ![20250708135604](https://cdn.jsdelivr.net/gh/jagger235711/coooool@main/img/20250708135604.png)
-- 这里是对每个样本进行归一化。因为输出长度会改变导致预测不稳定
+- 信息传递过去进入的那个 attention 是一个正常的， 不是自注意力
 ![20250708140138](https://cdn.jsdelivr.net/gh/jagger235711/coooool@main/img/20250708140138.png)
+
 ![20250708140336](https://cdn.jsdelivr.net/gh/jagger235711/coooool@main/img/20250708140336.png)
 ![20250708140539](https://cdn.jsdelivr.net/gh/jagger235711/coooool@main/img/20250708140539.png)
+
+- 对于自注意力层来说，什么形状的东西进去就是什么样的出来， shape 不会改变
+
+- transformer 编码器和解码器都不会改变输入形状
 
 ### 71 目标检测竞赛总结
 
