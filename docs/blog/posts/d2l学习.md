@@ -7,9 +7,13 @@ date: 2025-04-10
 # draft: true
 comments: true
 ---
-# 学习深度学习的笔记
+# 动手学深度学习课程笔记
 
 [课程主页](https://courses.d2l.ai/zh-v2/)
+
+[教材](https://zh-v2.d2l.ai/)
+
+[视频地址](https://space.bilibili.com/1567748478?spm_id_from=333.788.upinfo.head.click)
 
 <!-- more -->
 
@@ -1231,6 +1235,19 @@ print(c)
 
 - 数据 模型 训练
 
+### 70 BERT微调
+
+![20250822103110](https://cdn.jsdelivr.net/gh/jagger235711/coooool@main/img/20250822103110.png)
+![20250822103212](https://cdn.jsdelivr.net/gh/jagger235711/coooool@main/img/20250822103212.png)
+![20250822103409](https://cdn.jsdelivr.net/gh/jagger235711/coooool@main/img/20250822103409.png)
+
+- 三分类，还有一个分类是 其他
+![20250822103544](https://cdn.jsdelivr.net/gh/jagger235711/coooool@main/img/20250822103544.png)
+
+![20250822104201](https://cdn.jsdelivr.net/gh/jagger235711/coooool@main/img/20250822104201.png)
+
+- python 是非常慢的，碰到性能瓶颈时考虑数据预处理的问题
+
 ### 71 目标检测竞赛总结
 
 ## smote
@@ -1323,3 +1340,49 @@ print(c)
 
 ![20250812151023](https://cdn.jsdelivr.net/gh/jagger235711/coooool@main/img/20250812151023.png)
 ![20250812152126](https://cdn.jsdelivr.net/gh/jagger235711/coooool@main/img/20250812152126.png)
+
+### 72 优化算法
+
+![20250822114448](https://cdn.jsdelivr.net/gh/jagger235711/coooool@main/img/20250822114448.png)
+![20250822114613](https://cdn.jsdelivr.net/gh/jagger235711/coooool@main/img/20250822114613.png)
+
+- 凸集内任意两点的连线都在集合内
+![20250822180132](https://cdn.jsdelivr.net/gh/jagger235711/coooool@main/img/20250822180132.png)
+
+![20250822180343](https://cdn.jsdelivr.net/gh/jagger235711/coooool@main/img/20250822180343.png)
+![20250822180535](https://cdn.jsdelivr.net/gh/jagger235711/coooool@main/img/20250822180535.png)
+![20250822180655](https://cdn.jsdelivr.net/gh/jagger235711/coooool@main/img/20250822180655.png)
+
+- SGD 的下降方向是对真实梯度方向的无偏估计
+![20250822203406](https://cdn.jsdelivr.net/gh/jagger235711/coooool@main/img/20250822203406.png)
+![20250822203609](https://cdn.jsdelivr.net/gh/jagger235711/coooool@main/img/20250822203609.png)
+![20250822204135](https://cdn.jsdelivr.net/gh/jagger235711/coooool@main/img/20250822204135.png)
+
+- 对学习率不敏感
+![20250822204948](https://cdn.jsdelivr.net/gh/jagger235711/coooool@main/img/20250822204948.png)
+
+- 分子使梯度平滑，分母用于限制每个维度的值的范围，$ϵ$ 防止除零
+![20250822205746](https://cdn.jsdelivr.net/gh/jagger235711/coooool@main/img/20250822205746.png)
+
+![20250822205831](https://cdn.jsdelivr.net/gh/jagger235711/coooool@main/img/20250822205831.png)
+
+#### QA
+
+- 梯度指向值变大的方向，所以x-梯度 使梯度向值减小的方向变化
+![20250822210609](https://cdn.jsdelivr.net/gh/jagger235711/coooool@main/img/20250822210609.png)
+
+- batch小的时候收敛会快一些
+- 模型和数据集大小要匹配
+
+### 【完结】73 - 课程总结和进阶学习
+
+![20250822213713](https://cdn.jsdelivr.net/gh/jagger235711/coooool@main/img/20250822213713.png)
+![20250822220015](https://cdn.jsdelivr.net/gh/jagger235711/coooool@main/img/20250822220015.png)
+![20250822214951](https://cdn.jsdelivr.net/gh/jagger235711/coooool@main/img/20250822214951.png)
+![20250822215019](https://cdn.jsdelivr.net/gh/jagger235711/coooool@main/img/20250822215019.png)
+![20250822220102](https://cdn.jsdelivr.net/gh/jagger235711/coooool@main/img/20250822220102.png)
+![20250822215758](https://cdn.jsdelivr.net/gh/jagger235711/coooool@main/img/20250822215758.png)
+
+#### QA
+
+- 用一个代码是工作，看懂一个代码是学习。学习比工作更难
