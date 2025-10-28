@@ -1,15 +1,27 @@
+---
+draft: true 
+date: 2025-09-14 
+categories:
+  - GPT
+authors: 
+    - Jagger
+comments: true
+---
+
 # vscode端口转发代理设置
 
-**User:** Anonymous (xy102504@gmail.com)  
+**User:** Anonymous (<xy102504@gmail.com>)  
 **Created:** 10/26/2025 20:48:48  
 **Updated:** 10/27/2025 18:03:06  
 **Exported:** 10/27/2025 18:05:05  
 **Link:** [https://chatgpt.com/c/68fe1887-6f50-8323-825c-4d364bc46a21](https://chatgpt.com/c/68fe1887-6f50-8323-825c-4d364bc46a21)  
 
-## Prompt:
+## Prompt
+
 怎么使用vscode的转发端口功能实现服务器走本机的代理
 
-## Response:
+## Response
+
 非常好的问题 👍——你想让**VS Code 远程连接的服务器（Remote SSH 或 Dev Containers）访问互联网时，流量通过你本机的代理**。这在科研、内网服务器、或访问外网资源时非常常见。
 
 我们来分步骤讲清楚整个原理和做法👇
@@ -47,8 +59,8 @@ Remote: localhost:7890
 
 意思是：
 
-*   在服务器上访问 `localhost:7890`，实际上等价于访问 **你本机的 127.0.0.1:7890**。
-*   所以如果你本地的代理（如 Clash）监听在 `127.0.0.1:7890`，服务器通过这个端口就能“走你的代理”。
+* 在服务器上访问 `localhost:7890`，实际上等价于访问 **你本机的 127.0.0.1:7890**。
+* 所以如果你本地的代理（如 Clash）监听在 `127.0.0.1:7890`，服务器通过这个端口就能“走你的代理”。
 
 * * *
 
@@ -57,31 +69,39 @@ Remote: localhost:7890
 
 ### ✅ 方法 1：使用 VSCode Remote SSH 的“端口转发”功能
 
-1.  **确保你本机有代理**
-    *   比如 Clash 开启在：`127.0.0.1:7890`
-    *   可测试：
+1. **确保你本机有代理**
+    * 比如 Clash 开启在：`127.0.0.1:7890`
+    * 可测试：
+
         ```bash
         curl -x http://127.0.0.1:7890 https://www.google.com
         ```
-2.  **用 VSCode Remote SSH 连接服务器**
-3.  **转发本地代理端口**
-    *   打开 VSCode 左下角的 **Remote Explorer → Ports**
-    *   点击 **“Forward a Port”**
-    *   输入 `7890`
-    *   会显示：
+
+2. **用 VSCode Remote SSH 连接服务器**
+3. **转发本地代理端口**
+    * 打开 VSCode 左下角的 **Remote Explorer → Ports**
+    * 点击 **“Forward a Port”**
+    * 输入 `7890`
+    * 会显示：
+
         ```
         Forwarded Port: 7890 → 127.0.0.1:7890 (local)
         ```
-4.  **在服务器上配置代理环境变量**
+
+4. **在服务器上配置代理环境变量**
+
     ```bash
     export http_proxy=http://127.0.0.1:7890
     export https_proxy=http://127.0.0.1:7890
     export all_proxy=socks5://127.0.0.1:7890  # 如果你是socks代理
     ```
-5.  **测试是否成功**
+
+5. **测试是否成功**
+
     ```bash
     curl -I https://www.google.com
     ```
+
     如果返回 200 或 302，就说明服务器的流量确实走了你本机的代理。
 
 * * *
@@ -150,12 +170,15 @@ source ~/.bashrc
 
 如果你的本地代理是 socks5（如 Clash socks5 端口 `127.0.0.1:1080`）：
 
-1.  在 VSCode 里转发 `1080`
-2.  在服务器上：
+1. 在 VSCode 里转发 `1080`
+2. 在服务器上：
+
     ```bash
     export all_proxy=socks5://127.0.0.1:1080
     ```
-3.  测试：
+
+3. 测试：
+
     ```bash
     curl -x socks5h://127.0.0.1:1080 https://ipinfo.io
     ```
@@ -177,11 +200,13 @@ source ~/.bashrc
 
 是否希望我帮你生成一份 **自动执行以上操作的脚本**？（比如：一键检测代理端口、添加转发、配置环境变量）
 
-## Prompt:
-(.venv) wwj@abc:~/src/Deep-Learning-Projects$ curl -I https://www.google.com
+## Prompt
+
+(.venv) wwj@abc:~/src/Deep-Learning-Projects$ curl -I <https://www.google.com>
 curl: (7) Failed to connect to 127.0.0.1 port 10810 after 0 ms: Connection refused好像没成功？我在服务器配了export、本机配了端口转发
 
-## Response:
+## Response
+
 对，很好的观察 👀。  
 你这条报错说明现在是：
 
@@ -229,9 +254,10 @@ Remote 10810 → Local 127.0.0.1:10810
 
 如果没有，请手动加：
 
-1.  点击“+ Forward a Port”
-2.  输入你的代理端口号（如 7890 或 1080）
-3.  它应该显示为：
+1. 点击“+ Forward a Port”
+2. 输入你的代理端口号（如 7890 或 1080）
+3. 它应该显示为：
+
     ```
     7890 → 127.0.0.1:7890 (local)
     ```
@@ -280,16 +306,21 @@ Connected to 127.0.0.1
 
 假设你本机代理 HTTP 端口是 `7890`：
 
-1.  在 VSCode 里转发：
+1. 在 VSCode 里转发：
+
     ```
     Remote port: 7890 → Local: 127.0.0.1:7890
     ```
-2.  在服务器上：
+
+2. 在服务器上：
+
     ```bash
     export http_proxy=http://127.0.0.1:7890
     export https_proxy=http://127.0.0.1:7890
     ```
-3.  测试：
+
+3. 测试：
+
     ```bash
     curl -I https://google.com
     ```
@@ -300,12 +331,15 @@ Connected to 127.0.0.1
 
 如果 Clash 的 socks5 端口是 `1080`：
 
-1.  转发 1080
-2.  在服务器上：
+1. 转发 1080
+2. 在服务器上：
+
     ```bash
     export all_proxy=socks5://127.0.0.1:1080
     ```
-3.  测试：
+
+3. 测试：
+
     ```bash
     curl -x socks5h://127.0.0.1:1080 https://ipinfo.io
     ```
@@ -345,16 +379,18 @@ date: Sun, 26 Oct 2025 12:34:56 GMT
 
 如果你方便的话，可以告诉我：
 
-1.  你本机代理软件（Clash / V2Ray / Surge / 其他）
-2.  它监听的端口（HTTP/SOCKS）
-3.  你在服务器上 export 的环境变量内容
+1. 你本机代理软件（Clash / V2Ray / Surge / 其他）
+2. 它监听的端口（HTTP/SOCKS）
+3. 你在服务器上 export 的环境变量内容
 
 我可以帮你对症写出一份 100% 可用的配置组合。
 
-## Prompt:
+## Prompt
+
 我用的v2rayn,上面显示本地:[mixed:10888,10809]局域网:[mixed:10810]
 
-## Response:
+## Response
+
 太好了 ✅ ——有了这些端口信息，我们就能精确配置成功。  
 你现在的情况可以总结为：
 
@@ -370,8 +406,8 @@ date: Sun, 26 Oct 2025 12:34:56 GMT
 
 V2RayN 的 **mixed 模式** 表示同时支持：
 
-*   HTTP 代理（`http://`）
-*   SOCKS5 代理（`socks5://`）
+* HTTP 代理（`http://`）
+* SOCKS5 代理（`socks5://`）
 
 所以你可以使用任意一种协议。
 
@@ -390,12 +426,14 @@ V2RayN 的 **mixed 模式** 表示同时支持：
 
 在 VSCode 的 **Remote Explorer → Ports** 中：
 
-1.  点击 **“+ Forward a Port”**
-2.  输入 `10810`
-3.  你应看到：
+1. 点击 **“+ Forward a Port”**
+2. 输入 `10810`
+3. 你应看到：
+
     ```
     10810 → 127.0.0.1:10810 (local)
     ```
+
     ✅ 这表示服务器访问的 `localhost:10810` 会被转发到你电脑上的 `localhost:10810`。
 
 > 💡 你也可以转发 `10888`，两者效果一样，区别只是哪个接口在用。
@@ -439,23 +477,29 @@ curl https://ipinfo.io
 
 请逐步排查：
 
-1.  **检查 VSCode 是否真的建立了转发：**
+1. **检查 VSCode 是否真的建立了转发：**
+
     ```bash
     nc -zv 127.0.0.1 10810
     ```
-    *   如果显示 `Connection refused` → VSCode 转发没连上。
-    *   如果显示 `Connected` → 通道是通的。
-2.  **确认 V2RayN 的代理在你电脑上可用**  
+
+    * 如果显示 `Connection refused` → VSCode 转发没连上。
+    * 如果显示 `Connected` → 通道是通的。
+2. **确认 V2RayN 的代理在你电脑上可用**  
     在你的电脑上（非服务器）执行：
+
     ```bash
     curl -x http://127.0.0.1:10810 https://www.google.com -I
     ```
+
     如果本地可行，说明代理没问题。
-3.  **确保 VSCode 的 SSH 连接没有禁用端口转发**  
+3. **确保 VSCode 的 SSH 连接没有禁用端口转发**  
     在你的 SSH config（`~/.ssh/config`）中不要有：
+
     ```
     AllowTcpForwarding no
     ```
+
     否则转发会失败。
 
 * * *
@@ -499,19 +543,21 @@ ssh myserver
 
 如果你愿意，我可以帮你生成一个完整的自动检测脚本，比如：
 
-*   自动检测你本地代理端口；
-*   自动在服务器设置转发；
-*   自动导出环境变量；
-*   自动测试连通性。
+* 自动检测你本地代理端口；
+* 自动在服务器设置转发；
+* 自动导出环境变量；
+* 自动测试连通性。
 
 是否希望我帮你写这个一键脚本？
 
-## Prompt:
-➜  ~ curl -x http://127.0.0.1:10810 https://www.google.com -I
+## Prompt
+
+➜  ~ curl -x <http://127.0.0.1:10810> <https://www.google.com> -I
 HTTP/1.1 200 Connection established本地通过这个端口是连得上的，(.venv) wwj@abc:~/src/Deep-Learning-Projects$ nc -zv 127.0.0.1 10810
 nc: connect to 127.0.0.1 port 10810 (tcp) failed: Connection refused服务器上不行
 
-## Response:
+## Response
+
 非常好，这个结果已经 **精确地指出问题所在** 👍
 
 * * *
@@ -558,18 +604,22 @@ nc: connect to 127.0.0.1 port 10810 (tcp) failed: Connection refused服务器上
 
 ### ✅ Step 2：打开“PORTS”面板
 
-1.  在 VSCode 左侧边栏点击 **Remote Explorer**（一个两条箭头的图标）
-2.  选中你的服务器连接
-3.  切换到 **“Ports”** 标签页
-4.  点击右上角 “➕ Forward a Port”
-5.  输入：
+1. 在 VSCode 左侧边栏点击 **Remote Explorer**（一个两条箭头的图标）
+2. 选中你的服务器连接
+3. 切换到 **“Ports”** 标签页
+4. 点击右上角 “➕ Forward a Port”
+5. 输入：
+
     ```
     10810
     ```
-6.  VSCode 底部应出现一条记录：
+
+6. VSCode 底部应出现一条记录：
+
     ```
     Forwarded Port: 10810 → 127.0.0.1:10810 (Local)
     ```
+
     ✅ 这表示服务器的 `localhost:10810` 现在能连到你电脑的 `127.0.0.1:10810`
 
 * * *
@@ -660,16 +710,18 @@ nc -zv 127.0.0.1 10810
 
 要不要我帮你写一个**一键检测脚本**，能自动判断：
 
-*   VSCode 是否转发端口；
-*   SSH 是否允许；
-*   当前代理是否通；  
+* VSCode 是否转发端口；
+* SSH 是否允许；
+* 当前代理是否通；  
     并在终端输出诊断结果？
 
-## Prompt:
+## Prompt
+
 wwj@abc:~$ nc -zv 127.0.0.1 10810
 nc: connect to 127.0.0.1 port 10810 (tcp) failed: Connection refused直接ssh连接测试也不行
 
-## Response:
+## Response
+
 非常棒的排查 👍，现在我们可以 **确认根因**：
 
 > ❌ 不是 VSCode 的问题，也不是代理的问题，而是 **SSH 的端口转发本身没生效**。  
@@ -820,8 +872,9 @@ curl -I https://www.google.com
 👉 一键检测 SSH 是否允许端口转发、是否连通、是否走代理、并自动修复。  
 是否帮你生成这个？
 
-## Prompt:
-➜  ~ nano ~/.ssh/config 
+## Prompt
+
+➜  ~ nano ~/.ssh/config
 ➜  ~ ps aux | grep ssh
 
 jagger    151026  0.0  0.1 1459554548 94484 ?    Ssl  20:47   0:00 /opt/visual-studio-code/code /home/jagger/.vscode/extensions/ms-vscode-remote.remote-ssh-0.120.0/out/localServer.js {"serverId":1,"ipcHandlePath":"/run/user/1000/vscode-ssh-askpass-0d7295cf7a8c8d090ddf48f864a1f9906c26545c.sock","sshCommand":"ssh","sshArgs":["-v","-T","-D","41519","-o","ConnectTimeout=15","学校服务器"],"serverDataFolderName":".vscode-server","dataFilePath":"/home/jagger/.config/Code/User/globalStorage/ms-vscode-remote.remote-ssh/vscode-ssh-host-9d138516-7d842fb85a0275a4a8e4d7e040d2625abbf7f084-0.120.0-es/data.json"}
@@ -829,17 +882,18 @@ jagger    151034  0.0  0.0  17936 12500 ?        S    20:47   0:00 ssh -v -T -D 
 jagger    152570  0.0  0.0   9728  6364 pts/0    S+   21:11   0:00 grep --color=auto --exclude-dir=.bzr --exclude-dir=CVS --exclude-dir=.git --exclude-dir=.hg --exclude-dir=.svn --exclude-dir=.idea --exclude-dir=.tox --exclude-dir=.venv --exclude-dir=venv ssh
 ➜  ~
 
-## Response:
+## Response
+
 非常好 👍 你这一条 `ps aux | grep ssh` 输出已经揭示了 **关键问题所在**：
 
 * * *
 
-🚨 核心结论：
+🚨 核心结论
 --------
 
 > VS Code 当前启动 SSH 连接时，**只启用了一个动态代理隧道（`-D 41519`）**，  
 > 没有任何 `-L ...` 参数。
-> 
+>
 > ⚠️ 也就是说：**你目前没有建立任何端口转发（LocalForward）**。
 
 所以服务器上访问 `127.0.0.1:10810` 时，理所当然是 `Connection refused`。
@@ -849,12 +903,14 @@ jagger    152570  0.0  0.0   9728  6364 pts/0    S+   21:11   0:00 grep --color=
 🧠 一点背景
 -------
 
-*   `-D 41519` 表示 “动态转发”（相当于在你本机起了一个 socks5 代理）。  
+* `-D 41519` 表示 “动态转发”（相当于在你本机起了一个 socks5 代理）。  
     它是 VS Code Remote SSH 自己用来传输文件和命令的，不会自动帮你转发端口。
-*   你需要显式告诉 VS Code（或 SSH）去创建：
+* 你需要显式告诉 VS Code（或 SSH）去创建：
+
     ```
     -L 10810:127.0.0.1:10810
     ```
+
     才能让服务器访问 `127.0.0.1:10810` → 走到你电脑的 `127.0.0.1:10810`。
 
 * * *
@@ -887,14 +943,17 @@ Host 学校服务器
 
 ### ✅ 方法二：VS Code 图形界面添加端口转发
 
-1.  打开 VS Code
-2.  左侧点 **Remote Explorer → Ports**
-3.  点击右上角 “➕ Forward a Port”
-4.  输入：
+1. 打开 VS Code
+2. 左侧点 **Remote Explorer → Ports**
+3. 点击右上角 “➕ Forward a Port”
+4. 输入：
+
     ```
     10810
     ```
-5.  确认列表中出现：
+
+5. 确认列表中出现：
+
     ```
     Forwarded Port: 10810 → 127.0.0.1:10810 (local)
     ```
@@ -904,21 +963,28 @@ Host 学校服务器
 🧩 接下来验证
 --------
 
-1.  **重新连接 SSH / VSCode Remote SSH**
-2.  在服务器终端执行：
+1. **重新连接 SSH / VSCode Remote SSH**
+2. 在服务器终端执行：
+
     ```bash
     nc -zv 127.0.0.1 10810
     ```
+
     ✅ 预期输出：
+
     ```
     Connection to 127.0.0.1 10810 port [tcp/*] succeeded!
     ```
-3.  设置代理环境变量：
+
+3. 设置代理环境变量：
+
     ```bash
     export http_proxy=http://127.0.0.1:10810
     export https_proxy=http://127.0.0.1:10810
     ```
-4.  测试访问：
+
+4. 测试访问：
+
     ```bash
     curl -I https://www.google.com
     ```
@@ -958,12 +1024,14 @@ sudo systemctl restart ssh
 是否希望我帮你自动生成一个 `.ssh/config` 片段，带上完整的连接参数（HostName、User、LocalForward）？  
 你只要贴上你的服务器地址我就能写好。
 
-## Prompt:
-#AllowAgentForwarding yes
-#AllowTcpForwarding yes
-#GatewayPorts no这三个都改吗
+## Prompt
 
-## Response:
+# AllowAgentForwarding yes
+# AllowTcpForwarding yes
+# GatewayPorts no这三个都改吗
+
+## Response
+
 对的，这里建议按下面修改：
 
 ```text
@@ -1000,11 +1068,13 @@ nc -zv 127.0.0.1 10810
 
 ✅ 如果显示 `succeeded` 就说明端口转发成功了。
 
-## Prompt:
+## Prompt
+
 wwj@abc:~/src/Deep-Learning-Projects$ nc -zv 127.0.0.1 10810
 nc: connect to 127.0.0.1 port 10810 (tcp) failed: Connection refused
 
-## Response:
+## Response
+
 明白了，你现在仍然在 **服务器上访问 `127.0.0.1:10810` 仍然被拒绝**。  
 结合你前面的信息，这里有几个核心原因和解决方案：
 
@@ -1013,22 +1083,22 @@ nc: connect to 127.0.0.1 port 10810 (tcp) failed: Connection refused
 1️⃣ 核心问题分析
 ----------
 
-*   你本地 V2RayN 代理端口 `10810` **是本地监听**的。
-*   你之前尝试了 `ssh -L 10810:127.0.0.1:10810 wwj@abc`，但是 **服务器上的 nc 仍然连接不到**。
-*   说明 **SSH 本地端口转发没真正建立** 或者 **客户端/服务端配置阻止了转发**。
+* 你本地 V2RayN 代理端口 `10810` **是本地监听**的。
+* 你之前尝试了 `ssh -L 10810:127.0.0.1:10810 wwj@abc`，但是 **服务器上的 nc 仍然连接不到**。
+* 说明 **SSH 本地端口转发没真正建立** 或者 **客户端/服务端配置阻止了转发**。
 
 注意：
 
 > SSH 的 `-L` 本地转发是这样的：
-> 
+>
 > ```text
 > ssh -L <local_port>:<remote_host>:<remote_port> user@remote
 > ```
-> 
-> *   `<local_port>` 是你**本地**的端口
-> *   `<remote_host>` 是你想让本地访问的远程目标（通常是服务器自己的地址）
->     
-> 
+>
+> * `<local_port>` 是你**本地**的端口
+> * `<remote_host>` 是你想让本地访问的远程目标（通常是服务器自己的地址）
+>
+>
 > 这和我们想让“服务器访问本地代理端口”的方向正好相反。
 
 * * *
@@ -1042,8 +1112,8 @@ nc: connect to 127.0.0.1 port 10810 (tcp) failed: Connection refused
 [服务器] → [本地 V2RayN 代理] → [互联网]
 ```
 
-*   注意，这里是 **服务器主动访问本地**。
-*   SSH `-L` 端口转发默认是 **本地访问远程端口**，不能直接反过来。
+* 注意，这里是 **服务器主动访问本地**。
+* SSH `-L` 端口转发默认是 **本地访问远程端口**，不能直接反过来。
 
 ✅ 正确方式应该是 **远程端口转发（RemoteForward）** 或者 **SSH 隧道反向代理**。
 
@@ -1060,9 +1130,9 @@ ssh -R 10810:127.0.0.1:10810 wwj@abc
 
 解释：
 
-*   `-R <remote_port>:<local_host>:<local_port>`
-*   这里 `<remote_port>` 是服务器上监听的端口，服务器上访问这个端口会被转发到 **你本地的 `<local_host>:<local_port>`**
-*   `<local_host>` 对你电脑来说就是 `127.0.0.1`，`<local_port>` 就是 V2RayN 端口（10810）
+* `-R <remote_port>:<local_host>:<local_port>`
+* 这里 `<remote_port>` 是服务器上监听的端口，服务器上访问这个端口会被转发到 **你本地的 `<local_host>:<local_port>`**
+* `<local_host>` 对你电脑来说就是 `127.0.0.1`，`<local_port>` 就是 V2RayN 端口（10810）
 
 然后在服务器上：
 
@@ -1077,7 +1147,7 @@ nc -zv 127.0.0.1 10810
 4️⃣ 注意事项
 --------
 
-1.  **服务端允许反向转发**
+1. **服务端允许反向转发**
 
 在服务器 `/etc/ssh/sshd_config` 中：
 
@@ -1091,16 +1161,17 @@ GatewayPorts yes
 sudo systemctl restart ssh
 ```
 
-2.  **SSH 客户端保持连接**
-    *   反向转发依赖 SSH 会话保持连接。
-*   可以用 `-N` 保持隧道：
+2. **SSH 客户端保持连接**
+    * 反向转发依赖 SSH 会话保持连接。
+
+* 可以用 `-N` 保持隧道：
 
 ```bash
 ssh -N -R 10810:127.0.0.1:10810 wwj@abc
 ```
 
-3.  **防火墙**
-    *   确认服务器 `127.0.0.1:10810` 没有被 iptables / ufw 拦截。
+3. **防火墙**
+    * 确认服务器 `127.0.0.1:10810` 没有被 iptables / ufw 拦截。
 
 * * *
 
@@ -1114,24 +1185,28 @@ ssh -N -R 10810:127.0.0.1:10810 wwj@abc
 
 你希望我帮你直接写吗？
 
-## Prompt:
+## Prompt
+
 Host 学校服务器
     HostName 10.60.80.142
     User wwj
     LocalForward 10810 127.0.0.1:10810改这个可以实现反向转发吗
 
-## Response:
+## Response
+
 不可以 ❌
 
 原因：
 
-*   你写的这一行是 **`LocalForward`**（本地端口转发）
+* 你写的这一行是 **`LocalForward`**（本地端口转发）
+
     ```text
     LocalForward 10810 127.0.0.1:10810
     ```
+
     它的作用是 **你本地访问本地端口 10810 会被转发到服务器的 127.0.0.1:10810**。  
     方向是 **本地 → 服务器**，跟你想要的“服务器访问本地代理”方向正好相反。
-*   你现在需要的是 **服务器访问本地端口 10810**，所以要用 **RemoteForward（远程端口转发）**：
+* 你现在需要的是 **服务器访问本地端口 10810**，所以要用 **RemoteForward（远程端口转发）**：
 
 ```text
 Host 学校服务器
@@ -1151,13 +1226,13 @@ Host 学校服务器
 
 ### 使用方法
 
-1.  保存 `~/.ssh/config` 后，建立 SSH 连接：
+1. 保存 `~/.ssh/config` 后，建立 SSH 连接：
 
 ```bash
 ssh -N 学校服务器
 ```
 
-*   `-N` 表示不执行远程命令，只保持隧道。
+* `-N` 表示不执行远程命令，只保持隧道。
     2.  在服务器上测试：
 
 ```bash
@@ -1166,7 +1241,7 @@ nc -zv 127.0.0.1 10810
 
 ✅ 应该显示 `succeeded`。
 
-3.  设置代理变量：
+3. 设置代理变量：
 
 ```bash
 export http_proxy=http://127.0.0.1:10810
@@ -1174,7 +1249,7 @@ export https_proxy=http://127.0.0.1:10810
 export all_proxy=socks5://127.0.0.1:10810
 ```
 
-4.  测试访问：
+4. 测试访问：
 
 ```bash
 curl -I https://www.google.com
@@ -1184,14 +1259,14 @@ curl -I https://www.google.com
 
 💡 提示：
 
-*   确保服务器 SSH 配置允许远程端口转发：
+* 确保服务器 SSH 配置允许远程端口转发：
 
 ```text
 GatewayPorts yes
 AllowTcpForwarding yes
 ```
 
-*   SSH 会话必须保持打开，否则隧道会断。
+* SSH 会话必须保持打开，否则隧道会断。
 
 * * *
 
@@ -1199,10 +1274,12 @@ AllowTcpForwarding yes
 
 你希望我帮你写吗？
 
-## Prompt:
+## Prompt
+
 vscode提示我10810端口不可用
 
-## Response:
+## Response
+
 明白了，这个情况很常见，原因是 **你本机上 10810 已经被 V2RayN 占用**，所以 VS Code Remote SSH 不能再用同一个端口做远程端口转发。
 
 * * *
@@ -1210,13 +1287,15 @@ vscode提示我10810端口不可用
 🔹 原因分析
 -------
 
-1.  你的 V2RayN 本地端口：
+1. 你的 V2RayN 本地端口：
+
     ```
     本地 mixed: 10888 / 10809
     局域网 mixed: 10810
     ```
-    *   **10810 已经被本地程序占用**，VS Code 尝试做 RemoteForward 时就会报“端口不可用”。
-2.  远程端口转发要求 **服务器监听的端口在服务器上没有被占用**，VS Code 看到本地端口被占用也会报错。
+
+    * **10810 已经被本地程序占用**，VS Code 尝试做 RemoteForward 时就会报“端口不可用”。
+2. 远程端口转发要求 **服务器监听的端口在服务器上没有被占用**，VS Code 看到本地端口被占用也会报错。
 
 * * *
 
@@ -1236,20 +1315,20 @@ Host 学校服务器
 
 解释：
 
-*   服务器上访问 `127.0.0.1:18010` → 会被转发到你本机的 `127.0.0.1:10810`
-*   避免和本机已有程序冲突。
+* 服务器上访问 `127.0.0.1:18010` → 会被转发到你本机的 `127.0.0.1:10810`
+* 避免和本机已有程序冲突。
 
 * * *
 
 ### 方法二：用 V2RayN 的本地端口（10888 或 10809）
 
-*   因为 `10888` / `10809` 没有被占用，可以直接转发：
+* 因为 `10888` / `10809` 没有被占用，可以直接转发：
 
 ```text
 RemoteForward 10888 127.0.0.1:10888
 ```
 
-*   然后在服务器上：
+* 然后在服务器上：
 
 ```bash
 export http_proxy=http://127.0.0.1:10888
@@ -1260,32 +1339,34 @@ export https_proxy=http://127.0.0.1:10888
 
 ### 方法三：通过局域网端口转发
 
-*   你 V2RayN 上显示：
+* 你 V2RayN 上显示：
+
     ```
     局域网 mixed: 10810
     ```
-*   服务器直接访问你电脑的局域网 IP + 10810 也是可行的，但需要网络可达（防火墙、路由允许）。
+
+* 服务器直接访问你电脑的局域网 IP + 10810 也是可行的，但需要网络可达（防火墙、路由允许）。
 
 * * *
 
 🔹 建议操作顺序
 ---------
 
-1.  **先换一个本机未占用端口**（如 10888 或 18010）做 `RemoteForward`。
-2.  在服务器上测试：
+1. **先换一个本机未占用端口**（如 10888 或 18010）做 `RemoteForward`。
+2. 在服务器上测试：
 
 ```bash
 nc -zv 127.0.0.1 18010   # 或 10888
 ```
 
-3.  设置代理环境变量：
+3. 设置代理环境变量：
 
 ```bash
 export http_proxy=http://127.0.0.1:18010
 export https_proxy=http://127.0.0.1:18010
 ```
 
-4.  测试 curl 是否可用：
+4. 测试 curl 是否可用：
 
 ```bash
 curl -I https://www.google.com
@@ -1297,10 +1378,12 @@ curl -I https://www.google.com
 
 你希望我帮你整理吗？
 
-## Prompt:
+## Prompt
+
 什么意思？我v2rayn上开的10810端口不就是用来接收服务器的流量的吗
 
-## Response:
+## Response
+
 明白，你的理解基本对，但这里有一个**关键细节**导致你看到 VS Code 报 “端口不可用” 👇
 
 * * *
@@ -1315,8 +1398,8 @@ curl -I https://www.google.com
 局域网: mixed 10810
 ```
 
-*   **本地**（127.0.0.1）端口：只能被本机访问。
-*   **局域网**（0.0.0.0 或你电脑局域网 IP）端口 10810：理论上可以被局域网内的其他机器访问。
+* **本地**（127.0.0.1）端口：只能被本机访问。
+* **局域网**（0.0.0.0 或你电脑局域网 IP）端口 10810：理论上可以被局域网内的其他机器访问。
 
 > ⚠️ 注意：**它监听在你本机**，不是服务器。  
 > 服务器访问 `127.0.0.1:10810` → 访问的是服务器自己，不会自动路由到你电脑的 V2RayN。
@@ -1328,9 +1411,9 @@ curl -I https://www.google.com
 2️⃣ 为什么 VS Code 提示端口不可用
 -----------------------
 
-*   VS Code Remote SSH 尝试在 **本地映射端口 10810** 时发现：
-    *   10810 已经被本机 V2RayN 占用。
-    *   所以 VS Code 无法绑定这个本地端口 → 报错“端口不可用”。
+* VS Code Remote SSH 尝试在 **本地映射端口 10810** 时发现：
+  * 10810 已经被本机 V2RayN 占用。
+  * 所以 VS Code 无法绑定这个本地端口 → 报错“端口不可用”。
 
 > 这不是 V2RayN 的问题，而是 **端口冲突**。
 
@@ -1343,7 +1426,7 @@ curl -I https://www.google.com
 
 ### 方法 A：SSH 远程端口转发（推荐）
 
-1.  在本机 SSH 配置中使用 **RemoteForward**：
+1. 在本机 SSH 配置中使用 **RemoteForward**：
 
 ```text
 Host 学校服务器
@@ -1352,8 +1435,8 @@ Host 学校服务器
     RemoteForward 18010 127.0.0.1:10810
 ```
 
-*   `18010` → 服务器上监听的端口，可以自由选择未占用端口。
-*   `127.0.0.1:10810` → 本机 V2RayN 的代理端口。
+* `18010` → 服务器上监听的端口，可以自由选择未占用端口。
+* `127.0.0.1:10810` → 本机 V2RayN 的代理端口。
     2.  在服务器上访问：
 
 ```bash
@@ -1367,8 +1450,8 @@ curl -I -x http://127.0.0.1:18010 https://www.google.com
 
 ### 方法 B：直接用局域网 IP
 
-*   V2RayN 局域网端口 10810 其实绑定了你电脑的局域网 IP，例如 `192.168.x.x:10810`。
-*   如果服务器和你电脑在同一网络且防火墙允许：
+* V2RayN 局域网端口 10810 其实绑定了你电脑的局域网 IP，例如 `192.168.x.x:10810`。
+* 如果服务器和你电脑在同一网络且防火墙允许：
 
 ```bash
 export http_proxy=http://192.168.x.x:10810
@@ -1393,16 +1476,18 @@ curl -I https://www.google.com
 
 你希望我帮你写吗？
 
-## Prompt:
+## Prompt
+
 本地的ssh配置是不是也要开那个allow
 
-## Response:
+## Response
+
 不需要 ✅
 
 解释如下：
 
-*   `AllowTcpForwarding` 和 `GatewayPorts` 是 **SSH 服务端（服务器端）配置**，控制 **远程客户端是否可以建立端口转发**。
-*   你本地是 SSH **客户端**，只要本地支持 `-L` / `-R` 参数，就可以请求端口转发，不需要修改本地 SSH 配置里的 `AllowTcpForwarding`。
+* `AllowTcpForwarding` 和 `GatewayPorts` 是 **SSH 服务端（服务器端）配置**，控制 **远程客户端是否可以建立端口转发**。
+* 你本地是 SSH **客户端**，只要本地支持 `-L` / `-R` 参数，就可以请求端口转发，不需要修改本地 SSH 配置里的 `AllowTcpForwarding`。
 
 * * *
 
@@ -1435,18 +1520,20 @@ sudo systemctl restart ssh
 
 你希望我帮你写吗？
 
-## Prompt:
+## Prompt
+
 写
 
-## Response:
+## Response
+
 好的，我帮你写一条 **完整的一键 SSH 命令**，可以让服务器访问本地 V2RayN 代理端口，而不冲突。
 
 假设你的条件是：
 
-*   本地 V2RayN 局域网端口：`10810`
-*   服务器 IP：`10.60.80.142`
-*   服务器用户名：`wwj`
-*   服务器上可用端口：`18010`（远程转发端口，可自定义）
+* 本地 V2RayN 局域网端口：`10810`
+* 服务器 IP：`10.60.80.142`
+* 服务器用户名：`wwj`
+* 服务器上可用端口：`18010`（远程转发端口，可自定义）
 
 * * *
 
@@ -1510,54 +1597,56 @@ ssh -N 学校服务器
 
 如果你希望，我可以帮你 **生成一份完整流程脚本**：
 
-*   自动启动 SSH 隧道
-*   设置服务器代理环境变量
-*   自动测试连通性
+* 自动启动 SSH 隧道
+* 设置服务器代理环境变量
+* 自动测试连通性
 
 这样一条命令就搞定服务器走本地 V2RayN。
 
 你希望我帮你写这个脚本吗？
 
-## Prompt:
+## Prompt
+
 ssh -N -R 18010:127.0.0.1:10810 wwj@10.60.80.142 一定要开一个这个吗？
 
-## Response:
+## Response
+
 是的，如果你想让 **服务器走你本地 V2RayN 代理**，必须保持这个 SSH 隧道运行。
 
 原因：
 
-1.  `-R 18010:127.0.0.1:10810` 是 **远程端口转发**
-    *   服务器访问 `127.0.0.1:18010` 时，会被转发到你本地的 `127.0.0.1:10810`（V2RayN 代理）
-    *   **这个转发依赖 SSH 连接保持打开**
-2.  `-N` 表示不执行远程命令，只保持隧道
-    *   这样不会占用额外会话，只用于端口转发
-3.  **隧道关闭 → 服务器访问就失效**
-    *   服务器访问 127.0.0.1:18010 就会 Connection refused
-    *   相当于断开了代理
+1. `-R 18010:127.0.0.1:10810` 是 **远程端口转发**
+    * 服务器访问 `127.0.0.1:18010` 时，会被转发到你本地的 `127.0.0.1:10810`（V2RayN 代理）
+    * **这个转发依赖 SSH 连接保持打开**
+2. `-N` 表示不执行远程命令，只保持隧道
+    * 这样不会占用额外会话，只用于端口转发
+3. **隧道关闭 → 服务器访问就失效**
+    * 服务器访问 127.0.0.1:18010 就会 Connection refused
+    * 相当于断开了代理
 
 * * *
 
 ### 🔹 总结
 
-*   想用服务器走本地代理，就必须保持这个 SSH 会话活着（可以在后台运行）
-*   方式可以有：
-    1.  **手动开一个终端**：
+* 想用服务器走本地代理，就必须保持这个 SSH 会话活着（可以在后台运行）
+* 方式可以有：
+    1. **手动开一个终端**：
 
 ```bash
 ssh -N -R 18010:127.0.0.1:10810 wwj@10.60.80.142
 ```
 
-2.  **后台运行**：
+2. **后台运行**：
 
 ```bash
 ssh -f -N -R 18010:127.0.0.1:10810 wwj@10.60.80.142
 ```
 
-*   `-f` 表示 SSH 会自动进入后台
-*   这样你不用一直开着终端
+* `-f` 表示 SSH 会自动进入后台
+* 这样你不用一直开着终端
     3.  **用 VS Code Remote SSH 配置 RemoteForward**
-    *   SSH 隧道会在你连接 VS Code Remote 时自动建立
-*   关闭 VS Code → 隧道断开
+  * SSH 隧道会在你连接 VS Code Remote 时自动建立
+* 关闭 VS Code → 隧道断开
 
 * * *
 
@@ -1568,7 +1657,8 @@ ssh -f -N -R 18010:127.0.0.1:10810 wwj@10.60.80.142
 
 你希望我写吗？
 
-## Prompt:
+## Prompt
+
 2025-10-26 21:39:41.575 [info] [main] 日志级别: Info
 2025-10-26 21:39:41.575 [info] [main] 正在验证在以下位置找到的 git: "git"
 2025-10-26 21:39:41.575 [info] [main] 使用来自 "git" 的 git "2.34.1"
@@ -1686,7 +1776,8 @@ and the repository exists.
 2025-10-26 21:47:51.003 [info] > git status -z -uall [14ms]
 2025-10-26 21:47:51.004 [info] > git for-each-ref --sort -committerdate --format %(refname)%00%(objectname)%00%(*objectname) [2ms]
 
-## Response:
+## Response
+
 看你贴的日志，问题不是 Git 本身，而是 **服务器无法通过 SSH 连接 GitHub**，导致 VS Code Remote Git 操作失败。
 
 关键报错：
@@ -1700,11 +1791,11 @@ fatal: Could not read from remote repository.
 
 ### 🔹 原因分析
 
-1.  **端口 22 被防火墙或网络屏蔽**
-    *   你服务器在学校内网，很可能直接访问 `github.com:22` 被阻止。
-    *   所以 `git fetch` / `git pull` / VS Code Git 操作都超时。
-2.  `.git/refs/remotes/origin/dev_实验001` 警告是副作用
-    *   因为 Git 没法从远程同步，找不到对应的远程引用。
+1. **端口 22 被防火墙或网络屏蔽**
+    * 你服务器在学校内网，很可能直接访问 `github.com:22` 被阻止。
+    * 所以 `git fetch` / `git pull` / VS Code Git 操作都超时。
+2. `.git/refs/remotes/origin/dev_实验001` 警告是副作用
+    * 因为 Git 没法从远程同步，找不到对应的远程引用。
 
 * * *
 
@@ -1712,13 +1803,13 @@ fatal: Could not read from remote repository.
 
 #### 方法 A：走 HTTPS 而不是 SSH
 
-1.  改远程仓库 URL：
+1. 改远程仓库 URL：
 
 ```bash
 git remote set-url origin https://github.com/你的用户名/你的仓库.git
 ```
 
-2.  然后拉取：
+2. 然后拉取：
 
 ```bash
 git fetch
@@ -1731,7 +1822,7 @@ git pull
 
 #### 方法 B：通过本地代理（你之前配置的 V2RayN）
 
-1.  在服务器上设置代理：
+1. 在服务器上设置代理：
 
 ```bash
 export https_proxy=http://127.0.0.1:18010
@@ -1740,13 +1831,13 @@ export http_proxy=http://127.0.0.1:18010
 
 > 这里 `18010` 是你用 `ssh -R` 建的反向端口，指向你本地 V2RayN。
 
-2.  测试 GitHub 是否可达：
+2. 测试 GitHub 是否可达：
 
 ```bash
 curl -I https://github.com
 ```
 
-3.  然后用 SSH 或 HTTPS 拉取：
+3. 然后用 SSH 或 HTTPS 拉取：
 
 ```bash
 git fetch
@@ -1757,7 +1848,7 @@ git pull
 
 #### 方法 C：用 SSH + 代理（高级）
 
-1.  编辑 `~/.ssh/config`：
+1. 编辑 `~/.ssh/config`：
 
 ```text
 Host github.com
@@ -1766,7 +1857,7 @@ Host github.com
     ProxyCommand nc -x 127.0.0.1:18010 %h %p
 ```
 
-2.  测试：
+2. 测试：
 
 ```bash
 ssh -T git@github.com
@@ -1778,8 +1869,8 @@ ssh -T git@github.com
 
 💡 总结：
 
-*   你现在 VS Code Git 报错 **和端口 10810 没关系**，是服务器无法直接连 GitHub。
-*   解决最简单方法：**把远程改成 HTTPS** 或 **通过你本地 V2RayN 隧道代理**。
+* 你现在 VS Code Git 报错 **和端口 10810 没关系**，是服务器无法直接连 GitHub。
+* 解决最简单方法：**把远程改成 HTTPS** 或 **通过你本地 V2RayN 隧道代理**。
 
 * * *
 
@@ -1787,10 +1878,12 @@ ssh -T git@github.com
 
 你希望我直接写吗？
 
-## Prompt:
+## Prompt
+
 我要用这个方式，通过你本地 V2RayN 隧道代理。
 
-## Response:
+## Response
+
 明白，我们可以把 **服务器的 Git 流量全部走你本地 V2RayN**，通过 SSH 远程端口转发。下面是完整方案。
 
 * * *
@@ -1800,10 +1893,10 @@ ssh -T git@github.com
 
 假设：
 
-*   本地 V2RayN 局域网端口：`10810`
-*   服务器 IP：`10.60.80.142`
-*   服务器用户名：`wwj`
-*   服务器上可用端口：`18010`
+* 本地 V2RayN 局域网端口：`10810`
+* 服务器 IP：`10.60.80.142`
+* 服务器用户名：`wwj`
+* 服务器上可用端口：`18010`
 
 在本地运行：
 
@@ -1813,8 +1906,8 @@ ssh -f -N -R 18010:127.0.0.1:10810 wwj@10.60.80.142
 
 参数说明：
 
-*   `-R 18010:127.0.0.1:10810` → 服务器 `127.0.0.1:18010` 映射到本地 V2RayN
-*   `-f -N` → 后台保持隧道，不占用终端
+* `-R 18010:127.0.0.1:10810` → 服务器 `127.0.0.1:18010` 映射到本地 V2RayN
+* `-f -N` → 后台保持隧道，不占用终端
 
 * * *
 
@@ -1829,8 +1922,8 @@ export https_proxy=http://127.0.0.1:18010
 export all_proxy=socks5://127.0.0.1:18010  # 可选，用于 SOCKS5 流量
 ```
 
-*   `http_proxy` / `https_proxy` → Git 和 curl 等 HTTP/HTTPS 流量会走本地代理
-*   `all_proxy` → 如果你有需要，像 `ssh` 通过 SOCKS5 也可走代理
+* `http_proxy` / `https_proxy` → Git 和 curl 等 HTTP/HTTPS 流量会走本地代理
+* `all_proxy` → 如果你有需要，像 `ssh` 通过 SOCKS5 也可走代理
 
 * * *
 
@@ -1843,8 +1936,8 @@ export all_proxy=socks5://127.0.0.1:18010  # 可选，用于 SOCKS5 流量
 curl -I https://github.com
 ```
 
-*   成功返回 HTTP 200 或 301/302 表示代理可用
-*   `nc -zv 127.0.0.1 18010` 可以测试端口连通性
+* 成功返回 HTTP 200 或 301/302 表示代理可用
+* `nc -zv 127.0.0.1 18010` 可以测试端口连通性
 
 * * *
 
@@ -1858,8 +1951,8 @@ git config --global http.proxy http://127.0.0.1:18010
 git config --global https.proxy http://127.0.0.1:18010
 ```
 
-*   这样 Git 拉取、推送都会通过隧道
-*   不需要修改远程仓库 URL，仍可使用 HTTPS 或 SSH（SSH 需要 `ProxyCommand`）
+* 这样 Git 拉取、推送都会通过隧道
+* 不需要修改远程仓库 URL，仍可使用 HTTPS 或 SSH（SSH 需要 `ProxyCommand`）
 
 * * *
 
@@ -1868,7 +1961,7 @@ git config --global https.proxy http://127.0.0.1:18010
 
 如果你想用 SSH 方式拉 GitHub：
 
-1.  编辑服务器 `~/.ssh/config`：
+1. 编辑服务器 `~/.ssh/config`：
 
 ```text
 Host github.com
@@ -1877,7 +1970,7 @@ Host github.com
     ProxyCommand nc -X 5 -x 127.0.0.1:18010 %h %p
 ```
 
-2.  测试：
+2. 测试：
 
 ```bash
 ssh -T git@github.com
@@ -1889,9 +1982,9 @@ ssh -T git@github.com
 
 ✅ 总结：
 
-*   必须保持 **SSH 隧道** (`ssh -R`) 运行
-*   设置 **服务器代理环境变量**
-*   Git 可以用 HTTPS 或 SSH，通过隧道访问 GitHub
+* 必须保持 **SSH 隧道** (`ssh -R`) 运行
+* 设置 **服务器代理环境变量**
+* Git 可以用 HTTPS 或 SSH，通过隧道访问 GitHub
 
 * * *
 
@@ -1899,40 +1992,42 @@ ssh -T git@github.com
 
 你希望我写这个脚本吗？
 
-## Prompt:
+## Prompt
+
 为什么是18010？不是10810吗
 
-## Response:
+## Response
+
 我来解释一下为什么用 **18010** 而不是 10810：
 
 * * *
 
 ### 1️⃣ 10810 是本地 V2RayN 的端口
 
-*   你在本机的 V2RayN 上看到的 **10810**，是本地监听端口（局域网端口）
-*   **这个端口在本机已经被 V2RayN 占用**，VS Code 或 SSH 不能直接在本地再绑定同样端口
+* 你在本机的 V2RayN 上看到的 **10810**，是本地监听端口（局域网端口）
+* **这个端口在本机已经被 V2RayN 占用**，VS Code 或 SSH 不能直接在本地再绑定同样端口
 
 * * *
 
 ### 2️⃣ 反向 SSH 隧道需要指定 **服务器端端口**
 
-*   `ssh -R 远程端口:本地IP:本地端口`
-*   语法：
+* `ssh -R 远程端口:本地IP:本地端口`
+* 语法：
 
 ```text
 ssh -R <服务器端口>:<本地IP>:<本地端口> user@server
 ```
 
-*   服务器端口不能和服务器上已有服务冲突
-*   本例中选择 **18010** 只是为了避开冲突，服务器上通常没有服务占用这个端口
-*   随便选一个未被占用的端口都可以，比如 18010、18100 等
+* 服务器端口不能和服务器上已有服务冲突
+* 本例中选择 **18010** 只是为了避开冲突，服务器上通常没有服务占用这个端口
+* 随便选一个未被占用的端口都可以，比如 18010、18100 等
 
 * * *
 
 ### 3️⃣ 访问方式
 
-*   服务器访问 `127.0.0.1:18010` → 通过 SSH 隧道 → 本地 V2RayN 的 `127.0.0.1:10810`
-*   本地端口 `10810` 不变，**隧道映射到服务器端的端口** 18010
+* 服务器访问 `127.0.0.1:18010` → 通过 SSH 隧道 → 本地 V2RayN 的 `127.0.0.1:10810`
+* 本地端口 `10810` 不变，**隧道映射到服务器端的端口** 18010
 
 ```text
 服务器 127.0.0.1:18010  → ssh隧道 → 本地 127.0.0.1:10810 (V2RayN)
@@ -1942,9 +2037,9 @@ ssh -R <服务器端口>:<本地IP>:<本地端口> user@server
 
 ### 🔹 总结
 
-*   **10810**：本地 V2RayN 的监听端口，不动
-*   **18010**：服务器端映射端口，用于访问本地代理
-*   通过 `ssh -R 18010:127.0.0.1:10810` 建立隧道
+* **10810**：本地 V2RayN 的监听端口，不动
+* **18010**：服务器端映射端口，用于访问本地代理
+* 通过 `ssh -R 18010:127.0.0.1:10810` 建立隧道
 
 * * *
 
@@ -1952,18 +2047,20 @@ ssh -R <服务器端口>:<本地IP>:<本地端口> user@server
 
 你想让我画吗？
 
-## Prompt:
+## Prompt
+
 Host 学校服务器
     HostName 10.60.80.142
     User wwj
     RemoteForward 10810 127.0.0.1:10810那这个要改吗
 
-## Response:
+## Response
+
 是的，这里 **需要改**，因为你不能让服务器端的端口和本地 V2RayN 的端口冲突。
 
 * * *
 
-### 当前配置：
+### 当前配置
 
 ```text
 Host 学校服务器
@@ -1972,17 +2069,17 @@ Host 学校服务器
     RemoteForward 10810 127.0.0.1:10810
 ```
 
-*   10810 左边是 **服务器端端口**
-*   10810 右边是 **本地 V2RayN 端口**
+* 10810 左边是 **服务器端端口**
+* 10810 右边是 **本地 V2RayN 端口**
 
 问题：
 
-*   服务器上如果也有服务占用 10810，或者 VS Code 本地/远程占用，可能会报端口不可用
-*   为了避免冲突，建议 **服务器端端口改成 18010**（或其他未占用端口）
+* 服务器上如果也有服务占用 10810，或者 VS Code 本地/远程占用，可能会报端口不可用
+* 为了避免冲突，建议 **服务器端端口改成 18010**（或其他未占用端口）
 
 * * *
 
-### 修改后示例：
+### 修改后示例
 
 ```text
 Host 学校服务器
@@ -1993,8 +2090,8 @@ Host 学校服务器
 
 解释：
 
-*   服务器访问 `127.0.0.1:18010` → 会被转发到本地 `127.0.0.1:10810`（V2RayN）
-*   本地端口不变，仍然是 10810
+* 服务器访问 `127.0.0.1:18010` → 会被转发到本地 `127.0.0.1:10810`（V2RayN）
+* 本地端口不变，仍然是 10810
 
 * * *
 
@@ -2004,7 +2101,7 @@ Host 学校服务器
 服务器 127.0.0.1:18010  ──SSH隧道──► 本地 127.0.0.1:10810 (V2RayN)
 ```
 
-*   这样就不会冲突，也能保证服务器流量走本地代理
+* 这样就不会冲突，也能保证服务器流量走本地代理
 
 * * *
 
@@ -2012,17 +2109,19 @@ Host 学校服务器
 
 你希望我写吗？
 
-## Prompt:
+## Prompt
+
 服务器10810没被占用啊
 
-## Response:
+## Response
+
 那就可以用 10810，没有问题。
 
 重点理解一下：
 
-*   `RemoteForward 10810 127.0.0.1:10810`
-    *   左边的 **10810** → 服务器上的端口
-    *   右边的 **127.0.0.1:10810** → 本地 V2RayN 端口
+* `RemoteForward 10810 127.0.0.1:10810`
+  * 左边的 **10810** → 服务器上的端口
+  * 右边的 **127.0.0.1:10810** → 本地 V2RayN 端口
 
 只要服务器 **10810 没被占用**，就可以直接用：
 
@@ -2033,9 +2132,9 @@ Host 学校服务器
     RemoteForward 10810 127.0.0.1:10810
 ```
 
-*   服务器访问 `127.0.0.1:10810` → 自动转发到你本地 V2RayN 的 10810
-*   本地端口不用改，仍然是 10810
-*   注意 **SSH 隧道必须保持开启**
+* 服务器访问 `127.0.0.1:10810` → 自动转发到你本地 V2RayN 的 10810
+* 本地端口不用改，仍然是 10810
+* 注意 **SSH 隧道必须保持开启**
 
 ✅ 总结：端口没被占用，保持原来的 10810 就行，不需要改成 18010。
 
@@ -2045,54 +2144,58 @@ Host 学校服务器
 
 你希望我画吗？
 
-## Prompt:
+## Prompt
+
 有了那个然后还在服务器上配了export环境变量是不是不用这个了Host github.com
     HostName github.com
     User git
     ProxyCommand nc -x 127.0.0.1:10810 %h %p
 
-## Response:
+## Response
+
 对的，如果你在 **服务器上已经通过 `export http_proxy` / `https_proxy`** 设置了环境变量，并且 Git 用 **HTTPS** 访问 GitHub，那么就 **不需要**再在 `~/.ssh/config` 配置 `ProxyCommand`。
 
 原因：
 
-1.  **环境变量生效的范围**
+1. **环境变量生效的范围**
 
 ```bash
 export http_proxy=http://127.0.0.1:10810
 export https_proxy=http://127.0.0.1:10810
 ```
 
-*   服务器上所有 **HTTP/HTTPS 请求**（包括 Git HTTPS）都会走这个代理
-*   `curl https://github.com`、`git fetch/pull` 都会使用这个代理
+* 服务器上所有 **HTTP/HTTPS 请求**（包括 Git HTTPS）都会走这个代理
+* `curl https://github.com`、`git fetch/pull` 都会使用这个代理
     2.  **`ProxyCommand` 只在 SSH 连接时用**
-    *   只有当你想通过 SSH (`git@github.com`) 访问 GitHub 时，才需要配置 `ProxyCommand`
-*   如果 Git 用的是 **HTTPS**，它走的是 HTTP/HTTPS 流量，不会用 `ProxyCommand`
+  * 只有当你想通过 SSH (`git@github.com`) 访问 GitHub 时，才需要配置 `ProxyCommand`
+* 如果 Git 用的是 **HTTPS**，它走的是 HTTP/HTTPS 流量，不会用 `ProxyCommand`
 
 * * *
 
 ### ✅ 总结
 
-*   Git 使用 **HTTPS** + `export https_proxy` → 完全够用
-*   Git 使用 **SSH** → 才需要配置 `ProxyCommand`
-*   不需要两种方式同时配置，选择你当前使用的协议即可
+* Git 使用 **HTTPS** + `export https_proxy` → 完全够用
+* Git 使用 **SSH** → 才需要配置 `ProxyCommand`
+* 不需要两种方式同时配置，选择你当前使用的协议即可
 
 * * *
 
 如果你希望，我可以帮你写一个 **一键脚本**，在服务器上：
 
-1.  自动保持 SSH 隧道
-2.  配置环境变量
-3.  测试 GitHub 访问
+1. 自动保持 SSH 隧道
+2. 配置环境变量
+3. 测试 GitHub 访问
 
 这样每次登录服务器就直接可用。
 
 你希望我写吗？
 
-## Prompt:
+## Prompt
+
 我用的ssh推git
 
-## Response:
+## Response
+
 明白了，你是用 **SSH 协议推拉 Git**，那么环境变量 `http_proxy/https_proxy` 是 **不生效的**，因为 SSH 不是 HTTP 流量。
 
 所以在这种情况下，你必须配置 **`ProxyCommand` 或者通过 SOCKS 代理**，让 SSH 流量也走本地 V2RayN 隧道。
@@ -2112,9 +2215,9 @@ Host github.com
 
 说明：
 
-*   `-X 5` → 使用 SOCKS5
-*   `-x 127.0.0.1:10810` → 本地 V2RayN 端口
-*   `%h %p` → SSH 连接的目标主机和端口
+* `-X 5` → 使用 SOCKS5
+* `-x 127.0.0.1:10810` → 本地 V2RayN 端口
+* `%h %p` → SSH 连接的目标主机和端口
 
 然后测试：
 
@@ -2146,9 +2249,9 @@ ssh -o "ProxyCommand nc -X 5 -x 127.0.0.1:10810 %h %p" git@github.com
 
 💡 总结：
 
-*   **HTTPS** → 用 `http_proxy/https_proxy`
-*   **SSH** → 必须用 `ProxyCommand` 或 SOCKS5 隧道
-*   你现在用的是 SSH 推 Git，所以 **必须在服务器配置 `ProxyCommand`**
+* **HTTPS** → 用 `http_proxy/https_proxy`
+* **SSH** → 必须用 `ProxyCommand` 或 SOCKS5 隧道
+* 你现在用的是 SSH 推 Git，所以 **必须在服务器配置 `ProxyCommand`**
 
 * * *
 
@@ -2156,19 +2259,21 @@ ssh -o "ProxyCommand nc -X 5 -x 127.0.0.1:10810 %h %p" git@github.com
 
 你希望我写吗？
 
-## Prompt:
+## Prompt
+
 我把远程仓库由ssh换成http的链接就推送上去了
 
-## Response:
+## Response
+
 对，这完全符合预期。
 
 关键点：
 
-1.  **HTTPS Git 推拉走的是 HTTP/HTTPS 流量**
-    *   因此 `http_proxy` / `https_proxy` 环境变量就生效了
-    *   不需要配置 `ProxyCommand` 或额外 SOCKS5 转发
-2.  **SSH Git 推拉走的是纯 TCP/SSH 流量**
-    *   环境变量不生效，需要 `ProxyCommand` 或 SOCKS 隧道
+1. **HTTPS Git 推拉走的是 HTTP/HTTPS 流量**
+    * 因此 `http_proxy` / `https_proxy` 环境变量就生效了
+    * 不需要配置 `ProxyCommand` 或额外 SOCKS5 转发
+2. **SSH Git 推拉走的是纯 TCP/SSH 流量**
+    * 环境变量不生效，需要 `ProxyCommand` 或 SOCKS 隧道
 
 所以你换成 HTTPS 后：
 
@@ -2176,14 +2281,14 @@ ssh -o "ProxyCommand nc -X 5 -x 127.0.0.1:10810 %h %p" git@github.com
 https://github.com/用户名/仓库.git
 ```
 
-*   服务器上配置了 `export http_proxy/https_proxy`
-*   Git 自动走这个代理 → 成功推送
+* 服务器上配置了 `export http_proxy/https_proxy`
+* Git 自动走这个代理 → 成功推送
 
 ✅ 总结：
 
-*   HTTPS + 代理环境变量 → 简单可靠
-*   SSH + 代理 → 必须配置 `ProxyCommand` 或 SOCKS 隧道
-*   对你现在的需求，直接用 HTTPS 是最方便的方案
+* HTTPS + 代理环境变量 → 简单可靠
+* SSH + 代理 → 必须配置 `ProxyCommand` 或 SOCKS 隧道
+* 对你现在的需求，直接用 HTTPS 是最方便的方案
 
 * * *
 
@@ -2191,10 +2296,12 @@ https://github.com/用户名/仓库.git
 
 你希望我写吗？
 
-## Prompt:
+## Prompt
+
 可是我还是想用ssh,应该怎么配置
 
-## Response:
+## Response
+
 明白了，你希望 **Git SSH 也能通过本地 V2RayN 走代理**。那就要做两件事：建立隧道 + 配置 SSH 走 SOCKS5。下面是完整方案：
 
 * * *
@@ -2202,8 +2309,8 @@ https://github.com/用户名/仓库.git
 1️⃣ 确保本地 V2RayN 局域网端口开启
 -----------------------
 
-*   本地 V2RayN 显示：`局域网: [mixed:10810]`
-*   这个端口就是服务器 SSH 流量要走的 SOCKS5 端口
+* 本地 V2RayN 显示：`局域网: [mixed:10810]`
+* 这个端口就是服务器 SSH 流量要走的 SOCKS5 端口
 
 * * *
 
@@ -2218,8 +2325,8 @@ ssh -f -N -R 10810:127.0.0.1:10810 wwj@10.60.80.142
 
 解释：
 
-*   `-R 10810:127.0.0.1:10810` → 服务器访问 `127.0.0.1:10810` 会转发到本地 V2RayN
-*   `-f -N` → 后台运行，不占终端
+* `-R 10810:127.0.0.1:10810` → 服务器访问 `127.0.0.1:10810` 会转发到本地 V2RayN
+* `-f -N` → 后台运行，不占终端
 
 这样服务器上就能通过 `127.0.0.1:10810` 访问本地代理
 
@@ -2239,9 +2346,9 @@ Host github.com
 
 说明：
 
-*   `-X 5` → 使用 SOCKS5
-*   `-x 127.0.0.1:10810` → 本地 V2RayN 映射到服务器的端口
-*   `%h %p` → Git SSH 目标 host 和 port
+* `-X 5` → 使用 SOCKS5
+* `-x 127.0.0.1:10810` → 本地 V2RayN 映射到服务器的端口
+* `%h %p` → Git SSH 目标 host 和 port
 
 * * *
 
@@ -2254,24 +2361,24 @@ Host github.com
 ssh -T git@github.com
 ```
 
-*   如果输出类似 `Hi 用户名! You've successfully authenticated` → 成功
-*   然后 Git 推拉就可以走代理
+* 如果输出类似 `Hi 用户名! You've successfully authenticated` → 成功
+* 然后 Git 推拉就可以走代理
 
 * * *
 
 5️⃣ 高级（保持 VS Code Git 也走代理）
 ---------------------------
 
-*   确保 VS Code 远程 SSH 连接时，服务器端的 `~/.ssh/config` 已配置 ProxyCommand
-*   这样 VS Code Git 操作也会走本地 V2RayN
+* 确保 VS Code 远程 SSH 连接时，服务器端的 `~/.ssh/config` 已配置 ProxyCommand
+* 这样 VS Code Git 操作也会走本地 V2RayN
 
 * * *
 
 ✅ 总结
 
-1.  **本地 V2RayN 开 10810**
-2.  **可选：SSH 反向隧道**，服务器端访问本地端口
-3.  **服务器 SSH 配置 ProxyCommand** → 所有 Git SSH 流量走 SOCKS5
+1. **本地 V2RayN 开 10810**
+2. **可选：SSH 反向隧道**，服务器端访问本地端口
+3. **服务器 SSH 配置 ProxyCommand** → 所有 Git SSH 流量走 SOCKS5
 
 * * *
 
@@ -2279,29 +2386,31 @@ ssh -T git@github.com
 
 你希望我写吗？
 
-## Prompt:
+## Prompt
+
 Host github.com
     HostName github.com
     User git
     ProxyCommand nc -X 5 -x 127.0.0.1:10810 %h %p这个是要配置在服务器里？
 
-## Response:
+## Response
+
 对的，**这个要配置在服务器里**，因为你的 Git SSH 操作是在服务器上执行的。
 
 * * *
 
 ### 原理
 
-*   你在服务器上执行 `git push/pull git@github.com:xxx/xxx.git`
-*   Git 会走 **SSH** 协议
-*   服务器直接访问 GitHub 可能被墙，需要通过你本地 V2RayN 的 SOCKS5 代理
-*   所以必须告诉服务器 SSH：通过 `127.0.0.1:10810`（本地 V2RayN 映射到服务器的端口）去连 GitHub
+* 你在服务器上执行 `git push/pull git@github.com:xxx/xxx.git`
+* Git 会走 **SSH** 协议
+* 服务器直接访问 GitHub 可能被墙，需要通过你本地 V2RayN 的 SOCKS5 代理
+* 所以必须告诉服务器 SSH：通过 `127.0.0.1:10810`（本地 V2RayN 映射到服务器的端口）去连 GitHub
 
 * * *
 
 ### 步骤
 
-1.  **在服务器上编辑 `~/.ssh/config`**：
+1. **在服务器上编辑 `~/.ssh/config`**：
 
 ```text
 Host github.com
@@ -2310,28 +2419,28 @@ Host github.com
     ProxyCommand nc -X 5 -x 127.0.0.1:10810 %h %p
 ```
 
-2.  **确保 SSH 隧道建立**（本地执行）：
+2. **确保 SSH 隧道建立**（本地执行）：
 
 ```bash
 ssh -f -N -R 10810:127.0.0.1:10810 wwj@10.60.80.142
 ```
 
-*   这样服务器访问 `127.0.0.1:10810` 就会走本地 V2RayN
+* 这样服务器访问 `127.0.0.1:10810` 就会走本地 V2RayN
     3.  **测试 SSH 连接**：
 
 ```bash
 ssh -T git@github.com
 ```
 
-*   成功就说明 SSH 已经走代理
+* 成功就说明 SSH 已经走代理
 
 * * *
 
 💡 总结：
 
-*   **服务器上配置 `ProxyCommand`** → 告诉 SSH 用 SOCKS5
-*   **本地 V2RayN + SSH 隧道** → 让服务器端能访问本地代理
-*   本地不需要改 SSH 配置
+* **服务器上配置 `ProxyCommand`** → 告诉 SSH 用 SOCKS5
+* **本地 V2RayN + SSH 隧道** → 让服务器端能访问本地代理
+* 本地不需要改 SSH 配置
 
 * * *
 
@@ -2339,11 +2448,13 @@ ssh -T git@github.com
 
 你希望我画吗？
 
-## Prompt:
+## Prompt
+
 (.venv) wwj@abc:~/src/Deep-Learning-Projects$ sudo nano ~/.ssh/
 authorized_keys  id_rsa           id_rsa.pub       known_hosts      known_hosts.old  服务器.ssh/目录下没有config文件
 
-## Response:
+## Response
+
 没关系，如果 `~/.ssh/config` 文件不存在，你可以 **手动创建一个新的**。
 
 在服务器上操作步骤：
@@ -2368,8 +2479,8 @@ Host github.com
 chmod 600 ~/.ssh/config
 ```
 
-*   **600** 权限保证 SSH 能安全读取配置
-*   现在你服务器上的 SSH 就会通过 `127.0.0.1:10810` 走 SOCKS5 代理连接 GitHub
+* **600** 权限保证 SSH 能安全读取配置
+* 现在你服务器上的 SSH 就会通过 `127.0.0.1:10810` 走 SOCKS5 代理连接 GitHub
 
 * * *
 
@@ -2387,10 +2498,12 @@ ssh -T git@github.com
 
 你希望我写吗？
 
-## Prompt:
+## Prompt
+
 设置完config是不是要source一下
 
-## Response:
+## Response
+
 不需要 `source`，SSH 不会像 shell 脚本那样需要重新加载环境变量。
 
 只要你保存了 `~/.ssh/config` 并且权限正确（`chmod 600 ~/.ssh/config`），**下次执行 SSH 或 Git SSH 命令就会自动生效**。
@@ -2405,9 +2518,9 @@ ssh -T git@github.com
 
 ✅ 小结：
 
-*   不用 `source`
-*   确保 `.ssh/config` 权限是 `600`
-*   直接测试 SSH 或 Git 即可
+* 不用 `source`
+* 确保 `.ssh/config` 权限是 `600`
+* 直接测试 SSH 或 Git 即可
 
 * * *
 
@@ -2415,10 +2528,12 @@ ssh -T git@github.com
 
 你希望我画吗？
 
-## Prompt:
+## Prompt
+
 是不是权限不对？确定是600吗
 
-## Response:
+## Response
+
 是的，`~/.ssh/config` 文件的正确权限确实是 **`600`**。
 
 这是 SSH 官方要求的安全限制之一——  
@@ -2426,7 +2541,7 @@ SSH 在读取配置文件时会检查文件权限，如果权限太宽（例如 
 
 * * *
 
-### ✅ 正确权限设置：
+### ✅ 正确权限设置
 
 ```bash
 chmod 600 ~/.ssh/config      # 只允许自己读写
@@ -2459,11 +2574,13 @@ Hi wwj! You've successfully authenticated, but GitHub does not provide shell acc
 
 就说明代理与 SSH 配置都生效了 ✅
 
-## Prompt:
-(.venv) wwj@abc:~/src/Deep-Learning-Projects$ ssh -T git@github.com
+## Prompt
+
+(.venv) wwj@abc:~/src/Deep-Learning-Projects$ ssh -T <git@github.com>
 ssh: connect to host github.com port 22: Connection timed out
 
-## Response:
+## Response
+
 非常好，这个结果说明：
 
 ✅ 你的 SSH 配置文件 (`~/.ssh/config`) 已经生效；  
@@ -2482,8 +2599,8 @@ ssh: connect to host github.com port 22: Connection timed out
 ssh -f -N -R 10810:127.0.0.1:10810 wwj@10.60.80.142
 ```
 
-*   `-R 10810:127.0.0.1:10810` → 把服务器的 10810 端口映射到你本地的 10810
-*   `-f -N` → 后台运行，不开 shell
+* `-R 10810:127.0.0.1:10810` → 把服务器的 10810 端口映射到你本地的 10810
+* `-f -N` → 后台运行，不开 shell
 
 👉 如果没加这个反向隧道，服务器上访问 `127.0.0.1:10810` 是连不到你本地代理的。
 
@@ -2506,8 +2623,8 @@ Connection to 127.0.0.1 10810 port [tcp/*] succeeded!
 
 如果仍然是 `Connection refused`：
 
-*   说明隧道没建立成功；或者
-*   SSH 服务器禁用了 `AllowTcpForwarding`
+* 说明隧道没建立成功；或者
+* SSH 服务器禁用了 `AllowTcpForwarding`
 
 * * *
 
@@ -2539,15 +2656,20 @@ sudo systemctl restart ssh
 🧩 四、重新建立隧道并测试 GitHub SSH
 -------------------------
 
-1.  在本地重新执行隧道命令：
+1. 在本地重新执行隧道命令：
+
     ```bash
     ssh -f -N -R 10810:127.0.0.1:10810 wwj@10.60.80.142
     ```
-2.  在服务器上再测试端口：
+
+2. 在服务器上再测试端口：
+
     ```bash
     nc -zv 127.0.0.1 10810
     ```
-3.  如果成功，再试：
+
+3. 如果成功，再试：
+
     ```bash
     ssh -T git@github.com
     ```
@@ -2570,19 +2692,21 @@ Hi wwj! You've successfully authenticated, but GitHub does not provide shell acc
 要不要我帮你写一个一键测试脚本（在服务器和本地分别跑），自动检测隧道和代理连通情况？  
 运行后直接告诉你是哪一步断了。
 
-## Prompt:
+## Prompt
+
 一定要加ssh -f -N -R 10810:127.0.0.1:10810 wwj@10.60.80.142吗？不加我也可以http推送啊
 
-## Response:
+## Response
+
 非常好的问题 👍 ——  
 你的观察完全正确，而且背后逻辑值得搞清楚。
 
 * * *
 
-### 💡 简单结论：
+### 💡 简单结论
 
 > ✅ 不一定要加 `ssh -R ...` 隧道。
-> 
+>
 > 🔹你之所以 **HTTP 能推送成功**，是因为 HTTP 代理是靠 `http_proxy` / `https_proxy` 环境变量实现的，  
 > 而 **SSH 推送（[git@github.com](mailto:git@github.com)）** 走的是另一条管道（纯 TCP，没有走环境变量），所以才需要那个反向隧道。
 
@@ -2597,20 +2721,20 @@ Hi wwj! You've successfully authenticated, but GitHub does not provide shell acc
 
 * * *
 
-### 🧭 换句话说：
+### 🧭 换句话说
 
-*   你目前 **服务器 → 本地代理** 这条路，  
+* 你目前 **服务器 → 本地代理** 这条路，  
     只对 HTTP(S) 请求有效（因为 `export http_proxy` 让 Git 用上了）。
-*   但 SSH 是另一套机制，不会自动用那个代理。
+* 但 SSH 是另一套机制，不会自动用那个代理。
 
 👉 所以：
 
-*   **你要继续用 HTTPS 推送** → 不需要 `ssh -R`
-*   **你想让 SSH 推送也走代理（`git@github.com`）** → 必须有一条隧道让服务器能访问你本地的 V2RayN
+* **你要继续用 HTTPS 推送** → 不需要 `ssh -R`
+* **你想让 SSH 推送也走代理（`git@github.com`）** → 必须有一条隧道让服务器能访问你本地的 V2RayN
 
 * * *
 
-### ⚙️ 总结选择：
+### ⚙️ 总结选择
 
 | 目标 | 推荐做法 | 是否需要隧道 |
 | --- | --- | --- |
@@ -2622,17 +2746,19 @@ Hi wwj! You've successfully authenticated, but GitHub does not provide shell acc
 
 如果你告诉我「你希望的最终状态」——比如：
 
-*   “我希望服务器上所有流量都能走我本地代理”
-*   还是“我只想让 SSH 推 GitHub 能走”
+* “我希望服务器上所有流量都能走我本地代理”
+* 还是“我只想让 SSH 推 GitHub 能走”
 
 我可以帮你生成一份最简洁、最稳定的配置组合（带命令、配置文件和检测命令）。
 
 你希望我帮你选并写出来吗？
 
-## Prompt:
+## Prompt
+
 “我希望服务器上所有流量都能走我本地代理”
 
-## Response:
+## Response
+
 非常好 👍，你这个目标非常明确：
 
 > ✅ **让整个服务器（包括 curl / apt / git / wget / conda / pip 等所有命令）都走你本地的 V2RayN 代理。**
@@ -2666,9 +2792,9 @@ ssh -f -N -R 10810:127.0.0.1:10810 wwj@10.60.80.142
 
 解释：
 
-*   `-R 10810:127.0.0.1:10810`：在服务器上开个 10810 端口，指向你本地的 10810
-*   `-f -N`：后台运行
-*   执行后你可以 `ps aux | grep ssh` 验证它在运行
+* `-R 10810:127.0.0.1:10810`：在服务器上开个 10810 端口，指向你本地的 10810
+* `-f -N`：后台运行
+* 执行后你可以 `ps aux | grep ssh` 验证它在运行
 
 * * *
 
@@ -2689,9 +2815,9 @@ Connection to 127.0.0.1 10810 port [tcp/*] succeeded!
 
 ❌ 如果是 “Connection refused”，请确认：
 
-*   `/etc/ssh/sshd_config` 中 `AllowTcpForwarding yes`
-*   `GatewayPorts yes`
-*   然后 `sudo systemctl restart ssh`
+* `/etc/ssh/sshd_config` 中 `AllowTcpForwarding yes`
+* `GatewayPorts yes`
+* 然后 `sudo systemctl restart ssh`
 
 * * *
 
@@ -2792,10 +2918,12 @@ Host 学校服务器
 要不要我帮你写一个小脚本，  
 让你下次只需在本地运行一条命令，就自动建立隧道 + 校验代理 + 设置环境变量？
 
-## Prompt:
-其他的都可以，就是ssh -T git@github.com无响应
+## Prompt
 
-## Response:
+其他的都可以，就是ssh -T <git@github.com>无响应
+
+## Response
+
 非常好 👍，说明你现在整个代理隧道和环境变量是正常的（curl、http 推送都通了），  
 **唯独 SSH 到 GitHub 卡住（无响应）**。  
 这是一个非常典型的现象——咱们一步步来解释和解决。
@@ -2837,9 +2965,9 @@ Host github.com
 
 解释：
 
-*   `-X 5`：表示使用 socks5 协议
-*   `-x 127.0.0.1:10810`：使用你本地反向隧道提供的 socks5 代理端口
-*   `%h %p`：自动填入目标主机名和端口（即 github.com:22）
+* `-X 5`：表示使用 socks5 协议
+* `-x 127.0.0.1:10810`：使用你本地反向隧道提供的 socks5 代理端口
+* `%h %p`：自动填入目标主机名和端口（即 github.com:22）
 
 保存后：
 
@@ -2929,14 +3057,16 @@ debug1: Executing proxy command: exec nc -X 5 -x 127.0.0.1:10810 github.com 22
 要不要我帮你直接生成一份服务器版 `.ssh/config`，  
 包括反向代理、GitHub、VSCode远程等完整配置？
 
-## Prompt:
+## Prompt
+
 我使用了方案1,这些我都加了，就是不行
 
-## Response:
+## Response
+
 好，我们来仔细排查一下。你说你使用了**方案1**（即在服务器上用 `ProxyCommand nc -X 5 -x 127.0.0.1:10810 %h %p` 通过反向隧道走你本地 V2RayN），而现在：
 
-*   🌍 服务器上的其他联网操作（例如 curl、apt、wget、http 推送）都可以；
-*   ❌ 只有 `ssh -T git@github.com` 无响应或超时。
+* 🌍 服务器上的其他联网操作（例如 curl、apt、wget、http 推送）都可以；
+* ❌ 只有 `ssh -T git@github.com` 无响应或超时。
 
 这说明问题不在隧道本身，而在 **SSH 流量走代理的方式**。我们来分层分析：
 
@@ -3091,13 +3221,16 @@ ssh -T git@github.com
 
 ### ✅ 总结你现在的修复顺序
 
-1.  本地确认 V2RayN 确实监听 `10810`；
-2.  执行反向转发命令（或配置在 config）：
+1. 本地确认 V2RayN 确实监听 `10810`；
+2. 执行反向转发命令（或配置在 config）：
+
     ```bash
     ssh -f -N -R 10810:127.0.0.1:10810 wwj@10.60.80.142
     ```
-3.  确认服务器上能看到 127.0.0.1:10810 在监听；
-4.  服务器 `~/.ssh/config` 内容为：
+
+3. 确认服务器上能看到 127.0.0.1:10810 在监听；
+4. 服务器 `~/.ssh/config` 内容为：
+
     ```bash
     Host github.com
         HostName ssh.github.com
@@ -3105,22 +3238,25 @@ ssh -T git@github.com
         Port 443
         ProxyCommand nc -X 5 -x 127.0.0.1:10810 %h %p
     ```
-5.  服务器上使用 `netcat-openbsd`；
-6.  再试 `ssh -vT git@github.com` 看日志。
+
+5. 服务器上使用 `netcat-openbsd`；
+6. 再试 `ssh -vT git@github.com` 看日志。
 
 * * *
 
 如果你愿意，我可以根据你当前服务器和本地的代理设置，帮你生成完整的双端配置模板（包含 `.ssh/config`、systemctl 服务等），让反向代理在重启后自动保持。是否要我帮你生成？
 
-## Prompt:
-(.venv) wwj@abc:~/src/Deep-Learning-Projects$ ssh -vT git@github.com
+## Prompt
+
+(.venv) wwj@abc:~/src/Deep-Learning-Projects$ ssh -vT <git@github.com>
 OpenSSH_8.9p1 Ubuntu-3ubuntu0.13, OpenSSL 3.0.2 15 Mar 2022
 debug1: Reading configuration data /etc/ssh/ssh_config
 debug1: /etc/ssh/ssh_config line 19: include /etc/ssh/ssh_config.d/*.conf matched no files
-debug1: /etc/ssh/ssh_config line 21: Applying options for *
+debug1: /etc/ssh/ssh_config line 21: Applying options for*
 debug1: Connecting to github.com [20.205.243.166] port 22.
 
-## Response:
+## Response
+
 很好，这一行日志已经说明**关键问题**了👇
 
 ```
@@ -3187,9 +3323,9 @@ debug1: Executing proxy command: exec nc -X 5 -x 127.0.0.1:10810 ssh.github.com 
 
 ⚠️ 如果还没出现这几行，说明：
 
-*   SSH 没有权限读取；
-*   或 `$HOME` 环境变量不对；
-*   或你登录的不是 `wwj` 用户（比如 sudo 环境）。
+* SSH 没有权限读取；
+* 或 `$HOME` 环境变量不对；
+* 或你登录的不是 `wwj` 用户（比如 sudo 环境）。
 
 你可以直接指定配置文件测试：
 
@@ -3255,11 +3391,13 @@ Executing proxy command: exec nc -X 5 -x 127.0.0.1:10810 ssh.github.com 443
 
 要不要我帮你检查一下你当前 `~/.ssh/config` 的内容？你可以贴上来（不含私钥）。
 
-## Prompt:
+## Prompt
+
 (.venv) wwj@abc:~/src/Deep-Learning-Projects$ ls -l ~/.ssh/config
 -rw------- 1 root root 103 10月 26 22:11 /home/wwj/.ssh/config
 
-## Response:
+## Response
+
 ✅ 问题找到了！这正是关键所在。
 
 你看这行输出：
@@ -3274,22 +3412,29 @@ Executing proxy command: exec nc -X 5 -x 127.0.0.1:10810 ssh.github.com 443
 
 * * *
 
-### 🩵 解决方案：
+### 🩵 解决方案
 
-1.  改回正确所有者：
+1. 改回正确所有者：
+
     ```bash
     sudo chown wwj:wwj ~/.ssh/config
     ```
-2.  确认权限：
+
+2. 确认权限：
+
     ```bash
     chmod 600 ~/.ssh/config
     ls -l ~/.ssh/config
     ```
+
     输出应类似：
+
     ```
     -rw------- 1 wwj wwj 103 10月 26 22:11 /home/wwj/.ssh/config
     ```
-3.  重新测试：
+
+3. 重新测试：
+
     ```bash
     ssh -vT git@github.com
     ```
@@ -3311,14 +3456,15 @@ debug1: Executing proxy command: exec nc -X 5 -x 127.0.0.1:10810 ssh.github.com 
 
 要不要我帮你确认一下 `.ssh/config` 里的具体内容是否完全正确？你可以贴出来（不含私钥）。
 
-## Prompt:
-(.venv) wwj@abc:~/src/Deep-Learning-Projects$ ssh -vT git@github.com
+## Prompt
+
+(.venv) wwj@abc:~/src/Deep-Learning-Projects$ ssh -vT <git@github.com>
 OpenSSH_8.9p1 Ubuntu-3ubuntu0.13, OpenSSL 3.0.2 15 Mar 2022
 debug1: Reading configuration data /home/wwj/.ssh/config
 debug1: /home/wwj/.ssh/config line 1: Applying options for github.com
 debug1: Reading configuration data /etc/ssh/ssh_config
 debug1: /etc/ssh/ssh_config line 19: include /etc/ssh/ssh_config.d/*.conf matched no files
-debug1: /etc/ssh/ssh_config line 21: Applying options for *
+debug1: /etc/ssh/ssh_config line 21: Applying options for*
 debug1: Executing proxy command: exec nc -X 5 -x 127.0.0.1:10810 github.com 22
 debug1: identity file /home/wwj/.ssh/id_rsa type 0
 debug1: identity file /home/wwj/.ssh/id_rsa-cert type -1
@@ -3345,8 +3491,8 @@ debug1: SSH2_MSG_KEXINIT sent
 debug1: SSH2_MSG_KEXINIT received
 debug1: kex: algorithm: curve25519-sha256
 debug1: kex: host key algorithm: ssh-ed25519
-debug1: kex: server->client cipher: chacha20-poly1305@openssh.com MAC: <implicit> compression: none
-debug1: kex: client->server cipher: chacha20-poly1305@openssh.com MAC: <implicit> compression: none
+debug1: kex: server->client cipher: <chacha20-poly1305@openssh.com> MAC: <implicit> compression: none
+debug1: kex: client->server cipher: <chacha20-poly1305@openssh.com> MAC: <implicit> compression: none
 debug1: expecting SSH2_MSG_KEX_ECDH_REPLY
 debug1: SSH2_MSG_KEX_ECDH_REPLY received
 debug1: Server host key: ssh-ed25519 SHA256:+DiY3wvvV6TuJJhbpZisF/zLDA0zPMSvHdkr4UvCOqU
@@ -3363,15 +3509,15 @@ debug1: ssh_packet_read_poll2: resetting read seqnr 3
 debug1: SSH2_MSG_NEWKEYS received
 debug1: rekey in after 134217728 blocks
 debug1: Will attempt key: /home/wwj/.ssh/id_rsa RSA SHA256:agBghwLkTqxs0oOoT2g6WxHj9XFEqYFMXwQnF4txJH8
-debug1: Will attempt key: /home/wwj/.ssh/id_ecdsa 
-debug1: Will attempt key: /home/wwj/.ssh/id_ecdsa_sk 
-debug1: Will attempt key: /home/wwj/.ssh/id_ed25519 
-debug1: Will attempt key: /home/wwj/.ssh/id_ed25519_sk 
-debug1: Will attempt key: /home/wwj/.ssh/id_xmss 
-debug1: Will attempt key: /home/wwj/.ssh/id_dsa 
+debug1: Will attempt key: /home/wwj/.ssh/id_ecdsa
+debug1: Will attempt key: /home/wwj/.ssh/id_ecdsa_sk
+debug1: Will attempt key: /home/wwj/.ssh/id_ed25519
+debug1: Will attempt key: /home/wwj/.ssh/id_ed25519_sk
+debug1: Will attempt key: /home/wwj/.ssh/id_xmss
+debug1: Will attempt key: /home/wwj/.ssh/id_dsa
 debug1: SSH2_MSG_EXT_INFO received
-debug1: kex_input_ext_info: server-sig-algs=<ssh-ed25519-cert-v01@openssh.com,ecdsa-sha2-nistp521-cert-v01@openssh.com,ecdsa-sha2-nistp384-cert-v01@openssh.com,ecdsa-sha2-nistp256-cert-v01@openssh.com,sk-ssh-ed25519-cert-v01@openssh.com,sk-ecdsa-sha2-nistp256-cert-v01@openssh.com,rsa-sha2-512-cert-v01@openssh.com,rsa-sha2-256-cert-v01@openssh.com,ssh-rsa-cert-v01@openssh.com,sk-ssh-ed25519@openssh.com,sk-ecdsa-sha2-nistp256@openssh.com,ssh-ed25519,ecdsa-sha2-nistp521,ecdsa-sha2-nistp384,ecdsa-sha2-nistp256,rsa-sha2-512,rsa-sha2-256,ssh-rsa>
-debug1: kex_input_ext_info: publickey-hostbound@openssh.com=<0>
+debug1: kex_input_ext_info: server-sig-algs=<<ssh-ed25519-cert-v01@openssh.com>,<ecdsa-sha2-nistp521-cert-v01@openssh.com>,<ecdsa-sha2-nistp384-cert-v01@openssh.com>,<ecdsa-sha2-nistp256-cert-v01@openssh.com>,<sk-ssh-ed25519-cert-v01@openssh.com>,<sk-ecdsa-sha2-nistp256-cert-v01@openssh.com>,<rsa-sha2-512-cert-v01@openssh.com>,<rsa-sha2-256-cert-v01@openssh.com>,<ssh-rsa-cert-v01@openssh.com>,<sk-ssh-ed25519@openssh.com>,<sk-ecdsa-sha2-nistp256@openssh.com>,ssh-ed25519,ecdsa-sha2-nistp521,ecdsa-sha2-nistp384,ecdsa-sha2-nistp256,rsa-sha2-512,rsa-sha2-256,ssh-rsa>
+debug1: kex_input_ext_info: <publickey-hostbound@openssh.com>=<0>
 debug1: SSH2_MSG_SERVICE_ACCEPT received
 debug1: Authentications that can continue: publickey
 debug1: Next authentication method: publickey
@@ -3379,7 +3525,8 @@ debug1: Offering public key: /home/wwj/.ssh/id_rsa RSA SHA256:agBghwLkTqxs0oOoT2
 debug1: Server accepts key: /home/wwj/.ssh/id_rsa RSA SHA256:agBghwLkTqxs0oOoT2g6WxHj9XFEqYFMXwQnF4txJH8
 Enter passphrase for key '/home/wwj/.ssh/id_rsa':
 
-## Response:
+## Response
+
 ✅ 太棒了！现在终于完全通了。
 
 从日志看，你的 **SOCKS5 代理** 已经成功生效、GitHub 也连上了，而且服务端返回了公钥验证阶段。  
@@ -3393,13 +3540,13 @@ debug1: Remote protocol version 2.0, remote software version 85ba476
 
 这说明：
 
-*   你的 SSH 确实通过 `127.0.0.1:10810` 的 SOCKS5 代理连上了 GitHub；
-*   加密握手和 host key 验证都成功；
-*   唯一的阻塞是：它在等你输入私钥的密码。
+* 你的 SSH 确实通过 `127.0.0.1:10810` 的 SOCKS5 代理连上了 GitHub；
+* 加密握手和 host key 验证都成功；
+* 唯一的阻塞是：它在等你输入私钥的密码。
 
 * * *
 
-### 🧩 你现在要做的就是：
+### 🧩 你现在要做的就是
 
 输入你在创建 `~/.ssh/id_rsa` 时设置的 passphrase（密钥口令）。
 
@@ -3411,7 +3558,7 @@ Hi wwj! You've successfully authenticated, but GitHub does not provide shell acc
 
 * * *
 
-### 💡 如果你不想每次都输密码：
+### 💡 如果你不想每次都输密码
 
 你可以把私钥加入 SSH agent：
 
@@ -3434,21 +3581,22 @@ ssh -T git@github.com
 
 ✅ 当前状态说明：
 
-*   服务器 → 你本地代理链路 ✅
-*   SOCKS5 代理生效 ✅
-*   SSH 公钥认证阶段 ✅
-*   只差私钥解锁 🔐
+* 服务器 → 你本地代理链路 ✅
+* SOCKS5 代理生效 ✅
+* SSH 公钥认证阶段 ✅
+* 只差私钥解锁 🔐
 
 这已经是“服务器流量经由本机 V2RayN 出口”的完全成功案例了。
 
-## Prompt:
-(.venv) wwj@abc:~/src/Deep-Learning-Projects$ ssh -vT git@github.com
+## Prompt
+
+(.venv) wwj@abc:~/src/Deep-Learning-Projects$ ssh -vT <git@github.com>
 OpenSSH_8.9p1 Ubuntu-3ubuntu0.13, OpenSSL 3.0.2 15 Mar 2022
 debug1: Reading configuration data /home/wwj/.ssh/config
 debug1: /home/wwj/.ssh/config line 1: Applying options for github.com
 debug1: Reading configuration data /etc/ssh/ssh_config
 debug1: /etc/ssh/ssh_config line 19: include /etc/ssh/ssh_config.d/*.conf matched no files
-debug1: /etc/ssh/ssh_config line 21: Applying options for *
+debug1: /etc/ssh/ssh_config line 21: Applying options for*
 debug1: Executing proxy command: exec nc -X 5 -x 127.0.0.1:10810 github.com 22
 debug1: identity file /home/wwj/.ssh/id_rsa type 0
 debug1: identity file /home/wwj/.ssh/id_rsa-cert type -1
@@ -3475,8 +3623,8 @@ debug1: SSH2_MSG_KEXINIT sent
 debug1: SSH2_MSG_KEXINIT received
 debug1: kex: algorithm: curve25519-sha256
 debug1: kex: host key algorithm: ssh-ed25519
-debug1: kex: server->client cipher: chacha20-poly1305@openssh.com MAC: <implicit> compression: none
-debug1: kex: client->server cipher: chacha20-poly1305@openssh.com MAC: <implicit> compression: none
+debug1: kex: server->client cipher: <chacha20-poly1305@openssh.com> MAC: <implicit> compression: none
+debug1: kex: client->server cipher: <chacha20-poly1305@openssh.com> MAC: <implicit> compression: none
 debug1: expecting SSH2_MSG_KEX_ECDH_REPLY
 debug1: SSH2_MSG_KEX_ECDH_REPLY received
 debug1: Server host key: ssh-ed25519 SHA256:+DiY3wvvV6TuJJhbpZisF/zLDA0zPMSvHdkr4UvCOqU
@@ -3493,26 +3641,26 @@ debug1: ssh_packet_read_poll2: resetting read seqnr 3
 debug1: SSH2_MSG_NEWKEYS received
 debug1: rekey in after 134217728 blocks
 debug1: Will attempt key: /home/wwj/.ssh/id_rsa RSA SHA256:agBghwLkTqxs0oOoT2g6WxHj9XFEqYFMXwQnF4txJH8
-debug1: Will attempt key: /home/wwj/.ssh/id_ecdsa 
-debug1: Will attempt key: /home/wwj/.ssh/id_ecdsa_sk 
-debug1: Will attempt key: /home/wwj/.ssh/id_ed25519 
-debug1: Will attempt key: /home/wwj/.ssh/id_ed25519_sk 
-debug1: Will attempt key: /home/wwj/.ssh/id_xmss 
-debug1: Will attempt key: /home/wwj/.ssh/id_dsa 
+debug1: Will attempt key: /home/wwj/.ssh/id_ecdsa
+debug1: Will attempt key: /home/wwj/.ssh/id_ecdsa_sk
+debug1: Will attempt key: /home/wwj/.ssh/id_ed25519
+debug1: Will attempt key: /home/wwj/.ssh/id_ed25519_sk
+debug1: Will attempt key: /home/wwj/.ssh/id_xmss
+debug1: Will attempt key: /home/wwj/.ssh/id_dsa
 debug1: SSH2_MSG_EXT_INFO received
-debug1: kex_input_ext_info: server-sig-algs=<ssh-ed25519-cert-v01@openssh.com,ecdsa-sha2-nistp521-cert-v01@openssh.com,ecdsa-sha2-nistp384-cert-v01@openssh.com,ecdsa-sha2-nistp256-cert-v01@openssh.com,sk-ssh-ed25519-cert-v01@openssh.com,sk-ecdsa-sha2-nistp256-cert-v01@openssh.com,rsa-sha2-512-cert-v01@openssh.com,rsa-sha2-256-cert-v01@openssh.com,ssh-rsa-cert-v01@openssh.com,sk-ssh-ed25519@openssh.com,sk-ecdsa-sha2-nistp256@openssh.com,ssh-ed25519,ecdsa-sha2-nistp521,ecdsa-sha2-nistp384,ecdsa-sha2-nistp256,rsa-sha2-512,rsa-sha2-256,ssh-rsa>
-debug1: kex_input_ext_info: publickey-hostbound@openssh.com=<0>
+debug1: kex_input_ext_info: server-sig-algs=<<ssh-ed25519-cert-v01@openssh.com>,<ecdsa-sha2-nistp521-cert-v01@openssh.com>,<ecdsa-sha2-nistp384-cert-v01@openssh.com>,<ecdsa-sha2-nistp256-cert-v01@openssh.com>,<sk-ssh-ed25519-cert-v01@openssh.com>,<sk-ecdsa-sha2-nistp256-cert-v01@openssh.com>,<rsa-sha2-512-cert-v01@openssh.com>,<rsa-sha2-256-cert-v01@openssh.com>,<ssh-rsa-cert-v01@openssh.com>,<sk-ssh-ed25519@openssh.com>,<sk-ecdsa-sha2-nistp256@openssh.com>,ssh-ed25519,ecdsa-sha2-nistp521,ecdsa-sha2-nistp384,ecdsa-sha2-nistp256,rsa-sha2-512,rsa-sha2-256,ssh-rsa>
+debug1: kex_input_ext_info: <publickey-hostbound@openssh.com>=<0>
 debug1: SSH2_MSG_SERVICE_ACCEPT received
 debug1: Authentications that can continue: publickey
 debug1: Next authentication method: publickey
 debug1: Offering public key: /home/wwj/.ssh/id_rsa RSA SHA256:agBghwLkTqxs0oOoT2g6WxHj9XFEqYFMXwQnF4txJH8
 debug1: Server accepts key: /home/wwj/.ssh/id_rsa RSA SHA256:agBghwLkTqxs0oOoT2g6WxHj9XFEqYFMXwQnF4txJH8
-Enter passphrase for key '/home/wwj/.ssh/id_rsa': 
+Enter passphrase for key '/home/wwj/.ssh/id_rsa':
 Authenticated to github.com (via proxy) using "publickey".
 debug1: channel 0: new [client-session]
 debug1: Entering interactive session.
 debug1: pledge: filesystem
-debug1: client_input_global_request: rtype hostkeys-00@openssh.com want_reply 0
+debug1: client_input_global_request: rtype <hostkeys-00@openssh.com> want_reply 0
 debug1: client_input_hostkeys: searching /home/wwj/.ssh/known_hosts for github.com / (none)
 debug1: client_input_hostkeys: searching /home/wwj/.ssh/known_hosts2 for github.com / (none)
 debug1: client_input_hostkeys: hostkeys file /home/wwj/.ssh/known_hosts2 does not exist
@@ -3535,7 +3683,8 @@ Transferred: sent 4176, received 3184 bytes, in 0.9 seconds
 Bytes per second: sent 4899.6, received 3735.7
 debug1: Exit status 1
 
-## Response:
+## Response
+
 🎉 完全成功！
 
 从日志看，现在你的 **服务器已经通过本机 V2RayN 的 SOCKS5 代理，成功完成了与 GitHub 的 SSH 握手与公钥认证**。
@@ -3550,10 +3699,10 @@ Hi jagger235711! You've successfully authenticated, but GitHub does not provide 
 
 这说明：
 
-*   ✅ `ProxyCommand` 生效了（说明服务器所有 SSH 流量都经你本地代理出去）
-*   ✅ SSH 公钥验证通过
-*   ✅ GitHub 成功返回标准提示语（它不提供 shell，这是正常的）
-*   ✅ 你的代理链路稳定且双向可达
+* ✅ `ProxyCommand` 生效了（说明服务器所有 SSH 流量都经你本地代理出去）
+* ✅ SSH 公钥验证通过
+* ✅ GitHub 成功返回标准提示语（它不提供 shell，这是正常的）
+* ✅ 你的代理链路稳定且双向可达
 
 * * *
 
@@ -3567,22 +3716,28 @@ Hi jagger235711! You've successfully authenticated, but GitHub does not provide 
 
 ### 🔧 后续优化建议
 
-1.  **免密加载私钥**
+1. **免密加载私钥**
+
     ```bash
     eval "$(ssh-agent -s)"
     ssh-add ~/.ssh/id_rsa
     ```
+
     否则每次推送都要输 passphrase。
-2.  **测试 Git 推送**
+2. **测试 Git 推送**
+
     ```bash
     git push origin main
     ```
+
     这一步应该也能成功，因为 SSH 代理链已通。
-3.  **若你想让系统层面所有命令都通过代理**  
+3. **若你想让系统层面所有命令都通过代理**  
     你还可以保留：
+
     ```bash
     export ALL_PROXY="socks5://127.0.0.1:10810"
     ```
+
     让 `curl`、`pip`、`apt` 等命令都自动走代理。
 
 * * *
@@ -3591,10 +3746,12 @@ Hi jagger235711! You've successfully authenticated, but GitHub does not provide 
 你现在已经实现了一个完整的「服务器→本地→外网」代理链，并且 SSH 到 GitHub 认证成功。  
 **一切配置都正确、功能完美。**
 
-## Prompt:
+## Prompt
+
 所以之后每次都要用一下这个命令开个端口？ssh -f -N -R 10810:127.0.0.1:10810 wwj@10.60.80.142
 
-## Response:
+## Response
+
 对的，如果你的目标是 **服务器通过你本地的代理访问外网**，那条命令的作用就是把本地 SOCKS5 端口映射到服务器上：
 
 ```bash
@@ -3603,9 +3760,9 @@ ssh -f -N -R 10810:127.0.0.1:10810 wwj@10.60.80.142
 
 拆解一下：
 
-*   `-R 10810:127.0.0.1:10810` → 把本地 10810 端口映射到服务器 10810
-*   `-f -N` → 后台运行，不打开 shell
-*   `wwj@10.60.80.142` → 连接到服务器
+* `-R 10810:127.0.0.1:10810` → 把本地 10810 端口映射到服务器 10810
+* `-f -N` → 后台运行，不打开 shell
+* `wwj@10.60.80.142` → 连接到服务器
 
 所以 **每次服务器重启或者本地代理断掉后**，都需要重新运行这条命令。
 
@@ -3613,28 +3770,32 @@ ssh -f -N -R 10810:127.0.0.1:10810 wwj@10.60.80.142
 
 ### ⚡ 可选优化
 
-1.  **SSH 自动重连**  
+1. **SSH 自动重连**  
     可以在本地加一个 `autossh` 命令，让它掉线自动重连：
+
     ```bash
     autossh -f -N -R 10810:127.0.0.1:10810 wwj@10.60.80.142
     ```
-2.  **开机自启动**
-    *   本地机器可以用 systemd 服务或者开机脚本启动这条命令
-    *   这样服务器总能保持隧道连通
+
+2. **开机自启动**
+    * 本地机器可以用 systemd 服务或者开机脚本启动这条命令
+    * 这样服务器总能保持隧道连通
 
 * * *
 
 💡 总结：
 
-*   每次需要隧道时就要运行这条命令
-*   如果希望完全自动化，需要用 `autossh` 或者开机脚本让它持续存在
+* 每次需要隧道时就要运行这条命令
+* 如果希望完全自动化，需要用 `autossh` 或者开机脚本让它持续存在
 
 如果你愿意，我可以帮你写一个 **开机自启、断线自动重连的本地隧道脚本**，一次配置就不用手动了。
 
-## Prompt:
+## Prompt
+
 不用自动连，就写脚本，需要我就运行一下，然后关掉终端窗口就停止
 
-## Response:
+## Response
+
 明白了，你只想要一个 **随用随开、关闭终端就停止** 的脚本。可以写得非常简单。假设你的本地代理端口是 `10810`，服务器地址是 `10.60.80.142`，用户名是 `wwj`：
 
 ```bash
@@ -3650,20 +3811,20 @@ echo "关闭终端或手动 kill ssh 进程即可停止隧道"
 
 ### 使用方法
 
-1.  保存脚本，例如 `start_socks_tunnel.sh`
-2.  赋予执行权限：
+1. 保存脚本，例如 `start_socks_tunnel.sh`
+2. 赋予执行权限：
 
 ```bash
 chmod +x start_socks_tunnel.sh
 ```
 
-3.  运行：
+3. 运行：
 
 ```bash
 ./start_socks_tunnel.sh
 ```
 
-4.  关闭终端或者杀掉进程就停止隧道：
+4. 关闭终端或者杀掉进程就停止隧道：
 
 ```bash
 pkill -f "ssh -f -N -R 10810:127.0.0.1:10810"
@@ -3675,8 +3836,9 @@ pkill -f "ssh -f -N -R 10810:127.0.0.1:10810"
 
 你想要这个版本吗？
 
-## Prompt:
-➜  桌面 ./start_socks_tunnel_fg.sh 
+## Prompt
+
+➜  桌面 ./start_socks_tunnel_fg.sh
 debug1: OpenSSH_10.0p2, OpenSSL 3.5.3 16 Sep 2025
 debug1: Reading configuration data /home/jagger/.ssh/config
 debug1: Reading configuration data /etc/ssh/ssh_config
@@ -3705,10 +3867,10 @@ debug1: load_hostkeys: fopen /etc/ssh/ssh_known_hosts: No such file or directory
 debug1: load_hostkeys: fopen /etc/ssh/ssh_known_hosts2: No such file or directory
 debug1: SSH2_MSG_KEXINIT sent
 debug1: SSH2_MSG_KEXINIT received
-debug1: kex: algorithm: sntrup761x25519-sha512@openssh.com
+debug1: kex: algorithm: <sntrup761x25519-sha512@openssh.com>
 debug1: kex: host key algorithm: ssh-ed25519
-debug1: kex: server->client cipher: chacha20-poly1305@openssh.com MAC: <implicit> compression: none
-debug1: kex: client->server cipher: chacha20-poly1305@openssh.com MAC: <implicit> compression: none
+debug1: kex: server->client cipher: <chacha20-poly1305@openssh.com> MAC: <implicit> compression: none
+debug1: kex: client->server cipher: <chacha20-poly1305@openssh.com> MAC: <implicit> compression: none
 debug1: expecting SSH2_MSG_KEX_ECDH_REPLY
 debug1: SSH2_MSG_KEX_ECDH_REPLY received
 debug1: Server host key: ssh-ed25519 SHA256:tlPrzrMq4EodTc7XKQoTgnHpRml5bkQgrxhalUqZFoo
@@ -3725,25 +3887,25 @@ debug1: ssh_packet_read_poll2: resetting read seqnr 3
 debug1: SSH2_MSG_NEWKEYS received
 debug1: rekey in after 134217728 blocks
 debug1: SSH2_MSG_EXT_INFO received
-debug1: kex_ext_info_client_parse: server-sig-algs=<ssh-ed25519,sk-ssh-ed25519@openssh.com,ssh-rsa,rsa-sha2-256,rsa-sha2-512,ssh-dss,ecdsa-sha2-nistp256,ecdsa-sha2-nistp384,ecdsa-sha2-nistp521,sk-ecdsa-sha2-nistp256@openssh.com,webauthn-sk-ecdsa-sha2-nistp256@openssh.com>
-debug1: kex_ext_info_check_ver: publickey-hostbound@openssh.com=<0>
+debug1: kex_ext_info_client_parse: server-sig-algs=<ssh-ed25519,<sk-ssh-ed25519@openssh.com>,ssh-rsa,rsa-sha2-256,rsa-sha2-512,ssh-dss,ecdsa-sha2-nistp256,ecdsa-sha2-nistp384,ecdsa-sha2-nistp521,<sk-ecdsa-sha2-nistp256@openssh.com>,<webauthn-sk-ecdsa-sha2-nistp256@openssh.com>>
+debug1: kex_ext_info_check_ver: <publickey-hostbound@openssh.com>=<0>
 debug1: SSH2_MSG_SERVICE_ACCEPT received
 debug1: Authentications that can continue: publickey,password
 debug1: Next authentication method: publickey
 debug1: Will attempt key: /home/jagger/.ssh/id_rsa RSA SHA256:QaZRkHd5p4QqO8NwkP0JQvFaFVt/6OepyiJGSV6aVD4
-debug1: Will attempt key: /home/jagger/.ssh/id_ecdsa 
-debug1: Will attempt key: /home/jagger/.ssh/id_ecdsa_sk 
-debug1: Will attempt key: /home/jagger/.ssh/id_ed25519 
-debug1: Will attempt key: /home/jagger/.ssh/id_ed25519_sk 
-debug1: Will attempt key: /home/jagger/.ssh/id_xmss 
+debug1: Will attempt key: /home/jagger/.ssh/id_ecdsa
+debug1: Will attempt key: /home/jagger/.ssh/id_ecdsa_sk
+debug1: Will attempt key: /home/jagger/.ssh/id_ed25519
+debug1: Will attempt key: /home/jagger/.ssh/id_ed25519_sk
+debug1: Will attempt key: /home/jagger/.ssh/id_xmss
 debug1: Offering public key: /home/jagger/.ssh/id_rsa RSA SHA256:QaZRkHd5p4QqO8NwkP0JQvFaFVt/6OepyiJGSV6aVD4
 debug1: Server accepts key: /home/jagger/.ssh/id_rsa RSA SHA256:QaZRkHd5p4QqO8NwkP0JQvFaFVt/6OepyiJGSV6aVD4
 Authenticated to 10.60.80.142 ([10.60.80.142]:22) using "publickey".
 debug1: Remote connections from LOCALHOST:10810 forwarded to local address 127.0.0.1:10810
-debug1: Requesting no-more-sessions@openssh.com
+debug1: Requesting <no-more-sessions@openssh.com>
 debug1: Entering interactive session.
 debug1: pledge: filesystem
-debug1: client_input_global_request: rtype hostkeys-00@openssh.com want_reply 0
+debug1: client_input_global_request: rtype <hostkeys-00@openssh.com> want_reply 0
 debug1: client_input_hostkeys: searching /home/jagger/.ssh/known_hosts for 10.60.80.142 / (none)
 debug1: client_input_hostkeys: searching /home/jagger/.ssh/known_hosts2 for 10.60.80.142 / (none)
 debug1: client_input_hostkeys: hostkeys file /home/jagger/.ssh/known_hosts2 does not exist
@@ -3757,7 +3919,8 @@ Warning: remote port forwarding failed for listen port 10810什么意思
 
 2/2
 
-## Response:
+## Response
+
 你最后的这一行信息：
 
 ```
@@ -3766,28 +3929,32 @@ Warning: remote port forwarding failed for: listen 10810, connect 127.0.0.1:1081
 
 意思是 **服务器上尝试把端口 10810 映射到你的本地 10810 失败了**。原因通常有几个：
 
-1.  **服务器端禁止远程端口转发**
-    *   服务器的 SSH 配置文件 `/etc/ssh/sshd_config` 里可能有：
+1. **服务器端禁止远程端口转发**
+    * 服务器的 SSH 配置文件 `/etc/ssh/sshd_config` 里可能有：
+
         ```
         AllowTcpForwarding no
         GatewayPorts no
         ```
-    *   如果是这样，你普通用户无法在服务器上开启远程端口转发。
-2.  **服务器端端口已被占用**
-    *   你尝试监听的 `10810` 在服务器上可能已经被别的进程占用（即便你以为没占用，也有可能是其他服务或之前的转发残留）。
-3.  **GatewayPorts 或监听地址冲突**
-    *   你用的是 `localhost:10810`，如果 SSH 配置禁止绑定到非 loopback 地址，也会失败。
-    *   日志里有：
+
+    * 如果是这样，你普通用户无法在服务器上开启远程端口转发。
+2. **服务器端端口已被占用**
+    * 你尝试监听的 `10810` 在服务器上可能已经被别的进程占用（即便你以为没占用，也有可能是其他服务或之前的转发残留）。
+3. **GatewayPorts 或监听地址冲突**
+    * 你用的是 `localhost:10810`，如果 SSH 配置禁止绑定到非 loopback 地址，也会失败。
+    * 日志里有：
+
         ```
         Forwarding listen address "localhost" overridden by server GatewayPorts
         ```
+
         表示服务器配置可能不允许绑定到 `localhost`，或者强制改成了别的地址。
 
 * * *
 
 ### 解决方案建议
 
-1.  **尝试换端口**
+1. **尝试换端口**
 
 ```bash
 ssh -f -N -R 20080:127.0.0.1:10810 wwj@10.60.80.142
@@ -3795,23 +3962,29 @@ ssh -f -N -R 20080:127.0.0.1:10810 wwj@10.60.80.142
 
 然后在服务器上访问 `127.0.0.1:20080`。
 
-2.  **确认服务器允许远程转发**
-    *   登录服务器：
+2. **确认服务器允许远程转发**
+    * 登录服务器：
+
         ```bash
         grep -E 'AllowTcpForwarding|GatewayPorts' /etc/ssh/sshd_config
         ```
-    *   如果 `AllowTcpForwarding` 是 `no`，或者 `GatewayPorts` 是 `no`，需要管理员改成：
+
+    * 如果 `AllowTcpForwarding` 是 `no`，或者 `GatewayPorts` 是 `no`，需要管理员改成：
+
         ```
         AllowTcpForwarding yes
         GatewayPorts yes
         ```
-    *   改完重启 SSH 服务：
+
+    * 改完重启 SSH 服务：
+
         ```bash
         sudo systemctl restart sshd
         ```
-3.  **如果你只是偶尔用，不想改服务器配置**
-    *   可以把转发改成 **本地端口转发**（`-L`）或者直接使用 HTTP 方式推 Git。
-    *   或者用动态 SOCKS5 转发 `ssh -D`。
+
+3. **如果你只是偶尔用，不想改服务器配置**
+    * 可以把转发改成 **本地端口转发**（`-L`）或者直接使用 HTTP 方式推 Git。
+    * 或者用动态 SOCKS5 转发 `ssh -D`。
 
 * * *
 
@@ -3819,10 +3992,12 @@ ssh -f -N -R 20080:127.0.0.1:10810 wwj@10.60.80.142
 
 你想让我帮你写吗？
 
-## Prompt:
+## Prompt
+
 总结一下，分为ssh、http等两种连接方式下的反向代理的配置方式
 
-## Response:
+## Response
+
 好的，我们把你想实现的“服务器走本地代理”整理成一个清晰总结，按 **SSH** 和 **HTTP/HTTPS** 两种方式分开。
 
 * * *
@@ -3836,37 +4011,45 @@ ssh -f -N -R 20080:127.0.0.1:10810 wwj@10.60.80.142
 
 ### **配置步骤**
 
-1.  **本地准备**
-    *   确保本地 V2Ray/SOCKS5 正在运行，例如 `127.0.0.1:10810`。
-2.  **SSH 远程端口转发**
-    *   命令：
+1. **本地准备**
+    * 确保本地 V2Ray/SOCKS5 正在运行，例如 `127.0.0.1:10810`。
+2. **SSH 远程端口转发**
+    * 命令：
+
         ```bash
         ssh -f -N -R <远程端口>:127.0.0.1:<本地代理端口> user@server
         ```
-    *   示例：
+
+    * 示例：
+
         ```bash
         ssh -f -N -R 10810:127.0.0.1:10810 wwj@10.60.80.142
         ```
+
         作用：
-        *   服务器 `127.0.0.1:10810` → 你的本地 `127.0.0.1:10810`（代理端口）
-3.  **SSH 客户端配置（服务器访问外网时）**
-    *   在服务器 `~/.ssh/config` 中配置 GitHub SSH 走 SOCKS5：
+        * 服务器 `127.0.0.1:10810` → 你的本地 `127.0.0.1:10810`（代理端口）
+3. **SSH 客户端配置（服务器访问外网时）**
+    * 在服务器 `~/.ssh/config` 中配置 GitHub SSH 走 SOCKS5：
+
         ```
         Host github.com
             HostName github.com
             User git
             ProxyCommand nc -X 5 -x 127.0.0.1:10810 %h %p
         ```
-    *   注意：`nc` 必须支持 `-X 5`（SOCKS5）。
-4.  **注意事项**
-    *   服务器端必须允许远程端口转发：
+
+    * 注意：`nc` 必须支持 `-X 5`（SOCKS5）。
+4. **注意事项**
+    * 服务器端必须允许远程端口转发：
+
         ```text
         /etc/ssh/sshd_config:
         AllowTcpForwarding yes
         GatewayPorts yes
         ```
-    *   如果远程端口被占用，转发会失败。
-    *   每次使用前需要启动 SSH 转发（可以写脚本执行）。
+
+    * 如果远程端口被占用，转发会失败。
+    * 每次使用前需要启动 SSH 转发（可以写脚本执行）。
 
 * * *
 
@@ -3879,29 +4062,35 @@ ssh -f -N -R 20080:127.0.0.1:10810 wwj@10.60.80.142
 
 ### **配置步骤**
 
-1.  **本地 SOCKS5 或 HTTP 代理**
-    *   V2RayN 默认提供 SOCKS5，例如 `127.0.0.1:10810`。
-    *   如果想直接走 HTTP，需要本地有 HTTP 代理端口（V2RayN 可开启 HTTP 端口）。
-2.  **服务器设置环境变量**
+1. **本地 SOCKS5 或 HTTP 代理**
+    * V2RayN 默认提供 SOCKS5，例如 `127.0.0.1:10810`。
+    * 如果想直接走 HTTP，需要本地有 HTTP 代理端口（V2RayN 可开启 HTTP 端口）。
+2. **服务器设置环境变量**
+
     ```bash
     export http_proxy=socks5://127.0.0.1:10810
     export https_proxy=socks5://127.0.0.1:10810
     ```
-    *   也可以写入 `~/.bashrc` 临时启用：
+
+    * 也可以写入 `~/.bashrc` 临时启用：
+
         ```bash
         source ~/.bashrc
         ```
-3.  **Git HTTPS 推送**
-    *   修改仓库远程为 HTTPS：
+
+3. **Git HTTPS 推送**
+    * 修改仓库远程为 HTTPS：
+
         ```bash
         git remote set-url origin https://github.com/<user>/<repo>.git
         git push
         ```
-    *   Git 会通过 `http_proxy`/`https_proxy` 访问 GitHub。
-4.  **注意事项**
-    *   HTTP 方式不需要 SSH 端口转发，操作更简单。
-    *   HTTPS 推送速度可能比 SSH 稍慢，但更容易穿透防火墙。
-    *   SOCKS5 代理需配合 `tsocks` 或 `proxychains` 时才对非 HTTP 应用生效。
+
+    * Git 会通过 `http_proxy`/`https_proxy` 访问 GitHub。
+4. **注意事项**
+    * HTTP 方式不需要 SSH 端口转发，操作更简单。
+    * HTTPS 推送速度可能比 SSH 稍慢，但更容易穿透防火墙。
+    * SOCKS5 代理需配合 `tsocks` 或 `proxychains` 时才对非 HTTP 应用生效。
 
 * * *
 
@@ -3916,9 +4105,9 @@ ssh -f -N -R 20080:127.0.0.1:10810 wwj@10.60.80.142
 
 💡 **实践建议**
 
-*   **临时使用**：HTTP/HTTPS 方式最简单，Git HTTPS 推送即可。
-*   **需要全 TCP 流量代理**：SSH 远程端口转发 + ProxyCommand 配合使用。
-*   **自动化**：可以写一个脚本启动 SSH 隧道，每次需要时运行即可。
+* **临时使用**：HTTP/HTTPS 方式最简单，Git HTTPS 推送即可。
+* **需要全 TCP 流量代理**：SSH 远程端口转发 + ProxyCommand 配合使用。
+* **自动化**：可以写一个脚本启动 SSH 隧道，每次需要时运行即可。
 
 * * *
 
@@ -3926,10 +4115,12 @@ ssh -f -N -R 20080:127.0.0.1:10810 wwj@10.60.80.142
 
 你希望我帮你写吗？
 
-## Prompt:
+## Prompt
+
 隐藏一下敏感信息，我要写成一篇技术博客
 
-## Response:
+## Response
+
 明白，我们可以把上面的内容整理成一篇 **技术博客风格** 的文章，并且把敏感信息（用户名、IP、仓库名等）都做了替换或模糊化处理。下面是示例：
 
 * * *
@@ -3950,39 +4141,47 @@ ssh -f -N -R 20080:127.0.0.1:10810 wwj@10.60.80.142
 
 ### 配置步骤
 
-1.  **本地准备**
-    *   确保本地 V2Ray/SOCKS5 正在运行，例如：
+1. **本地准备**
+    * 确保本地 V2Ray/SOCKS5 正在运行，例如：
+
         ```
         127.0.0.1:10810
         ```
-2.  **远程端口转发**
-    *   在本地执行：
+
+2. **远程端口转发**
+    * 在本地执行：
+
         ```bash
         ssh -f -N -R 10810:127.0.0.1:10810 user@remote-server
         ```
+
         其中：
-        *   `10810`：远程服务器监听的端口
-        *   `127.0.0.1:10810`：本地代理地址
-        *   `user@remote-server`：服务器 SSH 登录信息
-    *   启动后，服务器访问 `127.0.0.1:10810` 就会通过本地代理出网。
-3.  **服务器端 SSH 配置**
-    *   编辑 `~/.ssh/config`，让 Git SSH 走 SOCKS5：
+        * `10810`：远程服务器监听的端口
+        * `127.0.0.1:10810`：本地代理地址
+        * `user@remote-server`：服务器 SSH 登录信息
+    * 启动后，服务器访问 `127.0.0.1:10810` 就会通过本地代理出网。
+3. **服务器端 SSH 配置**
+    * 编辑 `~/.ssh/config`，让 Git SSH 走 SOCKS5：
+
         ```
         Host github.com
             HostName github.com
             User git
             ProxyCommand nc -X 5 -x 127.0.0.1:10810 %h %p
         ```
-    *   注意 `nc` 必须支持 `-X 5`（SOCKS5）。
-4.  **注意事项**
-    *   服务器 SSH 需允许远程端口转发：
+
+    * 注意 `nc` 必须支持 `-X 5`（SOCKS5）。
+4. **注意事项**
+    * 服务器 SSH 需允许远程端口转发：
+
         ```
         /etc/ssh/sshd_config:
         AllowTcpForwarding yes
         GatewayPorts yes
         ```
-    *   如果远程端口被占用，转发会失败。
-    *   每次需要使用时，需要运行 SSH 转发命令。
+
+    * 如果远程端口被占用，转发会失败。
+    * 每次需要使用时，需要运行 SSH 转发命令。
 
 * * *
 
@@ -3995,28 +4194,34 @@ ssh -f -N -R 20080:127.0.0.1:10810 wwj@10.60.80.142
 
 ### 配置步骤
 
-1.  **本地 SOCKS5 或 HTTP 代理**
-    *   V2RayN 默认提供 SOCKS5，例如：
+1. **本地 SOCKS5 或 HTTP 代理**
+    * V2RayN 默认提供 SOCKS5，例如：
+
         ```
         127.0.0.1:10810
         ```
-    *   如果想直接走 HTTP，需要本地有 HTTP 端口。
-2.  **服务器设置环境变量**
+
+    * 如果想直接走 HTTP，需要本地有 HTTP 端口。
+2. **服务器设置环境变量**
+
     ```bash
     export http_proxy=socks5://127.0.0.1:10810
     export https_proxy=socks5://127.0.0.1:10810
     ```
-    *   临时启用即可，或者写入 `~/.bashrc`。
-3.  **Git HTTPS 推送**
-    *   修改仓库远程地址为 HTTPS：
+
+    * 临时启用即可，或者写入 `~/.bashrc`。
+3. **Git HTTPS 推送**
+    * 修改仓库远程地址为 HTTPS：
+
         ```bash
         git remote set-url origin https://github.com/USERNAME/REPO.git
         git push
         ```
-    *   Git 会通过 `http_proxy`/`https_proxy` 访问 GitHub。
-4.  **注意事项**
-    *   HTTP 方式不需要 SSH 端口转发。
-    *   只能代理 HTTP/HTTPS，其他 TCP 服务需 SSH 隧道或 `proxychains`。
+
+    * Git 会通过 `http_proxy`/`https_proxy` 访问 GitHub。
+4. **注意事项**
+    * HTTP 方式不需要 SSH 端口转发。
+    * 只能代理 HTTP/HTTPS，其他 TCP 服务需 SSH 隧道或 `proxychains`。
 
 * * *
 
@@ -4033,9 +4238,9 @@ ssh -f -N -R 20080:127.0.0.1:10810 wwj@10.60.80.142
 四、实践建议
 ------
 
-*   **临时使用**：HTTP/HTTPS 方式最简单，Git HTTPS 推送即可。
-*   **需要全 TCP 流量代理**：SSH 远程端口转发 + ProxyCommand 配合使用。
-*   **自动化**：可写脚本启动 SSH 隧道，每次需要时运行即可，关闭终端后隧道自动断开。
+* **临时使用**：HTTP/HTTPS 方式最简单，Git HTTPS 推送即可。
+* **需要全 TCP 流量代理**：SSH 远程端口转发 + ProxyCommand 配合使用。
+* **自动化**：可写脚本启动 SSH 隧道，每次需要时运行即可，关闭终端后隧道自动断开。
 
 * * *
 
@@ -4053,11 +4258,13 @@ echo "SSH 隧道已启动，端口 10810 已转发到本地代理"
 
 你希望我加图吗？
 
-## Prompt:
-之前我们不是还配了 
+## Prompt
+
+之前我们不是还配了
     RemoteForward 10810 127.0.0.1:10810 啥的吗？这个不用写吗？
 
-## Response:
+## Response
+
 对，这个是 **`~/.ssh/config` 或 SSH 命令里的远程端口转发配置**，作用和你直接在命令行里 `ssh -R 10810:127.0.0.1:10810 user@server` 是一样的。
 
 可以总结为两种写法：
@@ -4070,9 +4277,9 @@ echo "SSH 隧道已启动，端口 10810 已转发到本地代理"
 ssh -f -N -R 10810:127.0.0.1:10810 user@remote-server
 ```
 
-*   `-R 10810:127.0.0.1:10810`：远程服务器监听 `10810`，转发到本地代理 `127.0.0.1:10810`。
-*   关闭终端后隧道断开。
-*   适合**临时使用**，不用改服务器配置文件。
+* `-R 10810:127.0.0.1:10810`：远程服务器监听 `10810`，转发到本地代理 `127.0.0.1:10810`。
+* 关闭终端后隧道断开。
+* 适合**临时使用**，不用改服务器配置文件。
 
 * * *
 
@@ -4087,16 +4294,16 @@ Host remote-server
     RemoteForward 10810 127.0.0.1:10810
 ```
 
-*   以后 `ssh remote-server` 自动带上远程端口转发。
-*   依然需要你本地代理在运行。
-*   关闭终端就会断开（除非配合 `autossh` 做自动重连）。
+* 以后 `ssh remote-server` 自动带上远程端口转发。
+* 依然需要你本地代理在运行。
+* 关闭终端就会断开（除非配合 `autossh` 做自动重连）。
 
 * * *
 
 💡 **总结**：
 
-*   如果你写了 **命令行 `-R`**，就不必在 `~/.ssh/config` 里再写 `RemoteForward`。
-*   如果你希望每次 SSH 自动带转发，可以放在 `config` 里，但还是需要手动启动 SSH 连接。
+* 如果你写了 **命令行 `-R`**，就不必在 `~/.ssh/config` 里再写 `RemoteForward`。
+* 如果你希望每次 SSH 自动带转发，可以放在 `config` 里，但还是需要手动启动 SSH 连接。
 
 * * *
 
@@ -4104,10 +4311,12 @@ Host remote-server
 
 你希望我加吗？
 
-## Prompt:
+## Prompt
+
 加
 
-## Response:
+## Response
+
 好的，我帮你整理成博客风格的技术说明，隐藏敏感信息，同时清晰对比 SSH 与 HTTP 下的反向代理配置。可以直接放到你的博客里：
 
 * * *
@@ -4129,10 +4338,10 @@ SSH 方式通常用于 **推送/拉取 Git 仓库** 或其他基于 SSH 的远�
 ssh -f -N -R 10810:127.0.0.1:10810 user@remote-server
 ```
 
-*   `-R 10810:127.0.0.1:10810`：远程服务器监听端口 `10810`，所有流量转发到本地代理 `127.0.0.1:10810`。
-*   `-f -N`：在后台运行，不打开 shell。
-*   关闭终端或杀掉进程后，隧道会断开。
-*   适合**临时使用**，无需修改配置文件。
+* `-R 10810:127.0.0.1:10810`：远程服务器监听端口 `10810`，所有流量转发到本地代理 `127.0.0.1:10810`。
+* `-f -N`：在后台运行，不打开 shell。
+* 关闭终端或杀掉进程后，隧道会断开。
+* 适合**临时使用**，无需修改配置文件。
 
 #### 方法二：配置文件自动转发
 
@@ -4145,9 +4354,9 @@ Host remote-server
     RemoteForward 10810 127.0.0.1:10810
 ```
 
-*   每次 `ssh remote-server` 都会自动创建远程端口转发。
-*   注意：隧道依然依赖本地代理运行，关闭终端隧道会断开。
-*   如果需要**自动重连**，可以使用 `autossh` 配合 `RemoteForward`。
+* 每次 `ssh remote-server` 都会自动创建远程端口转发。
+* 注意：隧道依然依赖本地代理运行，关闭终端隧道会断开。
+* 如果需要**自动重连**，可以使用 `autossh` 配合 `RemoteForward`。
 
 #### SSH 推送 Git 的代理配置
 
@@ -4159,11 +4368,11 @@ Host github.com
     ProxyCommand nc -X 5 -x 127.0.0.1:10810 %h %p
 ```
 
-*   `nc -X 5 -x 127.0.0.1:10810 %h %p` 表示通过本地 SOCKS5 代理访问 GitHub。
-*   完整流程：
-    1.  启动本地代理。
-    2.  创建 SSH 远程转发。
-    3.  使用 `git push`/`git pull` 通过代理连接 GitHub。
+* `nc -X 5 -x 127.0.0.1:10810 %h %p` 表示通过本地 SOCKS5 代理访问 GitHub。
+* 完整流程：
+    1. 启动本地代理。
+    2. 创建 SSH 远程转发。
+    3. 使用 `git push`/`git pull` 通过代理连接 GitHub。
 
 > ✅ 小技巧：如果不想每次敲命令，可以把远程端口转发写在 SSH 配置里。
 
@@ -4182,9 +4391,9 @@ export http_proxy="http://127.0.0.1:10810"
 export https_proxy="http://127.0.0.1:10810"
 ```
 
-*   所有 HTTP/HTTPS 流量都会走本地代理。
-*   可以写在 `~/.bashrc` 或脚本里，需要时手动 `source ~/.bashrc`。
-*   不依赖 SSH 端口转发。
+* 所有 HTTP/HTTPS 流量都会走本地代理。
+* 可以写在 `~/.bashrc` 或脚本里，需要时手动 `source ~/.bashrc`。
+* 不依赖 SSH 端口转发。
 
 #### Git HTTP 推送示例
 
@@ -4193,7 +4402,7 @@ git remote set-url origin https://github.com/<user>/<repo>.git
 git push
 ```
 
-*   只要环境变量生效，Git 会通过本地代理访问 GitHub。
+* 只要环境变量生效，Git 会通过本地代理访问 GitHub。
 
 * * *
 
@@ -4205,19 +4414,17 @@ git push
 | HTTP | 配置简单，环境变量生效即可 | 仅支持 HTTP/HTTPS 请求，不能执行远程命令 |
 
 > 💡 建议：
-> 
-> *   临时需要：命令行 `ssh -R`。
-> *   常规需要：配置 `~/.ssh/config` + `ProxyCommand`，并配合本地代理启动脚本。
-> *   HTTP 请求只需设置环境变量。
->     
+>
+> * 临时需要：命令行 `ssh -R`。
+> * 常规需要：配置 `~/.ssh/config` + `ProxyCommand`，并配合本地代理启动脚本。
+> * HTTP 请求只需设置环境变量。
+>
 
 * * *
 
 如果你愿意，我可以帮你加一张 **图示流程图**，直观展示“本地代理 → SSH 反向转发 → 远程服务器 → GitHub”的数据流，会让博客更易懂。
 
 你希望我画吗？
-
-
 
 ---
 Powered by [ChatGPT Exporter](https://www.chatgptexporter.com)

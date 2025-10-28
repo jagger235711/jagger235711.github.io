@@ -2,7 +2,7 @@
 draft: true 
 date: 2025-10-11 
 categories:
-  - 学习笔记
+  - GPT
 authors: 
     - Jagger
 comments: true

@@ -1,3 +1,12 @@
+---
+draft: true 
+date: 2025-09-14 
+categories:
+  - GPT
+authors: 
+    - Jagger
+comments: true
+---
 # 梯度下降与拟牛顿法对比
 
 **User:** Anonymous (xy102504@gmail.com)  
