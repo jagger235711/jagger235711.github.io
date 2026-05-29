@@ -30,5 +30,42 @@ comments: true
           - 通过数学检查器或者单元测试来验证正确性
           - 这种客观对错构成奖励函数
 
-
   - 分组相对策略优化 GRPO grouped relative policy optimization
+
+  ## introduction to post training
+
+### what
+
+  ![](https://cdn.jsdelivr.net/gh/jagger235711/coooool/img/202605290833955.png)
+
+### how
+
+![](https://cdn.jsdelivr.net/gh/jagger235711/coooool/img/202605290839999.png)
+
+- respond是模型应该回应的理想回复
+- 只对response的token进行训练
+
+![](https://cdn.jsdelivr.net/gh/jagger235711/coooool/img/202605290846879.png)
+
+- 在线强化学习
+  - 让模型自己生成回复，并用奖励模型打分，使用奖励信号更新模型
+  - 同时最大化prompt和response
+  
+![](https://cdn.jsdelivr.net/gh/jagger235711/coooool/img/202605290850129.png)
+
+- 算法和数据的良好协同设计是成功后训练的重要因素
+- 评估套件用于跟踪模型性能确保模型表现良好
+
+![](https://cdn.jsdelivr.net/gh/jagger235711/coooool/img/202605290854507.png)
+
+- 改进任何一个基准都很容易，难的是不让其他领域的能力下降
+
+### when
+
+![](https://cdn.jsdelivr.net/gh/jagger235711/coooool/img/202605290916835.png)
+
+1. 特定领域大模型  ：让模型先学知识，然后学会如何与用户交谈
+2. 严格遵循有限个指令或需要提升某个领域的能力
+
+- 用于可靠地改变某个领域的能力，如果训练有误可能会降低其他没有训练的能力
+![](https://cdn.jsdelivr.net/gh/jagger235711/coooool/img/202605290924180.png)
