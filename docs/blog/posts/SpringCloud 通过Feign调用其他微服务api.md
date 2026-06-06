@@ -1,10 +1,10 @@
 ---
 date: 2023-10-11
-authors: 
-    - Jagger
+authors:
+  - Jagger
 categories:
-    - 技术分享
-    - springCloud
+  - 技术分享
+  - springCloud
 comments: true
 ---
 

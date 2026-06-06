@@ -31,16 +31,21 @@ theme:
     # 目录
     - toc.follow
     - toc.integrate
-  palette: # 调整网页皮肤
+    - toc.sticky
+  palette:
     - media: "(prefers-color-scheme: light)"
       scheme: default
+      primary: indigo
+      accent: pink
       toggle:
-        icon: material/lightbulb
+        icon: material/weather-sunny
         name: 进入夜间模式
     - media: "(prefers-color-scheme: dark)"
       scheme: slate
+      primary: indigo
+      accent: pink
       toggle:
-        icon: material/lightbulb-outline
+        icon: material/weather-night
         name: 进入日间模式
   icon:
     repo: fontawesome/brands/github
@@ -52,14 +57,24 @@ plugins:
       categories_slugify: !!python/object/apply:pymdownx.slugs.slugify
         kwds:
           case: lower
+      excerpt_separator: "<!--more-->"
+      reading_time: true
   - git-revision-date-localized:
       enable_creation_date: true
+      enable_last_modified: true
   - search:
       lang:
         - en
         - zh
       separator: '[\s\u200b\-]'
-  - glightbox
+      prebuild_index: true
+  - glightbox:
+      width: 800
+      height: 600
+  - minify:
+      minify_html: true
+      minify_js: true
+      minify_css: true
 
 # Markdown扩展
 markdown_extensions:
@@ -77,18 +92,36 @@ markdown_extensions:
       generic: true
   - pymdownx.highlight:
       anchor_linenums: true
+      linenums: true
   - pymdownx.inlinehilite
   - pymdownx.snippets
-  - pymdownx.superfences
+  - pymdownx.superfences:
+      custom_fences:
+        - name: mermaid
+          class: mermaid
+          format: "```mermaid\n{{ content }}\n```"
+  - toc:
+      permalink: true
 
 # 额外JavaScript
 extra_javascript:
-  # - javascripts/mathjax.js
   - https://polyfill.io/v3/polyfill.min.js?features=es6
   - https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js
 
+# 额外CSS
+extra_css:
+  - assets/stylesheets/extra.css
+
+# 社交信息
+extra:
+  social:
+    - type: github
+      link: https://github.com/jagger235711
+    - type: twitter
+      link: https://twitter.com/your_handle
+
 # 版权信息
-copyright: Copyright &copy; 2013 - 2025 Jagger G
+copyright: Copyright &copy; 2013 - {{ now.year }} Jagger G
 
 # 导航结构
 nav:
