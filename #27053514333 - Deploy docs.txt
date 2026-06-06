@@ -1,0 +1,579 @@
+2026-06-06T05:14:54.1855652Z Current runner version: '2.334.0'
+2026-06-06T05:14:54.1881399Z ##[group]Runner Image Provisioner
+2026-06-06T05:14:54.1882256Z Hosted Compute Agent
+2026-06-06T05:14:54.1883139Z Version: 20260520.533
+2026-06-06T05:14:54.1883813Z Commit: 189110e25284a9812c124fd27b339e2fb4f2f9db
+2026-06-06T05:14:54.1884612Z Build Date: 2026-05-20T17:44:04Z
+2026-06-06T05:14:54.1885412Z Worker ID: {1272b226-2750-4ab9-bdaa-57d20dacfe0a}
+2026-06-06T05:14:54.1886168Z Azure Region: centralus
+2026-06-06T05:14:54.1886813Z ##[endgroup]
+2026-06-06T05:14:54.1888232Z ##[group]Operating System
+2026-06-06T05:14:54.1888943Z Ubuntu
+2026-06-06T05:14:54.1889595Z 24.04.4
+2026-06-06T05:14:54.1890170Z LTS
+2026-06-06T05:14:54.1890788Z ##[endgroup]
+2026-06-06T05:14:54.1891404Z ##[group]Runner Image
+2026-06-06T05:14:54.1892096Z Image: ubuntu-24.04
+2026-06-06T05:14:54.1892806Z Version: 20260525.161.1
+2026-06-06T05:14:54.1894405Z Included Software: https://github.com/actions/runner-images/blob/ubuntu24/20260525.161/images/ubuntu/Ubuntu2404-Readme.md
+2026-06-06T05:14:54.1895997Z Image Release: https://github.com/actions/runner-images/releases/tag/ubuntu24%2F20260525.161
+2026-06-06T05:14:54.1897032Z ##[endgroup]
+2026-06-06T05:14:54.1900134Z ##[group]GITHUB_TOKEN Permissions
+2026-06-06T05:14:54.1902668Z Actions: write
+2026-06-06T05:14:54.1903578Z ArtifactMetadata: write
+2026-06-06T05:14:54.1904208Z Attestations: write
+2026-06-06T05:14:54.1905255Z Checks: write
+2026-06-06T05:14:54.1905842Z CodeQuality: write
+2026-06-06T05:14:54.1906475Z Contents: write
+2026-06-06T05:14:54.1907084Z Deployments: write
+2026-06-06T05:14:54.1907711Z Discussions: write
+2026-06-06T05:14:54.1908332Z Issues: write
+2026-06-06T05:14:54.1908905Z Metadata: read
+2026-06-06T05:14:54.1909458Z Models: read
+2026-06-06T05:14:54.1910102Z Packages: write
+2026-06-06T05:14:54.1910871Z Pages: write
+2026-06-06T05:14:54.1911490Z PullRequests: write
+2026-06-06T05:14:54.1912107Z RepositoryProjects: write
+2026-06-06T05:14:54.1912743Z SecurityEvents: write
+2026-06-06T05:14:54.1913698Z Statuses: write
+2026-06-06T05:14:54.1914338Z VulnerabilityAlerts: read
+2026-06-06T05:14:54.1914992Z ##[endgroup]
+2026-06-06T05:14:54.1917132Z Secret source: Actions
+2026-06-06T05:14:54.1918232Z Prepare workflow directory
+2026-06-06T05:14:54.2262492Z Prepare all required actions
+2026-06-06T05:14:54.2300473Z Getting action download info
+2026-06-06T05:14:54.6109551Z Download action repository 'actions/checkout@v4' (SHA:34e114876b0b11c390a56381ad16ebd13914f8d5)
+2026-06-06T05:14:54.7031111Z Download action repository 'mhausenblas/mkdocs-deploy-gh-pages@master' (SHA:a31c6b13a80e4a4fbb525eeb7a2a78253bb15fa5)
+2026-06-06T05:14:54.9697222Z Complete job name: Deploy docs
+2026-06-06T05:14:55.0150309Z ##[group]Build container for action use: '/home/runner/work/_actions/mhausenblas/mkdocs-deploy-gh-pages/master/Dockerfile'.
+2026-06-06T05:14:55.0193467Z ##[command]/usr/bin/docker build -t 7392f8:5687b7ce3a0a409ab2baebd1dc4e6f91 -f "/home/runner/work/_actions/mhausenblas/mkdocs-deploy-gh-pages/master/Dockerfile" "/home/runner/work/_actions/mhausenblas/mkdocs-deploy-gh-pages/master"
+2026-06-06T05:14:55.4485923Z #0 building with "default" instance using docker driver
+2026-06-06T05:14:55.4487284Z 
+2026-06-06T05:14:55.4487829Z #1 [internal] load build definition from Dockerfile
+2026-06-06T05:14:55.4488778Z #1 transferring dockerfile: 267B done
+2026-06-06T05:14:55.4489503Z #1 DONE 0.0s
+2026-06-06T05:14:55.4489959Z 
+2026-06-06T05:14:55.4490791Z #2 [auth] squidfunk/mkdocs-material:pull token for registry-1.docker.io
+2026-06-06T05:14:55.5982303Z #2 DONE 0.0s
+2026-06-06T05:14:55.5982670Z 
+2026-06-06T05:14:55.5983724Z #3 [internal] load metadata for docker.io/squidfunk/mkdocs-material:9.5.17
+2026-06-06T05:14:56.0305418Z #3 DONE 0.7s
+2026-06-06T05:14:56.1469270Z 
+2026-06-06T05:14:56.1470292Z #4 [internal] load .dockerignore
+2026-06-06T05:14:56.1471459Z #4 transferring context: 2B done
+2026-06-06T05:14:56.1472359Z #4 DONE 0.0s
+2026-06-06T05:14:56.1472741Z 
+2026-06-06T05:14:56.1473461Z #5 [internal] load build context
+2026-06-06T05:14:56.1474397Z #5 transferring context: 1.83kB done
+2026-06-06T05:14:56.1476140Z #5 DONE 0.0s
+2026-06-06T05:14:56.1476571Z 
+2026-06-06T05:14:56.1477972Z #6 [1/3] FROM docker.io/squidfunk/mkdocs-material:9.5.17@sha256:6b124e13728a591607e0f087920763e405fc18861736a997896d0b253867a7b7
+2026-06-06T05:14:56.1480730Z #6 resolve docker.io/squidfunk/mkdocs-material:9.5.17@sha256:6b124e13728a591607e0f087920763e405fc18861736a997896d0b253867a7b7 done
+2026-06-06T05:14:56.1483165Z #6 sha256:4e90b7e52a7e3656bdf6a1346f75c91aa89c378ec99d03d1ad71ad7d5604b82b 2.76kB / 2.76kB done
+2026-06-06T05:14:56.1485481Z #6 sha256:acf2f5e781d4ee2f4f51a1eb5aefdd426100de930aed609296575269f41a4af6 10.60kB / 10.60kB done
+2026-06-06T05:14:56.1487708Z #6 sha256:619be1103602d98e1963557998c954c892b3872986c27365e9f651f5bc27cab8 0B / 3.40MB 0.1s
+2026-06-06T05:14:56.1489965Z #6 sha256:36988be9c68b1d574f1a24e9dc49c2d5c9ce9c4a2748652c735207995b3f4f10 0B / 620.32kB 0.1s
+2026-06-06T05:14:56.1492593Z #6 sha256:6b124e13728a591607e0f087920763e405fc18861736a997896d0b253867a7b7 2.38kB / 2.38kB done
+2026-06-06T05:14:56.1495423Z #6 sha256:a39a9cec261b756e2b8e376070efc6ac632eac92e0cb931ebf44b26e229bbcf1 0B / 12.50MB 0.1s
+2026-06-06T05:14:56.2602299Z #6 sha256:619be1103602d98e1963557998c954c892b3872986c27365e9f651f5bc27cab8 3.40MB / 3.40MB 0.1s done
+2026-06-06T05:14:56.2607374Z #6 sha256:36988be9c68b1d574f1a24e9dc49c2d5c9ce9c4a2748652c735207995b3f4f10 620.32kB / 620.32kB 0.2s done
+2026-06-06T05:14:56.2612115Z #6 extracting sha256:619be1103602d98e1963557998c954c892b3872986c27365e9f651f5bc27cab8 0.1s done
+2026-06-06T05:14:56.2616562Z #6 sha256:16965a1f861bf89a004bd1f1b1f7791e6e581cb6f73c52ee36dc17dbcb1a378a 0B / 241B 0.2s
+2026-06-06T05:14:56.2620915Z #6 sha256:b14387496ef59c831cbcb5c4496ea948a99998694a66e43121f7af7b083d6645 0B / 3.13MB 0.2s
+2026-06-06T05:14:56.4071584Z #6 sha256:a39a9cec261b756e2b8e376070efc6ac632eac92e0cb931ebf44b26e229bbcf1 9.44MB / 12.50MB 0.3s
+2026-06-06T05:14:56.4077035Z #6 sha256:16965a1f861bf89a004bd1f1b1f7791e6e581cb6f73c52ee36dc17dbcb1a378a 241B / 241B 0.2s done
+2026-06-06T05:14:56.4082489Z #6 sha256:b14387496ef59c831cbcb5c4496ea948a99998694a66e43121f7af7b083d6645 3.13MB / 3.13MB 0.3s done
+2026-06-06T05:14:56.4087745Z #6 extracting sha256:36988be9c68b1d574f1a24e9dc49c2d5c9ce9c4a2748652c735207995b3f4f10 0.1s
+2026-06-06T05:14:56.4092645Z #6 sha256:f3bb785c1f2f184fd2f93760edad7801c9c2ac6bd1e23b5248e3861a50655eb0 0B / 1.33kB 0.3s
+2026-06-06T05:14:56.4097446Z #6 sha256:4f4fb700ef54461cfa02571ae0db9a0dc1e0cdb5577484a6d75e68dc38e8acc1 32B / 32B 0.3s done
+2026-06-06T05:14:56.4101823Z #6 sha256:6affaa184e523db30c7dd929f5e14970fef21d43fa907af0770ddd53463cdb26 0B / 4.06MB 0.3s
+2026-06-06T05:14:56.5331700Z #6 sha256:a39a9cec261b756e2b8e376070efc6ac632eac92e0cb931ebf44b26e229bbcf1 12.50MB / 12.50MB 0.3s done
+2026-06-06T05:14:56.5335816Z #6 extracting sha256:36988be9c68b1d574f1a24e9dc49c2d5c9ce9c4a2748652c735207995b3f4f10 0.2s done
+2026-06-06T05:14:56.5339943Z #6 sha256:f3bb785c1f2f184fd2f93760edad7801c9c2ac6bd1e23b5248e3861a50655eb0 1.33kB / 1.33kB 0.3s done
+2026-06-06T05:14:56.5344693Z #6 sha256:6affaa184e523db30c7dd929f5e14970fef21d43fa907af0770ddd53463cdb26 4.06MB / 4.06MB 0.3s done
+2026-06-06T05:14:56.5348215Z #6 sha256:927bab4b6ea97452fac60741ddf1e03c87be77f514b0f07ffbbac96fe89dfcd6 0B / 1.74kB 0.4s
+2026-06-06T05:14:56.5351731Z #6 sha256:1e65f1d159103aeebdfe3293d12e66375fea0a015a1498df7241409ceb307304 0B / 3.84kB 0.4s
+2026-06-06T05:14:56.5359237Z #6 sha256:0104ddad309d410e1ba240482741863d79ef4f680beab6f6c94ba04b5e6096ae 0B / 969B 0.4s
+2026-06-06T05:14:56.6474350Z #6 sha256:927bab4b6ea97452fac60741ddf1e03c87be77f514b0f07ffbbac96fe89dfcd6 1.74kB / 1.74kB 0.5s done
+2026-06-06T05:14:56.6479586Z #6 sha256:1e65f1d159103aeebdfe3293d12e66375fea0a015a1498df7241409ceb307304 3.84kB / 3.84kB 0.4s done
+2026-06-06T05:14:56.6485373Z #6 sha256:0104ddad309d410e1ba240482741863d79ef4f680beab6f6c94ba04b5e6096ae 969B / 969B 0.4s done
+2026-06-06T05:14:56.6490892Z #6 sha256:e253c0fff9044664954274feb619ad88e58e8d92289ec1a77f91036ea2bdb861 94B / 94B 0.5s done
+2026-06-06T05:14:56.6496217Z #6 sha256:ffe07013b180ea378709cff2e49a782a334c7482b4b00cd8d4cff8683a46fda2 32.51MB / 40.22MB 0.6s
+2026-06-06T05:14:56.7950279Z #6 sha256:ffe07013b180ea378709cff2e49a782a334c7482b4b00cd8d4cff8683a46fda2 40.22MB / 40.22MB 0.6s done
+2026-06-06T05:14:56.7958111Z #6 extracting sha256:a39a9cec261b756e2b8e376070efc6ac632eac92e0cb931ebf44b26e229bbcf1 0.1s
+2026-06-06T05:14:57.2987016Z #6 extracting sha256:a39a9cec261b756e2b8e376070efc6ac632eac92e0cb931ebf44b26e229bbcf1 0.4s done
+2026-06-06T05:14:57.2989118Z #6 extracting sha256:16965a1f861bf89a004bd1f1b1f7791e6e581cb6f73c52ee36dc17dbcb1a378a done
+2026-06-06T05:14:57.2990515Z #6 extracting sha256:b14387496ef59c831cbcb5c4496ea948a99998694a66e43121f7af7b083d6645 0.1s
+2026-06-06T05:14:57.6068600Z #6 extracting sha256:b14387496ef59c831cbcb5c4496ea948a99998694a66e43121f7af7b083d6645 0.2s done
+2026-06-06T05:14:57.6070555Z #6 extracting sha256:4f4fb700ef54461cfa02571ae0db9a0dc1e0cdb5577484a6d75e68dc38e8acc1 done
+2026-06-06T05:14:57.6072041Z #6 extracting sha256:6affaa184e523db30c7dd929f5e14970fef21d43fa907af0770ddd53463cdb26 0.1s
+2026-06-06T05:15:00.6050437Z #6 extracting sha256:6affaa184e523db30c7dd929f5e14970fef21d43fa907af0770ddd53463cdb26 3.0s done
+2026-06-06T05:15:00.6737769Z #6 extracting sha256:f3bb785c1f2f184fd2f93760edad7801c9c2ac6bd1e23b5248e3861a50655eb0
+2026-06-06T05:15:00.8847804Z #6 extracting sha256:f3bb785c1f2f184fd2f93760edad7801c9c2ac6bd1e23b5248e3861a50655eb0 done
+2026-06-06T05:15:00.8879123Z #6 extracting sha256:1e65f1d159103aeebdfe3293d12e66375fea0a015a1498df7241409ceb307304 done
+2026-06-06T05:15:00.8880189Z #6 extracting sha256:0104ddad309d410e1ba240482741863d79ef4f680beab6f6c94ba04b5e6096ae done
+2026-06-06T05:15:00.8881153Z #6 extracting sha256:927bab4b6ea97452fac60741ddf1e03c87be77f514b0f07ffbbac96fe89dfcd6 done
+2026-06-06T05:15:00.8882001Z #6 extracting sha256:ffe07013b180ea378709cff2e49a782a334c7482b4b00cd8d4cff8683a46fda2
+2026-06-06T05:15:05.7464794Z #6 extracting sha256:ffe07013b180ea378709cff2e49a782a334c7482b4b00cd8d4cff8683a46fda2 5.0s
+2026-06-06T05:15:05.9196416Z #6 extracting sha256:ffe07013b180ea378709cff2e49a782a334c7482b4b00cd8d4cff8683a46fda2 5.0s done
+2026-06-06T05:15:06.0407530Z #6 extracting sha256:e253c0fff9044664954274feb619ad88e58e8d92289ec1a77f91036ea2bdb861
+2026-06-06T05:15:06.2286833Z #6 extracting sha256:e253c0fff9044664954274feb619ad88e58e8d92289ec1a77f91036ea2bdb861 done
+2026-06-06T05:15:06.2287800Z #6 DONE 10.0s
+2026-06-06T05:15:06.2288011Z 
+2026-06-06T05:15:06.2288173Z #7 [2/3] COPY action.sh /action.sh
+2026-06-06T05:15:06.2288547Z #7 DONE 0.0s
+2026-06-06T05:15:06.2288788Z 
+2026-06-06T05:15:06.2289182Z #8 [3/3] RUN apk add --no-cache bash build-base linux-headers && chmod +x /action.sh
+2026-06-06T05:15:06.2290569Z #8 0.143 fetch https://dl-cdn.alpinelinux.org/alpine/v3.18/main/x86_64/APKINDEX.tar.gz
+2026-06-06T05:15:06.3972227Z #8 0.312 fetch https://dl-cdn.alpinelinux.org/alpine/v3.18/community/x86_64/APKINDEX.tar.gz
+2026-06-06T05:15:06.5828829Z #8 0.498 (1/24) Upgrading musl (1.2.4-r2 -> 1.2.4-r3)
+2026-06-06T05:15:06.6999646Z #8 0.520 (2/24) Installing bash (5.2.15-r5)
+2026-06-06T05:15:06.7000098Z #8 0.560 Executing bash-5.2.15-r5.post-install
+2026-06-06T05:15:06.7000473Z #8 0.563 (3/24) Installing libgcc (12.2.1_git20220924-r10)
+2026-06-06T05:15:06.7000902Z #8 0.581 (4/24) Installing libstdc++ (12.2.1_git20220924-r10)
+2026-06-06T05:15:06.7001354Z #8 0.615 (5/24) Installing zstd-libs (1.5.5-r4)
+2026-06-06T05:15:06.8751510Z #8 0.640 (6/24) Installing binutils (2.40-r8)
+2026-06-06T05:15:06.8848919Z #8 0.800 (7/24) Installing libmagic (5.45-r0)
+2026-06-06T05:15:07.0000030Z #8 0.837 (8/24) Installing file (5.45-r0)
+2026-06-06T05:15:07.0000464Z #8 0.854 (9/24) Installing libgomp (12.2.1_git20220924-r10)
+2026-06-06T05:15:07.0000866Z #8 0.875 (10/24) Installing libatomic (12.2.1_git20220924-r10)
+2026-06-06T05:15:07.0001191Z #8 0.892 (11/24) Installing gmp (6.2.1-r3)
+2026-06-06T05:15:07.0001466Z #8 0.915 (12/24) Installing isl26 (0.26-r1)
+2026-06-06T05:15:07.2217450Z #8 0.947 (13/24) Installing mpfr4 (4.2.0_p12-r0)
+2026-06-06T05:15:07.2217953Z #8 0.969 (14/24) Installing mpc1 (1.3.1-r1)
+2026-06-06T05:15:07.2218788Z #8 0.986 (15/24) Installing gcc (12.2.1_git20220924-r10)
+2026-06-06T05:15:07.7989676Z #8 1.714 (16/24) Installing libstdc++-dev (12.2.1_git20220924-r10)
+2026-06-06T05:15:08.0938614Z #8 2.009 (17/24) Installing musl-dev (1.2.4-r3)
+2026-06-06T05:15:08.3421380Z #8 2.090 (18/24) Installing libc-dev (0.7.2-r5)
+2026-06-06T05:15:08.3421969Z #8 2.107 (19/24) Installing g++ (12.2.1_git20220924-r10)
+2026-06-06T05:15:08.4492144Z #8 2.364 (20/24) Installing make (4.4.1-r1)
+2026-06-06T05:15:08.6473973Z #8 2.383 (21/24) Installing fortify-headers (1.1-r3)
+2026-06-06T05:15:08.6474927Z #8 2.400 (22/24) Installing patch (2.7.6-r10)
+2026-06-06T05:15:08.6475697Z #8 2.419 (23/24) Installing build-base (0.5-r3)
+2026-06-06T05:15:08.6476226Z #8 2.435 (24/24) Installing linux-headers (6.3-r0)
+2026-06-06T05:15:08.6476702Z #8 2.562 Executing busybox-1.36.1-r5.trigger
+2026-06-06T05:15:08.8069415Z #8 2.571 OK: 287 MiB in 100 packages
+2026-06-06T05:15:09.0922289Z #8 DONE 3.0s
+2026-06-06T05:15:09.2438628Z 
+2026-06-06T05:15:09.2439073Z #9 exporting to image
+2026-06-06T05:15:09.2439446Z #9 exporting layers
+2026-06-06T05:15:10.5834498Z #9 exporting layers 1.5s done
+2026-06-06T05:15:10.6000221Z #9 writing image sha256:d9d5c1210b1995a3191cd27da65d7415d216150c28a3aa10837eb886a62ec1b2 done
+2026-06-06T05:15:10.6001212Z #9 naming to docker.io/library/7392f8:5687b7ce3a0a409ab2baebd1dc4e6f91 done
+2026-06-06T05:15:10.6001760Z #9 DONE 1.5s
+2026-06-06T05:15:10.6061028Z ##[endgroup]
+2026-06-06T05:15:10.6355936Z ##[group]Run actions/checkout@v4
+2026-06-06T05:15:10.6356433Z with:
+2026-06-06T05:15:10.6356651Z   fetch-depth: 0
+2026-06-06T05:15:10.6356916Z   repository: jagger235711/jagger235711.github.io
+2026-06-06T05:15:10.6360396Z   token: ***
+2026-06-06T05:15:10.6360615Z   ssh-strict: true
+2026-06-06T05:15:10.6360829Z   ssh-user: git
+2026-06-06T05:15:10.6361045Z   persist-credentials: true
+2026-06-06T05:15:10.6361289Z   clean: true
+2026-06-06T05:15:10.6361512Z   sparse-checkout-cone-mode: true
+2026-06-06T05:15:10.6361790Z   fetch-tags: false
+2026-06-06T05:15:10.6362004Z   show-progress: true
+2026-06-06T05:15:10.6362214Z   lfs: false
+2026-06-06T05:15:10.6362411Z   submodules: false
+2026-06-06T05:15:10.6362621Z   set-safe-directory: true
+2026-06-06T05:15:10.6363232Z ##[endgroup]
+2026-06-06T05:15:10.7484986Z Syncing repository: jagger235711/jagger235711.github.io
+2026-06-06T05:15:10.7486262Z ##[group]Getting Git version info
+2026-06-06T05:15:10.7486818Z Working directory is '/home/runner/work/jagger235711.github.io/jagger235711.github.io'
+2026-06-06T05:15:10.7487488Z [command]/usr/bin/git version
+2026-06-06T05:15:10.7490165Z git version 2.54.0
+2026-06-06T05:15:10.7514599Z ##[endgroup]
+2026-06-06T05:15:10.7528559Z Temporarily overriding HOME='/home/runner/work/_temp/96a9584d-10e7-4b81-a223-784bf55c9a03' before making global git config changes
+2026-06-06T05:15:10.7529982Z Adding repository directory to the temporary git global config as a safe directory
+2026-06-06T05:15:10.7542055Z [command]/usr/bin/git config --global --add safe.directory /home/runner/work/jagger235711.github.io/jagger235711.github.io
+2026-06-06T05:15:10.7581020Z Deleting the contents of '/home/runner/work/jagger235711.github.io/jagger235711.github.io'
+2026-06-06T05:15:10.7584671Z ##[group]Initializing the repository
+2026-06-06T05:15:10.7588847Z [command]/usr/bin/git init /home/runner/work/jagger235711.github.io/jagger235711.github.io
+2026-06-06T05:15:10.7659043Z hint: Using 'master' as the name for the initial branch. This default branch name
+2026-06-06T05:15:10.7659652Z hint: will change to "main" in Git 3.0. To configure the initial branch name
+2026-06-06T05:15:10.7660211Z hint: to use in all of your new repositories, which will suppress this warning,
+2026-06-06T05:15:10.7660650Z hint: call:
+2026-06-06T05:15:10.7660873Z hint:
+2026-06-06T05:15:10.7661189Z hint: 	git config --global init.defaultBranch <name>
+2026-06-06T05:15:10.7661543Z hint:
+2026-06-06T05:15:10.7661888Z hint: Names commonly chosen instead of 'master' are 'main', 'trunk' and
+2026-06-06T05:15:10.7662693Z hint: 'development'. The just-created branch can be renamed via this command:
+2026-06-06T05:15:10.7663347Z hint:
+2026-06-06T05:15:10.7663590Z hint: 	git branch -m <name>
+2026-06-06T05:15:10.7663868Z hint:
+2026-06-06T05:15:10.7664239Z hint: Disable this message with "git config set advice.defaultBranchName false"
+2026-06-06T05:15:10.7669172Z Initialized empty Git repository in /home/runner/work/jagger235711.github.io/jagger235711.github.io/.git/
+2026-06-06T05:15:10.7679920Z [command]/usr/bin/git remote add origin https://github.com/jagger235711/jagger235711.github.io
+2026-06-06T05:15:10.7722002Z ##[endgroup]
+2026-06-06T05:15:10.7722448Z ##[group]Disabling automatic garbage collection
+2026-06-06T05:15:10.7722839Z [command]/usr/bin/git config --local gc.auto 0
+2026-06-06T05:15:10.7750617Z ##[endgroup]
+2026-06-06T05:15:10.7751162Z ##[group]Setting up auth
+2026-06-06T05:15:10.7757708Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+2026-06-06T05:15:10.7791724Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+2026-06-06T05:15:10.8099134Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+2026-06-06T05:15:10.8128768Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+2026-06-06T05:15:10.8357710Z [command]/usr/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
+2026-06-06T05:15:10.8387440Z [command]/usr/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
+2026-06-06T05:15:10.8631537Z [command]/usr/bin/git config --local http.https://github.com/.extraheader AUTHORIZATION: basic ***
+2026-06-06T05:15:10.8666504Z ##[endgroup]
+2026-06-06T05:15:10.8667120Z ##[group]Fetching the repository
+2026-06-06T05:15:10.8675607Z [command]/usr/bin/git -c protocol.version=2 fetch --prune --no-recurse-submodules origin +refs/heads/*:refs/remotes/origin/* +refs/tags/*:refs/tags/*
+2026-06-06T05:15:11.7007444Z From https://github.com/jagger235711/jagger235711.github.io
+2026-06-06T05:15:11.7008406Z  * [new branch]      copilot/optimize-blog-repo-structure -> origin/copilot/optimize-blog-repo-structure
+2026-06-06T05:15:11.7009536Z  * [new branch]      dependabot/pip/cairocffi-1.7.1 -> origin/dependabot/pip/cairocffi-1.7.1
+2026-06-06T05:15:11.7010455Z  * [new branch]      dependabot/pip/click-8.3.0 -> origin/dependabot/pip/click-8.3.0
+2026-06-06T05:15:11.7011413Z  * [new branch]      dependabot/pip/idna-3.11 -> origin/dependabot/pip/idna-3.11
+2026-06-06T05:15:11.7012220Z  * [new branch]      dependabot/pip/smmap-5.0.2 -> origin/dependabot/pip/smmap-5.0.2
+2026-06-06T05:15:11.7013327Z  * [new branch]      dependabot/pip/tinycss2-1.4.0 -> origin/dependabot/pip/tinycss2-1.4.0
+2026-06-06T05:15:11.7014095Z  * [new branch]      gh-pages     -> origin/gh-pages
+2026-06-06T05:15:11.7014647Z  * [new branch]      masterBackup -> origin/masterBackup
+2026-06-06T05:15:11.7015202Z  * [new branch]      origin       -> origin/origin
+2026-06-06T05:15:11.7015748Z  * [new branch]      originBackup -> origin/originBackup
+2026-06-06T05:15:11.7052432Z [command]/usr/bin/git branch --list --remote origin/origin
+2026-06-06T05:15:11.7081378Z   origin/origin
+2026-06-06T05:15:11.7091868Z [command]/usr/bin/git rev-parse refs/remotes/origin/origin
+2026-06-06T05:15:11.7115600Z 0af0f8ad77d7de7142390f69992733727448ab10
+2026-06-06T05:15:11.7119507Z ##[endgroup]
+2026-06-06T05:15:11.7120029Z ##[group]Determining the checkout info
+2026-06-06T05:15:11.7121098Z ##[endgroup]
+2026-06-06T05:15:11.7125725Z [command]/usr/bin/git sparse-checkout disable
+2026-06-06T05:15:11.7163594Z [command]/usr/bin/git config --local --unset-all extensions.worktreeConfig
+2026-06-06T05:15:11.7189098Z ##[group]Checking out the ref
+2026-06-06T05:15:11.7194060Z [command]/usr/bin/git checkout --progress --force -B origin refs/remotes/origin/origin
+2026-06-06T05:15:11.7284250Z Switched to a new branch 'origin'
+2026-06-06T05:15:11.7286780Z branch 'origin' set up to track 'origin/origin'.
+2026-06-06T05:15:11.7292737Z ##[endgroup]
+2026-06-06T05:15:11.7333564Z [command]/usr/bin/git log -1 --format=%H
+2026-06-06T05:15:11.7358792Z 0af0f8ad77d7de7142390f69992733727448ab10
+2026-06-06T05:15:11.7612164Z ##[group]Run mhausenblas/mkdocs-deploy-gh-pages@master
+2026-06-06T05:15:11.7612543Z env:
+2026-06-06T05:15:11.7616282Z   GITHUB_TOKEN: ***
+2026-06-06T05:15:11.7616531Z   CONFIG_FILE: mkdocs.yml
+2026-06-06T05:15:11.7616786Z   EXTRA_PACKAGES: build-base
+2026-06-06T05:15:11.7617048Z   REQUIREMENTS: requirements.txt
+2026-06-06T05:15:11.7617301Z ##[endgroup]
+2026-06-06T05:15:11.7709034Z ##[command]/usr/bin/docker run --name f85687b7ce3a0a409ab2baebd1dc4e6f91_8743b1 --label 7392f8 --workdir /github/workspace --rm -e "GITHUB_TOKEN" -e "CONFIG_FILE" -e "EXTRA_PACKAGES" -e "REQUIREMENTS" -e "HOME" -e "GITHUB_JOB" -e "GITHUB_REF" -e "GITHUB_SHA" -e "GITHUB_REPOSITORY" -e "GITHUB_REPOSITORY_OWNER" -e "GITHUB_REPOSITORY_OWNER_ID" -e "GITHUB_RUN_ID" -e "GITHUB_RUN_NUMBER" -e "GITHUB_RETENTION_DAYS" -e "GITHUB_RUN_ATTEMPT" -e "GITHUB_ACTOR_ID" -e "GITHUB_ACTOR" -e "GITHUB_WORKFLOW" -e "GITHUB_HEAD_REF" -e "GITHUB_BASE_REF" -e "GITHUB_EVENT_NAME" -e "GITHUB_SERVER_URL" -e "GITHUB_API_URL" -e "GITHUB_GRAPHQL_URL" -e "GITHUB_REF_NAME" -e "GITHUB_REF_PROTECTED" -e "GITHUB_REF_TYPE" -e "GITHUB_WORKFLOW_REF" -e "GITHUB_WORKFLOW_SHA" -e "GITHUB_REPOSITORY_ID" -e "GITHUB_TRIGGERING_ACTOR" -e "GITHUB_WORKSPACE" -e "GITHUB_ACTION" -e "GITHUB_EVENT_PATH" -e "GITHUB_ACTION_REPOSITORY" -e "GITHUB_ACTION_REF" -e "GITHUB_PATH" -e "GITHUB_ENV" -e "GITHUB_STEP_SUMMARY" -e "GITHUB_STATE" -e "GITHUB_OUTPUT" -e "RUNNER_OS" -e "RUNNER_ARCH" -e "RUNNER_NAME" -e "RUNNER_ENVIRONMENT" -e "RUNNER_TOOL_CACHE" -e "RUNNER_TEMP" -e "RUNNER_WORKSPACE" -e "ACTIONS_RUNTIME_URL" -e "ACTIONS_RUNTIME_TOKEN" -e "ACTIONS_CACHE_URL" -e "ACTIONS_RESULTS_URL" -e "ACTIONS_ORCHESTRATION_ID" -e GITHUB_ACTIONS=true -e CI=true -v "/var/run/docker.sock":"/var/run/docker.sock" -v "/home/runner/work/_temp":"/github/runner_temp" -v "/home/runner/work/_temp/_github_home":"/github/home" -v "/home/runner/work/_temp/_github_workflow":"/github/workflow" -v "/home/runner/work/_temp/_runner_file_commands":"/github/file_commands" -v "/home/runner/work/jagger235711.github.io/jagger235711.github.io":"/github/workspace" 7392f8:5687b7ce3a0a409ab2baebd1dc4e6f91
+2026-06-06T05:15:11.9268775Z fetch https://dl-cdn.alpinelinux.org/alpine/v3.18/main/x86_64/APKINDEX.tar.gz
+2026-06-06T05:15:12.2635121Z fetch https://dl-cdn.alpinelinux.org/alpine/v3.18/community/x86_64/APKINDEX.tar.gz
+2026-06-06T05:15:12.5752017Z OK: 287 MiB in 100 packages
+2026-06-06T05:15:14.1076794Z WARNING: The directory '/github/home/.cache/pip' or its parent directory is not owned or is not writable by the current user. The cache has been disabled. Check the permissions and owner of that directory. If executing pip with sudo, you should use sudo's -H flag.
+2026-06-06T05:15:14.3606539Z Collecting babel==2.17.0 (from -r /github/workspace/requirements.txt (line 1))
+2026-06-06T05:15:14.4263662Z   Downloading babel-2.17.0-py3-none-any.whl.metadata (2.0 kB)
+2026-06-06T05:15:14.4639358Z Collecting backrefs==5.9 (from -r /github/workspace/requirements.txt (line 2))
+2026-06-06T05:15:14.4810974Z   Downloading backrefs-5.9-py311-none-any.whl.metadata (3.2 kB)
+2026-06-06T05:15:14.5051599Z Collecting bracex==2.5 (from -r /github/workspace/requirements.txt (line 3))
+2026-06-06T05:15:14.5223547Z   Downloading bracex-2.5-py3-none-any.whl.metadata (3.5 kB)
+2026-06-06T05:15:14.5252491Z Requirement already satisfied: cairocffi==1.6.1 in /usr/local/lib/python3.11/site-packages (from -r /github/workspace/requirements.txt (line 4)) (1.6.1)
+2026-06-06T05:15:14.5262274Z Requirement already satisfied: cairosvg==2.7.1 in /usr/local/lib/python3.11/site-packages (from -r /github/workspace/requirements.txt (line 5)) (2.7.1)
+2026-06-06T05:15:14.5575183Z Collecting certifi==2025.7.14 (from -r /github/workspace/requirements.txt (line 6))
+2026-06-06T05:15:14.5739948Z   Downloading certifi-2025.7.14-py3-none-any.whl.metadata (2.4 kB)
+2026-06-06T05:15:14.5763868Z Requirement already satisfied: cffi==1.16.0 in /usr/local/lib/python3.11/site-packages (from -r /github/workspace/requirements.txt (line 7)) (1.16.0)
+2026-06-06T05:15:14.7191176Z Collecting charset-normalizer==3.4.2 (from -r /github/workspace/requirements.txt (line 8))
+2026-06-06T05:15:14.7358858Z   Downloading charset_normalizer-3.4.2-cp311-cp311-musllinux_1_2_x86_64.whl.metadata (35 kB)
+2026-06-06T05:15:14.7798599Z Collecting click==8.2.1 (from -r /github/workspace/requirements.txt (line 9))
+2026-06-06T05:15:14.7956533Z   Downloading click-8.2.1-py3-none-any.whl.metadata (2.5 kB)
+2026-06-06T05:15:14.7988140Z Requirement already satisfied: colorama==0.4.6 in /usr/local/lib/python3.11/site-packages (from -r /github/workspace/requirements.txt (line 10)) (0.4.6)
+2026-06-06T05:15:14.8212871Z Collecting cssselect2==0.8.0 (from -r /github/workspace/requirements.txt (line 11))
+2026-06-06T05:15:14.8371109Z   Downloading cssselect2-0.8.0-py3-none-any.whl.metadata (2.9 kB)
+2026-06-06T05:15:14.8409613Z Requirement already satisfied: defusedxml==0.7.1 in /usr/local/lib/python3.11/site-packages (from -r /github/workspace/requirements.txt (line 12)) (0.7.1)
+2026-06-06T05:15:14.8421532Z Requirement already satisfied: ghp-import==2.1.0 in /usr/local/lib/python3.11/site-packages (from -r /github/workspace/requirements.txt (line 13)) (2.1.0)
+2026-06-06T05:15:14.8662256Z Collecting gitdb==4.0.12 (from -r /github/workspace/requirements.txt (line 14))
+2026-06-06T05:15:14.8821430Z   Downloading gitdb-4.0.12-py3-none-any.whl.metadata (1.2 kB)
+2026-06-06T05:15:14.9201970Z Collecting gitpython==3.1.45 (from -r /github/workspace/requirements.txt (line 15))
+2026-06-06T05:15:14.9366781Z   Downloading gitpython-3.1.45-py3-none-any.whl.metadata (13 kB)
+2026-06-06T05:15:14.9640280Z Collecting idna==3.10 (from -r /github/workspace/requirements.txt (line 16))
+2026-06-06T05:15:14.9797795Z   Downloading idna-3.10-py3-none-any.whl.metadata (10 kB)
+2026-06-06T05:15:15.0016473Z Collecting jieba==0.42.1 (from -r /github/workspace/requirements.txt (line 17))
+2026-06-06T05:15:15.0176451Z   Downloading jieba-0.42.1.tar.gz (19.2 MB)
+2026-06-06T05:15:15.2155915Z      ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 19.2/19.2 MB 292.8 MB/s eta 0:00:00
+2026-06-06T05:15:15.7458940Z   Preparing metadata (setup.py): started
+2026-06-06T05:15:16.6079338Z   Preparing metadata (setup.py): finished with status 'done'
+2026-06-06T05:15:16.6361276Z Collecting jinja2==3.1.6 (from -r /github/workspace/requirements.txt (line 18))
+2026-06-06T05:15:16.6520053Z   Downloading jinja2-3.1.6-py3-none-any.whl.metadata (2.9 kB)
+2026-06-06T05:15:16.6823954Z Collecting markdown==3.8.2 (from -r /github/workspace/requirements.txt (line 19))
+2026-06-06T05:15:16.6982002Z   Downloading markdown-3.8.2-py3-none-any.whl.metadata (5.1 kB)
+2026-06-06T05:15:16.7627431Z Collecting markupsafe==3.0.2 (from -r /github/workspace/requirements.txt (line 20))
+2026-06-06T05:15:16.7793407Z   Downloading MarkupSafe-3.0.2-cp311-cp311-musllinux_1_2_x86_64.whl.metadata (4.0 kB)
+2026-06-06T05:15:16.7824385Z Requirement already satisfied: mergedeep==1.3.4 in /usr/local/lib/python3.11/site-packages (from -r /github/workspace/requirements.txt (line 21)) (1.3.4)
+2026-06-06T05:15:16.8104582Z Collecting mkdocs==1.6.1 (from -r /github/workspace/requirements.txt (line 22))
+2026-06-06T05:15:16.8263190Z   Downloading mkdocs-1.6.1-py3-none-any.whl.metadata (6.0 kB)
+2026-06-06T05:15:16.8528490Z Collecting mkdocs-awesome-pages-plugin==2.10.1 (from -r /github/workspace/requirements.txt (line 23))
+2026-06-06T05:15:16.8687995Z   Downloading mkdocs_awesome_pages_plugin-2.10.1-py3-none-any.whl.metadata (13 kB)
+2026-06-06T05:15:16.9866603Z Collecting mkdocs-blogging-plugin==2.2.11 (from -r /github/workspace/requirements.txt (line 24))
+2026-06-06T05:15:17.0039317Z   Downloading mkdocs_blogging_plugin-2.2.11-py3-none-any.whl.metadata (2.1 kB)
+2026-06-06T05:15:17.0248431Z Collecting mkdocs-get-deps==0.2.0 (from -r /github/workspace/requirements.txt (line 25))
+2026-06-06T05:15:17.0415427Z   Downloading mkdocs_get_deps-0.2.0-py3-none-any.whl.metadata (4.0 kB)
+2026-06-06T05:15:17.0755128Z Collecting mkdocs-git-revision-date-localized-plugin==1.4.7 (from -r /github/workspace/requirements.txt (line 26))
+2026-06-06T05:15:17.0931080Z   Downloading mkdocs_git_revision_date_localized_plugin-1.4.7-py3-none-any.whl.metadata (5.8 kB)
+2026-06-06T05:15:17.1166525Z Collecting mkdocs-glightbox==0.4.0 (from -r /github/workspace/requirements.txt (line 27))
+2026-06-06T05:15:17.1332544Z   Downloading mkdocs_glightbox-0.4.0-py3-none-any.whl.metadata (6.1 kB)
+2026-06-06T05:15:17.2494447Z Collecting mkdocs-material==9.6.15 (from -r /github/workspace/requirements.txt (line 28))
+2026-06-06T05:15:17.2673906Z   Downloading mkdocs_material-9.6.15-py3-none-any.whl.metadata (19 kB)
+2026-06-06T05:15:17.2721547Z Requirement already satisfied: mkdocs-material-extensions==1.3.1 in /usr/local/lib/python3.11/site-packages (from -r /github/workspace/requirements.txt (line 29)) (1.3.1)
+2026-06-06T05:15:17.3058096Z Collecting natsort==8.4.0 (from -r /github/workspace/requirements.txt (line 30))
+2026-06-06T05:15:17.3215632Z   Downloading natsort-8.4.0-py3-none-any.whl.metadata (21 kB)
+2026-06-06T05:15:17.3537775Z Collecting packaging==25.0 (from -r /github/workspace/requirements.txt (line 31))
+2026-06-06T05:15:17.3696299Z   Downloading packaging-25.0-py3-none-any.whl.metadata (3.3 kB)
+2026-06-06T05:15:17.3906655Z Collecting paginate==0.5.7 (from -r /github/workspace/requirements.txt (line 32))
+2026-06-06T05:15:17.4064141Z   Downloading paginate-0.5.7-py2.py3-none-any.whl.metadata (11 kB)
+2026-06-06T05:15:17.4103663Z Requirement already satisfied: pathspec==0.12.1 in /usr/local/lib/python3.11/site-packages (from -r /github/workspace/requirements.txt (line 33)) (0.12.1)
+2026-06-06T05:15:17.6236482Z Collecting pillow==11.3.0 (from -r /github/workspace/requirements.txt (line 34))
+2026-06-06T05:15:17.6403586Z   Downloading pillow-11.3.0-cp311-cp311-musllinux_1_2_x86_64.whl.metadata (9.0 kB)
+2026-06-06T05:15:17.6922315Z Collecting pip==25.1.1 (from -r /github/workspace/requirements.txt (line 35))
+2026-06-06T05:15:17.7092262Z   Downloading pip-25.1.1-py3-none-any.whl.metadata (3.6 kB)
+2026-06-06T05:15:17.7662902Z Collecting pip-review==1.3.0 (from -r /github/workspace/requirements.txt (line 36))
+2026-06-06T05:15:17.7835571Z   Downloading pip-review-1.3.0.tar.gz (6.6 kB)
+2026-06-06T05:15:17.7891875Z   Preparing metadata (setup.py): started
+2026-06-06T05:15:18.6690700Z   Preparing metadata (setup.py): finished with status 'done'
+2026-06-06T05:15:18.7019425Z Collecting platformdirs==4.3.8 (from -r /github/workspace/requirements.txt (line 37))
+2026-06-06T05:15:18.7179231Z   Downloading platformdirs-4.3.8-py3-none-any.whl.metadata (12 kB)
+2026-06-06T05:15:18.7211835Z Requirement already satisfied: pycparser==2.22 in /usr/local/lib/python3.11/site-packages (from -r /github/workspace/requirements.txt (line 38)) (2.22)
+2026-06-06T05:15:18.7524487Z Collecting pygments==2.19.2 (from -r /github/workspace/requirements.txt (line 39))
+2026-06-06T05:15:18.7683681Z   Downloading pygments-2.19.2-py3-none-any.whl.metadata (2.5 kB)
+2026-06-06T05:15:18.8167672Z Collecting pymdown-extensions==10.16 (from -r /github/workspace/requirements.txt (line 40))
+2026-06-06T05:15:18.8329026Z   Downloading pymdown_extensions-10.16-py3-none-any.whl.metadata (3.0 kB)
+2026-06-06T05:15:18.8356852Z Requirement already satisfied: python-dateutil==2.9.0.post0 in /usr/local/lib/python3.11/site-packages (from -r /github/workspace/requirements.txt (line 41)) (2.9.0.post0)
+2026-06-06T05:15:18.8880983Z Collecting pytz==2025.2 (from -r /github/workspace/requirements.txt (line 42))
+2026-06-06T05:15:18.9039063Z   Downloading pytz-2025.2-py2.py3-none-any.whl.metadata (22 kB)
+2026-06-06T05:15:18.9541621Z Collecting pyyaml==6.0.2 (from -r /github/workspace/requirements.txt (line 43))
+2026-06-06T05:15:18.9715546Z   Downloading PyYAML-6.0.2-cp311-cp311-musllinux_1_1_x86_64.whl.metadata (2.1 kB)
+2026-06-06T05:15:18.9926994Z Collecting pyyaml-env-tag==1.1 (from -r /github/workspace/requirements.txt (line 44))
+2026-06-06T05:15:19.0083471Z   Downloading pyyaml_env_tag-1.1-py3-none-any.whl.metadata (5.5 kB)
+2026-06-06T05:15:19.4518774Z Collecting regex==2024.11.6 (from -r /github/workspace/requirements.txt (line 45))
+2026-06-06T05:15:19.4684342Z   Downloading regex-2024.11.6-cp311-cp311-musllinux_1_2_x86_64.whl.metadata (40 kB)
+2026-06-06T05:15:19.4706703Z      ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 40.5/40.5 kB 279.5 MB/s eta 0:00:00
+2026-06-06T05:15:19.5130553Z Collecting requests==2.32.4 (from -r /github/workspace/requirements.txt (line 46))
+2026-06-06T05:15:19.5287332Z   Downloading requests-2.32.4-py3-none-any.whl.metadata (4.9 kB)
+2026-06-06T05:15:19.5518223Z Collecting six==1.17.0 (from -r /github/workspace/requirements.txt (line 47))
+2026-06-06T05:15:19.5680451Z   Downloading six-1.17.0-py2.py3-none-any.whl.metadata (1.7 kB)
+2026-06-06T05:15:19.5917788Z Collecting smmap==5.0.2 (from -r /github/workspace/requirements.txt (line 48))
+2026-06-06T05:15:19.6076600Z   Downloading smmap-5.0.2-py3-none-any.whl.metadata (4.3 kB)
+2026-06-06T05:15:19.6101803Z Requirement already satisfied: tinycss2==1.2.1 in /usr/local/lib/python3.11/site-packages (from -r /github/workspace/requirements.txt (line 49)) (1.2.1)
+2026-06-06T05:15:19.6523414Z Collecting urllib3==2.5.0 (from -r /github/workspace/requirements.txt (line 50))
+2026-06-06T05:15:19.6682221Z   Downloading urllib3-2.5.0-py3-none-any.whl.metadata (6.5 kB)
+2026-06-06T05:15:19.7241306Z Collecting watchdog==6.0.0 (from -r /github/workspace/requirements.txt (line 51))
+2026-06-06T05:15:19.7401896Z   Downloading watchdog-6.0.0.tar.gz (131 kB)
+2026-06-06T05:15:19.7432404Z      ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 131.2/131.2 kB 360.2 MB/s eta 0:00:00
+2026-06-06T05:15:19.7731870Z   Installing build dependencies: started
+2026-06-06T05:15:22.9218829Z   Installing build dependencies: finished with status 'done'
+2026-06-06T05:15:22.9225479Z   Getting requirements to build wheel: started
+2026-06-06T05:15:23.5149133Z   Getting requirements to build wheel: finished with status 'done'
+2026-06-06T05:15:23.5158590Z   Preparing metadata (pyproject.toml): started
+2026-06-06T05:15:24.1145659Z   Preparing metadata (pyproject.toml): finished with status 'done'
+2026-06-06T05:15:24.1455865Z Collecting wcmatch==8.5 (from -r /github/workspace/requirements.txt (line 52))
+2026-06-06T05:15:24.1627871Z   Downloading wcmatch-8.5-py3-none-any.whl.metadata (5.1 kB)
+2026-06-06T05:15:24.1653412Z Requirement already satisfied: webencodings==0.5.1 in /usr/local/lib/python3.11/site-packages (from -r /github/workspace/requirements.txt (line 53)) (0.5.1)
+2026-06-06T05:15:24.6270428Z Downloading babel-2.17.0-py3-none-any.whl (10.2 MB)
+2026-06-06T05:15:24.6613723Z    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 10.2/10.2 MB 358.7 MB/s eta 0:00:00
+2026-06-06T05:15:24.6778377Z Downloading backrefs-5.9-py311-none-any.whl (392 kB)
+2026-06-06T05:15:24.6809146Z    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 392.1/392.1 kB 380.2 MB/s eta 0:00:00
+2026-06-06T05:15:24.6985849Z Downloading bracex-2.5-py3-none-any.whl (11 kB)
+2026-06-06T05:15:24.7145594Z Downloading certifi-2025.7.14-py3-none-any.whl (162 kB)
+2026-06-06T05:15:24.7177147Z    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 162.7/162.7 kB 330.5 MB/s eta 0:00:00
+2026-06-06T05:15:24.7354368Z Downloading charset_normalizer-3.4.2-cp311-cp311-musllinux_1_2_x86_64.whl (148 kB)
+2026-06-06T05:15:24.7377509Z    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 148.0/148.0 kB 298.9 MB/s eta 0:00:00
+2026-06-06T05:15:24.7536931Z Downloading click-8.2.1-py3-none-any.whl (102 kB)
+2026-06-06T05:15:24.7559548Z    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 102.2/102.2 kB 325.9 MB/s eta 0:00:00
+2026-06-06T05:15:24.7716570Z Downloading cssselect2-0.8.0-py3-none-any.whl (15 kB)
+2026-06-06T05:15:24.7875500Z Downloading gitdb-4.0.12-py3-none-any.whl (62 kB)
+2026-06-06T05:15:24.7894120Z    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 62.8/62.8 kB 309.9 MB/s eta 0:00:00
+2026-06-06T05:15:24.8051403Z Downloading gitpython-3.1.45-py3-none-any.whl (208 kB)
+2026-06-06T05:15:24.8074417Z    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 208.2/208.2 kB 383.5 MB/s eta 0:00:00
+2026-06-06T05:15:24.8235634Z Downloading idna-3.10-py3-none-any.whl (70 kB)
+2026-06-06T05:15:24.8255282Z    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 70.4/70.4 kB 314.2 MB/s eta 0:00:00
+2026-06-06T05:15:24.8412704Z Downloading jinja2-3.1.6-py3-none-any.whl (134 kB)
+2026-06-06T05:15:24.8437986Z    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 134.9/134.9 kB 366.4 MB/s eta 0:00:00
+2026-06-06T05:15:24.8594871Z Downloading markdown-3.8.2-py3-none-any.whl (106 kB)
+2026-06-06T05:15:24.8615680Z    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 106.8/106.8 kB 349.8 MB/s eta 0:00:00
+2026-06-06T05:15:24.8778961Z Downloading MarkupSafe-3.0.2-cp311-cp311-musllinux_1_2_x86_64.whl (23 kB)
+2026-06-06T05:15:24.8950643Z Downloading mkdocs-1.6.1-py3-none-any.whl (3.9 MB)
+2026-06-06T05:15:24.9120307Z    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 3.9/3.9 MB 256.7 MB/s eta 0:00:00
+2026-06-06T05:15:24.9282333Z Downloading mkdocs_awesome_pages_plugin-2.10.1-py3-none-any.whl (15 kB)
+2026-06-06T05:15:24.9453275Z Downloading mkdocs_blogging_plugin-2.2.11-py3-none-any.whl (18 kB)
+2026-06-06T05:15:24.9612258Z Downloading mkdocs_get_deps-0.2.0-py3-none-any.whl (9.5 kB)
+2026-06-06T05:15:24.9772708Z Downloading mkdocs_git_revision_date_localized_plugin-1.4.7-py3-none-any.whl (25 kB)
+2026-06-06T05:15:24.9943369Z Downloading mkdocs_glightbox-0.4.0-py3-none-any.whl (31 kB)
+2026-06-06T05:15:25.0109531Z Downloading mkdocs_material-9.6.15-py3-none-any.whl (8.7 MB)
+2026-06-06T05:15:25.0474185Z    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 8.7/8.7 MB 252.4 MB/s eta 0:00:00
+2026-06-06T05:15:25.0633404Z Downloading natsort-8.4.0-py3-none-any.whl (38 kB)
+2026-06-06T05:15:25.0794802Z Downloading packaging-25.0-py3-none-any.whl (66 kB)
+2026-06-06T05:15:25.0815090Z    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 66.5/66.5 kB 297.1 MB/s eta 0:00:00
+2026-06-06T05:15:25.0972116Z Downloading paginate-0.5.7-py2.py3-none-any.whl (13 kB)
+2026-06-06T05:15:25.1140744Z Downloading pillow-11.3.0-cp311-cp311-musllinux_1_2_x86_64.whl (6.7 MB)
+2026-06-06T05:15:25.1487669Z    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 6.7/6.7 MB 205.9 MB/s eta 0:00:00
+2026-06-06T05:15:25.1649316Z Downloading pip-25.1.1-py3-none-any.whl (1.8 MB)
+2026-06-06T05:15:25.1720963Z    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 1.8/1.8 MB 338.2 MB/s eta 0:00:00
+2026-06-06T05:15:25.1878126Z Downloading platformdirs-4.3.8-py3-none-any.whl (18 kB)
+2026-06-06T05:15:25.2040545Z Downloading pygments-2.19.2-py3-none-any.whl (1.2 MB)
+2026-06-06T05:15:25.2096524Z    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 1.2/1.2 MB 396.1 MB/s eta 0:00:00
+2026-06-06T05:15:25.2251716Z Downloading pymdown_extensions-10.16-py3-none-any.whl (266 kB)
+2026-06-06T05:15:25.2277149Z    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 266.1/266.1 kB 335.5 MB/s eta 0:00:00
+2026-06-06T05:15:25.2436318Z Downloading pytz-2025.2-py2.py3-none-any.whl (509 kB)
+2026-06-06T05:15:25.2467257Z    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 509.2/509.2 kB 388.9 MB/s eta 0:00:00
+2026-06-06T05:15:25.2643475Z Downloading PyYAML-6.0.2-cp311-cp311-musllinux_1_1_x86_64.whl (756 kB)
+2026-06-06T05:15:25.2686735Z    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 756.6/756.6 kB 330.5 MB/s eta 0:00:00
+2026-06-06T05:15:25.2844767Z Downloading pyyaml_env_tag-1.1-py3-none-any.whl (4.7 kB)
+2026-06-06T05:15:25.3011590Z Downloading regex-2024.11.6-cp311-cp311-musllinux_1_2_x86_64.whl (781 kB)
+2026-06-06T05:15:25.3052150Z    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 781.2/781.2 kB 358.1 MB/s eta 0:00:00
+2026-06-06T05:15:25.3209071Z Downloading requests-2.32.4-py3-none-any.whl (64 kB)
+2026-06-06T05:15:25.3228242Z    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 64.8/64.8 kB 273.7 MB/s eta 0:00:00
+2026-06-06T05:15:25.3386118Z Downloading six-1.17.0-py2.py3-none-any.whl (11 kB)
+2026-06-06T05:15:25.3544640Z Downloading smmap-5.0.2-py3-none-any.whl (24 kB)
+2026-06-06T05:15:25.3704287Z Downloading urllib3-2.5.0-py3-none-any.whl (129 kB)
+2026-06-06T05:15:25.3727690Z    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 129.8/129.8 kB 349.1 MB/s eta 0:00:00
+2026-06-06T05:15:25.3886429Z Downloading wcmatch-8.5-py3-none-any.whl (39 kB)
+2026-06-06T05:15:25.5371288Z Building wheels for collected packages: jieba, pip-review, watchdog
+2026-06-06T05:15:25.5377493Z   Building wheel for jieba (setup.py): started
+2026-06-06T05:15:28.5264526Z   Building wheel for jieba (setup.py): finished with status 'done'
+2026-06-06T05:15:28.5510691Z   Created wheel for jieba: filename=jieba-0.42.1-py3-none-any.whl size=19314459 sha256=edc1fa97d0534f25c631f5194965b466b99f9217dcdf0146fa0c8e6ab0b8e9a1
+2026-06-06T05:15:28.5513105Z   Stored in directory: /tmp/pip-ephem-wheel-cache-5f17fav7/wheels/ac/60/cf/538a1f183409caf1fc136b5d2c2dee329001ef6da2c5084bef
+2026-06-06T05:15:28.5538308Z   Building wheel for pip-review (setup.py): started
+2026-06-06T05:15:29.6728109Z   Building wheel for pip-review (setup.py): finished with status 'done'
+2026-06-06T05:15:29.6732147Z   Created wheel for pip-review: filename=pip_review-1.3.0-py3-none-any.whl size=6538 sha256=d53fbfe9b2eb3b0276a7baac0f5451b3e75c043461a4597cb23e412ceaeef68d
+2026-06-06T05:15:29.6733817Z   Stored in directory: /tmp/pip-ephem-wheel-cache-5f17fav7/wheels/d0/ce/12/63bc7509769c60694754be1b384738e28855393a959ebdd350
+2026-06-06T05:15:29.6764149Z   Building wheel for watchdog (pyproject.toml): started
+2026-06-06T05:15:30.3420485Z   Building wheel for watchdog (pyproject.toml): finished with status 'done'
+2026-06-06T05:15:30.3429253Z   Created wheel for watchdog: filename=watchdog-6.0.0-py3-none-any.whl size=79192 sha256=6f878ee890307c4779336398d86023a19b089417def65f406eac7315487df41b
+2026-06-06T05:15:30.3435287Z   Stored in directory: /tmp/pip-ephem-wheel-cache-5f17fav7/wheels/b7/2d/8a/170383879a0550bd4837c14b19467ca6190fb9cee30c48b105
+2026-06-06T05:15:30.3488573Z Successfully built jieba pip-review watchdog
+2026-06-06T05:15:30.7035896Z Installing collected packages: pytz, paginate, mkdocs-glightbox, jieba, watchdog, urllib3, smmap, six, regex, pyyaml, pygments, platformdirs, pip, pillow, packaging, natsort, markupsafe, markdown, idna, click, charset-normalizer, certifi, bracex, backrefs, babel, wcmatch, requests, pyyaml-env-tag, pymdown-extensions, pip-review, mkdocs-get-deps, jinja2, gitdb, cssselect2, gitpython, mkdocs, mkdocs-material, mkdocs-git-revision-date-localized-plugin, mkdocs-blogging-plugin, mkdocs-awesome-pages-plugin
+2026-06-06T05:15:30.8461791Z   Attempting uninstall: paginate
+2026-06-06T05:15:30.8591324Z     Found existing installation: paginate 0.5.6
+2026-06-06T05:15:30.8610685Z     Uninstalling paginate-0.5.6:
+2026-06-06T05:15:30.8626933Z       Successfully uninstalled paginate-0.5.6
+2026-06-06T05:15:32.2940526Z   Attempting uninstall: watchdog
+2026-06-06T05:15:32.3103253Z     Found existing installation: watchdog 4.0.0
+2026-06-06T05:15:32.3152244Z     Uninstalling watchdog-4.0.0:
+2026-06-06T05:15:32.3183808Z       Successfully uninstalled watchdog-4.0.0
+2026-06-06T05:15:32.3768766Z   Attempting uninstall: urllib3
+2026-06-06T05:15:32.3833422Z     Found existing installation: urllib3 2.2.1
+2026-06-06T05:15:32.3878819Z     Uninstalling urllib3-2.2.1:
+2026-06-06T05:15:32.3897440Z       Successfully uninstalled urllib3-2.2.1
+2026-06-06T05:15:32.4782234Z   Attempting uninstall: smmap
+2026-06-06T05:15:32.4933583Z     Found existing installation: smmap 5.0.1
+2026-06-06T05:15:32.4959099Z     Uninstalling smmap-5.0.1:
+2026-06-06T05:15:32.4976373Z       Successfully uninstalled smmap-5.0.1
+2026-06-06T05:15:32.5179626Z   Attempting uninstall: six
+2026-06-06T05:15:32.5352325Z     Found existing installation: six 1.16.0
+2026-06-06T05:15:32.5369393Z     Uninstalling six-1.16.0:
+2026-06-06T05:15:32.5817838Z       Successfully uninstalled six-1.16.0
+2026-06-06T05:15:32.5947797Z   Attempting uninstall: regex
+2026-06-06T05:15:32.6110187Z     Found existing installation: regex 2023.12.25
+2026-06-06T05:15:32.6136138Z     Uninstalling regex-2023.12.25:
+2026-06-06T05:15:32.6151696Z       Successfully uninstalled regex-2023.12.25
+2026-06-06T05:15:32.7185086Z   Attempting uninstall: pyyaml
+2026-06-06T05:15:32.7282014Z     Found existing installation: PyYAML 6.0.1
+2026-06-06T05:15:32.7311055Z     Uninstalling PyYAML-6.0.1:
+2026-06-06T05:15:32.7334667Z       Successfully uninstalled PyYAML-6.0.1
+2026-06-06T05:15:32.8055783Z   Attempting uninstall: pygments
+2026-06-06T05:15:32.8220876Z     Found existing installation: Pygments 2.17.2
+2026-06-06T05:15:32.8470214Z     Uninstalling Pygments-2.17.2:
+2026-06-06T05:15:32.8508504Z       Successfully uninstalled Pygments-2.17.2
+2026-06-06T05:15:33.6561857Z   Attempting uninstall: platformdirs
+2026-06-06T05:15:33.6722732Z     Found existing installation: platformdirs 4.2.0
+2026-06-06T05:15:33.6747543Z     Uninstalling platformdirs-4.2.0:
+2026-06-06T05:15:33.6764498Z       Successfully uninstalled platformdirs-4.2.0
+2026-06-06T05:15:33.6961777Z   Attempting uninstall: pip
+2026-06-06T05:15:33.7146290Z     Found existing installation: pip 24.0
+2026-06-06T05:15:33.7476517Z     Uninstalling pip-24.0:
+2026-06-06T05:15:33.7540996Z       Successfully uninstalled pip-24.0
+2026-06-06T05:15:34.7876201Z   Attempting uninstall: pillow
+2026-06-06T05:15:34.8071049Z     Found existing installation: pillow 10.3.0
+2026-06-06T05:15:34.8168117Z     Uninstalling pillow-10.3.0:
+2026-06-06T05:15:34.8193695Z       Successfully uninstalled pillow-10.3.0
+2026-06-06T05:15:35.2255084Z   Attempting uninstall: packaging
+2026-06-06T05:15:35.2392312Z     Found existing installation: packaging 24.0
+2026-06-06T05:15:35.2419496Z     Uninstalling packaging-24.0:
+2026-06-06T05:15:35.2435761Z       Successfully uninstalled packaging-24.0
+2026-06-06T05:15:35.3190093Z   Attempting uninstall: markupsafe
+2026-06-06T05:15:35.3293261Z     Found existing installation: MarkupSafe 2.1.5
+2026-06-06T05:15:35.3312351Z     Uninstalling MarkupSafe-2.1.5:
+2026-06-06T05:15:35.3327993Z       Successfully uninstalled MarkupSafe-2.1.5
+2026-06-06T05:15:35.3429612Z   Attempting uninstall: markdown
+2026-06-06T05:15:35.3530613Z     Found existing installation: Markdown 3.6
+2026-06-06T05:15:35.3574539Z     Uninstalling Markdown-3.6:
+2026-06-06T05:15:35.3599484Z       Successfully uninstalled Markdown-3.6
+2026-06-06T05:15:35.4342418Z   Attempting uninstall: idna
+2026-06-06T05:15:35.4473254Z     Found existing installation: idna 3.6
+2026-06-06T05:15:35.4495109Z     Uninstalling idna-3.6:
+2026-06-06T05:15:35.4511432Z       Successfully uninstalled idna-3.6
+2026-06-06T05:15:35.5377348Z   Attempting uninstall: click
+2026-06-06T05:15:35.5557507Z     Found existing installation: click 8.1.7
+2026-06-06T05:15:35.5584629Z     Uninstalling click-8.1.7:
+2026-06-06T05:15:35.5601971Z       Successfully uninstalled click-8.1.7
+2026-06-06T05:15:35.6329712Z   Attempting uninstall: charset-normalizer
+2026-06-06T05:15:35.6506585Z     Found existing installation: charset-normalizer 3.3.2
+2026-06-06T05:15:35.6546734Z     Uninstalling charset-normalizer-3.3.2:
+2026-06-06T05:15:35.6574725Z       Successfully uninstalled charset-normalizer-3.3.2
+2026-06-06T05:15:35.6981853Z   Attempting uninstall: certifi
+2026-06-06T05:15:35.7150158Z     Found existing installation: certifi 2024.2.2
+2026-06-06T05:15:35.7168430Z     Uninstalling certifi-2024.2.2:
+2026-06-06T05:15:35.7183422Z       Successfully uninstalled certifi-2024.2.2
+2026-06-06T05:15:35.8530773Z   Attempting uninstall: babel
+2026-06-06T05:15:35.8676290Z     Found existing installation: Babel 2.14.0
+2026-06-06T05:15:35.8914975Z     Uninstalling Babel-2.14.0:
+2026-06-06T05:15:35.8969112Z       Successfully uninstalled Babel-2.14.0
+2026-06-06T05:15:36.5027688Z   Attempting uninstall: requests
+2026-06-06T05:15:36.5204579Z     Found existing installation: requests 2.31.0
+2026-06-06T05:15:36.5233594Z     Uninstalling requests-2.31.0:
+2026-06-06T05:15:36.5249398Z       Successfully uninstalled requests-2.31.0
+2026-06-06T05:15:36.5672527Z   Attempting uninstall: pyyaml-env-tag
+2026-06-06T05:15:36.5823298Z     Found existing installation: pyyaml_env_tag 0.1
+2026-06-06T05:15:36.5839194Z     Uninstalling pyyaml_env_tag-0.1:
+2026-06-06T05:15:36.6321521Z       Successfully uninstalled pyyaml_env_tag-0.1
+2026-06-06T05:15:36.6377422Z   Attempting uninstall: pymdown-extensions
+2026-06-06T05:15:36.6569519Z     Found existing installation: pymdown-extensions 10.7.1
+2026-06-06T05:15:36.6612003Z     Uninstalling pymdown-extensions-10.7.1:
+2026-06-06T05:15:36.6630702Z       Successfully uninstalled pymdown-extensions-10.7.1
+2026-06-06T05:15:36.9123627Z   Attempting uninstall: jinja2
+2026-06-06T05:15:36.9302102Z     Found existing installation: Jinja2 3.1.3
+2026-06-06T05:15:36.9335266Z     Uninstalling Jinja2-3.1.3:
+2026-06-06T05:15:36.9352361Z       Successfully uninstalled Jinja2-3.1.3
+2026-06-06T05:15:37.0398630Z   Attempting uninstall: gitdb
+2026-06-06T05:15:37.0536333Z     Found existing installation: gitdb 4.0.11
+2026-06-06T05:15:37.0572687Z     Uninstalling gitdb-4.0.11:
+2026-06-06T05:15:37.0591994Z       Successfully uninstalled gitdb-4.0.11
+2026-06-06T05:15:37.1058904Z   Attempting uninstall: cssselect2
+2026-06-06T05:15:37.1241096Z     Found existing installation: cssselect2 0.7.0
+2026-06-06T05:15:37.1259527Z     Uninstalling cssselect2-0.7.0:
+2026-06-06T05:15:37.1277138Z       Successfully uninstalled cssselect2-0.7.0
+2026-06-06T05:15:37.1444132Z   Attempting uninstall: gitpython
+2026-06-06T05:15:37.1593897Z     Found existing installation: GitPython 3.1.43
+2026-06-06T05:15:37.1641280Z     Uninstalling GitPython-3.1.43:
+2026-06-06T05:15:37.1662659Z       Successfully uninstalled GitPython-3.1.43
+2026-06-06T05:15:37.2876249Z   Attempting uninstall: mkdocs
+2026-06-06T05:15:37.3043195Z     Found existing installation: mkdocs 1.5.3
+2026-06-06T05:15:37.3182734Z     Uninstalling mkdocs-1.5.3:
+2026-06-06T05:15:37.3486128Z       Successfully uninstalled mkdocs-1.5.3
+2026-06-06T05:15:37.5052281Z   Attempting uninstall: mkdocs-material
+2026-06-06T05:15:37.5245209Z     Found existing installation: mkdocs-material 9.5.17
+2026-06-06T05:15:37.8108116Z     Uninstalling mkdocs-material-9.5.17:
+2026-06-06T05:15:37.8527113Z       Successfully uninstalled mkdocs-material-9.5.17
+2026-06-06T05:15:41.8344580Z Successfully installed babel-2.17.0 backrefs-5.9 bracex-2.5 certifi-2025.7.14 charset-normalizer-3.4.2 click-8.2.1 cssselect2-0.8.0 gitdb-4.0.12 gitpython-3.1.45 idna-3.10 jieba-0.42.1 jinja2-3.1.6 markdown-3.8.2 markupsafe-3.0.2 mkdocs-1.6.1 mkdocs-awesome-pages-plugin-2.10.1 mkdocs-blogging-plugin-2.2.11 mkdocs-get-deps-0.2.0 mkdocs-git-revision-date-localized-plugin-1.4.7 mkdocs-glightbox-0.4.0 mkdocs-material-9.6.15 natsort-8.4.0 packaging-25.0 paginate-0.5.7 pillow-11.3.0 pip-25.1.1 pip-review-1.3.0 platformdirs-4.3.8 pygments-2.19.2 pymdown-extensions-10.16 pytz-2025.2 pyyaml-6.0.2 pyyaml-env-tag-1.1 regex-2024.11.6 requests-2.32.4 six-1.17.0 smmap-5.0.2 urllib3-2.5.0 watchdog-6.0.0 wcmatch-8.5
+2026-06-06T05:15:41.8347790Z WARNING: Running pip as the 'root' user can result in broken permissions and conflicting behaviour with the system package manager. It is recommended to use a virtual environment instead: https://pip.pypa.io/warnings/venv
+2026-06-06T05:15:41.9791543Z 
+2026-06-06T05:15:41.9791932Z [notice] A new release of pip is available: 25.1.1 -> 26.1.2
+2026-06-06T05:15:41.9792546Z [notice] To update, run: pip install --upgrade pip
+2026-06-06T05:15:42.2785679Z INFO: Setting custom path for mkdocs config yml[m
+2026-06-06T05:15:42.2790134Z INFO: setup with GITHUB_TOKEN[m
+2026-06-06T05:15:43.2089528Z ERROR   -  Config value 'plugins': Plugin 'glightbox' option 'width': Expected type: <class 'str'> but received: <class 'int'>
+2026-06-06T05:15:43.2090329Z 
+2026-06-06T05:15:43.2090521Z Aborted with a configuration error!
+2026-06-06T05:15:44.1216924Z Post job cleanup.
+2026-06-06T05:15:44.2181765Z [command]/usr/bin/git version
+2026-06-06T05:15:44.2218324Z git version 2.54.0
+2026-06-06T05:15:44.2257909Z Temporarily overriding HOME='/home/runner/work/_temp/11415523-7abe-4287-b43d-b11c68cd4fe1' before making global git config changes
+2026-06-06T05:15:44.2258705Z Adding repository directory to the temporary git global config as a safe directory
+2026-06-06T05:15:44.2264998Z [command]/usr/bin/git config --global --add safe.directory /home/runner/work/jagger235711.github.io/jagger235711.github.io
+2026-06-06T05:15:44.2301183Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+2026-06-06T05:15:44.2335478Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+2026-06-06T05:15:44.2569888Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+2026-06-06T05:15:44.2593519Z http.https://github.com/.extraheader
+2026-06-06T05:15:44.2605667Z [command]/usr/bin/git config --local --unset-all http.https://github.com/.extraheader
+2026-06-06T05:15:44.2636327Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+2026-06-06T05:15:44.2865213Z [command]/usr/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
+2026-06-06T05:15:44.2896834Z [command]/usr/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
+2026-06-06T05:15:44.3256507Z Cleaning up orphan processes
+2026-06-06T05:15:44.3595511Z ##[warning]Node.js 20 actions are deprecated. The following actions are running on Node.js 20 and may not work as expected: actions/checkout@v4. Actions will be forced to run with Node.js 24 by default starting June 16th, 2026. Node.js 20 will be removed from the runner on September 16th, 2026. Please check if updated versions of these actions are available that support Node.js 24. To opt into Node.js 24 now, set the FORCE_JAVASCRIPT_ACTIONS_TO_NODE24=true environment variable on the runner or in your workflow file. Once Node.js 24 becomes the default, you can temporarily opt out by setting ACTIONS_ALLOW_USE_UNSECURE_NODE_VERSION=true. For more information see: https://github.blog/changelog/2025-09-19-deprecation-of-node-20-on-github-actions-runners/

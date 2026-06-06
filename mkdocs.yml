@@ -69,8 +69,8 @@ plugins:
       separator: '[\s\u200b\-]'
       prebuild_index: true
   - glightbox:
-      width: 800
-      height: 600
+      width: "800"
+      height: "600"
   - minify:
       minify_html: true
       minify_js: true
