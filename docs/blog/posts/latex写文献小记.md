@@ -1,10 +1,9 @@
 ---
-# draft: true 
-date: 2025-10-28 
+date: 2025-10-28
 categories:
-  - Hello World
-authors: 
-    - Jagger
+  - 技术分享
+authors:
+  - Jagger
 comments: true
 ---
 
