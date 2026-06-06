@@ -115,9 +115,9 @@ extra_css:
 # 社交信息
 extra:
   social:
-    - type: github
+    - icon: fontawesome/brands/github
       link: https://github.com/jagger235711
-    - type: twitter
+    - icon: fontawesome/brands/twitter
       link: https://twitter.com/your_handle
 
 # 版权信息
