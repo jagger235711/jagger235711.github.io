@@ -1,5 +1,5 @@
 ---
-draft: true 
+draft: false 
 date: 2026-05-28 
 categories:
   - 技术分享
@@ -10,6 +10,7 @@ comments: true
 
 # 后训练学习
 
+[代码&讲稿地址](https://github.com/datawhalechina/post-training-of-llms)
 <!-- more -->
 
 ## intro
@@ -231,6 +232,7 @@ tokenizer.chat_template = """
 ![alt text](https://cdn.jsdelivr.net/gh/jagger235711/coooool@main/img/20260610214458716.png)
 
 ## 总结
+
 ![](https://cdn.jsdelivr.net/gh/jagger235711/coooool/img/202606111130152.png)
 
 ![](https://cdn.jsdelivr.net/gh/jagger235711/coooool/img/202606111133267.png)
