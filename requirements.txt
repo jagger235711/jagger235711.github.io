@@ -6,7 +6,7 @@ cairosvg==2.7.1
 certifi==2025.7.14
 cffi==1.16.0
 charset-normalizer==3.4.2
-click==8.2.1
+click==8.3.0
 colorama==0.4.6
 cssselect2==0.8.0
 defusedxml==0.7.1
